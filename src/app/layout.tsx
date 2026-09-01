@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Red_Hat_Mono } from "next/font/google";
+import { Providers } from "@/components/providers/store-provider-wrapper";
 import "./globals.css";
 
 const redHatMono = Red_Hat_Mono({
@@ -49,7 +50,9 @@ export default function RootLayout({
         />
       </head>
       <body className={`${redHatMono.variable} font-mono antialiased selection:bg-neutral-700 selection:text-white min-h-screen flex flex-col`}>
-        {children}
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   );

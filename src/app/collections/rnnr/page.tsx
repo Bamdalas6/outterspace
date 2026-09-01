@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { StoreProvider, useStore } from "@/context/store-context";
+import { useStore } from "@/context/store-context";
 import { Header } from "@/components/navigation/header";
 import { MenuDrawer } from "@/components/navigation/menu-drawer";
 import { RnnrView } from "@/components/views/rnnr-view";
@@ -9,7 +9,7 @@ import { ProductDetailModal } from "@/components/product/product-detail-modal";
 import { CartDrawer } from "@/components/cart/cart-drawer";
 import { Footer } from "@/components/navigation/footer";
 
-function RnnrContent() {
+export default function RnnrPage() {
   const { setView } = useStore();
   useEffect(() => {
     setView("rnnr");
@@ -26,13 +26,5 @@ function RnnrContent() {
       <CartDrawer />
       <Footer />
     </div>
-  );
-}
-
-export default function RnnrRoute() {
-  return (
-    <StoreProvider>
-      <RnnrContent />
-    </StoreProvider>
   );
 }

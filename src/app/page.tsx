@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { StoreProvider, useStore } from "@/context/store-context";
+import { useStore } from "@/context/store-context";
 import { ScrambleLoader } from "@/components/hero/scramble-loader";
 import { EnterScreen } from "@/components/hero/enter-screen";
 import { Header } from "@/components/navigation/header";
@@ -13,7 +13,7 @@ import { ProductDetailModal } from "@/components/product/product-detail-modal";
 import { CartDrawer } from "@/components/cart/cart-drawer";
 import { Footer } from "@/components/navigation/footer";
 
-function StorefrontContent() {
+export default function Home() {
   const { view } = useStore();
 
   return (
@@ -35,13 +35,5 @@ function StorefrontContent() {
 
       <Footer />
     </div>
-  );
-}
-
-export default function Home() {
-  return (
-    <StoreProvider>
-      <StorefrontContent />
-    </StoreProvider>
   );
 }

@@ -2,11 +2,11 @@
 
 import React from "react";
 import Link from "next/link";
-import { StoreProvider, useStore } from "@/context/store-context";
+import { useStore } from "@/context/store-context";
 import { formatPrice } from "@/lib/utils";
 import { Lock, ArrowLeft } from "lucide-react";
 
-function CheckoutContent() {
+export default function CheckoutPage() {
   const { cart, cartTotal } = useStore();
 
   return (
@@ -51,13 +51,5 @@ function CheckoutContent() {
         &copy; {new Date().getFullYear()} OUTTERSPACE STORE
       </div>
     </div>
-  );
-}
-
-export default function CheckoutRoute() {
-  return (
-    <StoreProvider>
-      <CheckoutContent />
-    </StoreProvider>
   );
 }

@@ -2,7 +2,7 @@
 
 import React, { useEffect } from "react";
 import { useParams } from "next/navigation";
-import { StoreProvider, useStore } from "@/context/store-context";
+import { useStore } from "@/context/store-context";
 import { Header } from "@/components/navigation/header";
 import { MenuDrawer } from "@/components/navigation/menu-drawer";
 import { GridView } from "@/components/views/grid-view";
@@ -10,7 +10,7 @@ import { ProductDetailModal } from "@/components/product/product-detail-modal";
 import { CartDrawer } from "@/components/cart/cart-drawer";
 import { Footer } from "@/components/navigation/footer";
 
-function ProductContent() {
+export default function ProductPage() {
   const params = useParams();
   const { setActivePdpHandle } = useStore();
 
@@ -31,13 +31,5 @@ function ProductContent() {
       <CartDrawer />
       <Footer />
     </div>
-  );
-}
-
-export default function ProductRoute() {
-  return (
-    <StoreProvider>
-      <ProductContent />
-    </StoreProvider>
   );
 }
