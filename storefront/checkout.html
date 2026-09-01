@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Checkout — OUTTERSPACE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --panel-bg: #f9f9f9;
+      --text: #111111;
+      --muted: #737373;
+      --border: #e5e5e5;
+      --input-bg: #ffffff;
+      --focus-ring: #000000;
+      --btn-bg: #000000;
+      --btn-text: #ffffff;
+      --font-mono: 'Red Hat Mono', monospace;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.4;
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    /* Top Logo Header */
+    .checkout-header {
+      padding: 24px 32px;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+    }
+    .checkout-logo {
+      font-family: var(--font-mono);
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--text);
+      display: inline-block;
+    }
+
+    /* 2-Column Checkout Layout */
+    .checkout-container {
+      display: grid;
+      grid-template-columns: 1fr 480px;
+      min-height: calc(100vh - 73px);
+    }
+    @media (max-width: 960px) {
+      .checkout-container {
+        grid-template-columns: 1fr;
+      }
+      .checkout-summary-column {
+        order: -1;
+        border-left: none !important;
+        border-bottom: 1px solid var(--border);
+      }
+    }
+
+    /* Left Form Column */
+    .checkout-form-column {
+      padding: 40px 64px 80px 48px;
+      max-width: 680px;
+      margin-left: auto;
+      width: 100%;
+    }
+    @media (max-width: 600px) {
+      .checkout-form-column {
+        padding: 24px 20px 60px;
+      }
+    }
+
+    /* Form Sections */
+    .form-section {
+      margin-bottom: 36px;
+    }
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    .section-link {
+      font-size: 13px;
+      color: #111;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    /* Inputs */
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .field-row {
+      display: flex;
+      gap: 12px;
+    }
+    .field-row > * {
+      flex: 1;
+    }
+    .field-wrap {
+      position: relative;
+      width: 100%;
+    }
+    .field-input, .field-select {
+      width: 100%;
+      height: 48px;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 14px;
+      font-family: inherit;
+      background: var(--input-bg);
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .field-input:focus, .field-select:focus {
+      border-color: var(--focus-ring);
+      box-shadow: 0 0 0 1px var(--focus-ring);
+    }
+    .field-icon {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+    }
+
+    /* Segmented Toggle (Ship / Pickup) */
+    .segmented-control {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+    .segmented-btn {
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      background: #fff;
+      border: none;
+      cursor: pointer;
+      color: var(--text);
+      transition: background 0.15s;
+    }
+    .segmented-btn.is-active {
+      background: rgba(0, 0, 0, 0.05);
+      font-weight: 600;
+      box-shadow: inset 0 0 0 1.5px var(--focus-ring);
+      border-radius: 5px;
+    }
+
+    /* Checkbox */
+    .checkbox-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--text);
+      cursor: pointer;
+      margin-top: 4px;
+      user-select: none;
+    }
+    .checkbox-wrap input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      accent-color: #000;
+      cursor: pointer;
+    }
+
+    /* Right Order Summary Column */
+    .checkout-summary-column {
+      background: var(--panel-bg);
+      border-left: 1px solid var(--border);
+      padding: 40px 48px 80px 40px;
+    }
+    @media (max-width: 960px) {
+      .checkout-summary-column {
+        padding: 24px 20px;
+      }
+    }
+
+    /* Summary Items */
+    .summary-items {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .summary-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .summary-thumb {
+      width: 64px;
+      height: 64px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: #fff;
+      position: relative;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .summary-thumb img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+    .summary-qty-badge {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: #555;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 600;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .summary-details {
+      flex: 1;
+    }
+    .summary-name {
+      font-size: 14px;
+      font-weight: 600;
+      font-family: var(--font-mono);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .summary-size {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    .summary-price {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    /* Discount code row */
+    .discount-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 24px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+    .discount-input {
+      flex: 1;
+      height: 44px;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 13px;
+      font-family: inherit;
+      outline: none;
+    }
+    .discount-btn {
+      padding: 0 18px;
+      height: 44px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: #f0f0f0;
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .discount-btn:hover {
+      background: #e5e5e5;
+    }
+
+    /* Calculation rows */
+    .calc-box {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      font-size: 14px;
+    }
+    .calc-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .calc-label {
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .calc-val {
+      font-family: var(--font-mono);
+      font-weight: 500;
+    }
+    .total-row {
+      margin-top: 12px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .total-label {
+      font-size: 16px;
+      font-weight: 600;
+    }
+    .total-val-wrap {
+      text-align: right;
+    }
+    .total-curr {
+      font-size: 12px;
+      color: var(--muted);
+      margin-right: 6px;
+      font-family: var(--font-mono);
+    }
+    .total-val {
+      font-size: 20px;
+      font-weight: 700;
+      font-family: var(--font-mono);
+    }
+    .total-tax-note {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* Pay Now Button */
+    .pay-btn {
+      width: 100%;
+      height: 52px;
+      background: var(--btn-bg);
+      color: var(--btn-text);
+      border: none;
+      border-radius: 6px;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      margin-top: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.15s;
+    }
+    .pay-btn:hover {
+      opacity: 0.9;
+    }
+
+    /* Payment details block */
+    .payment-options-block {
+      margin-top: 24px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .payment-opt {
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      background: #fff;
+    }
+    .payment-opt:last-child {
+      border-bottom: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Header -->
+  <header class="checkout-header">
+    <a href="/" class="checkout-logo">OUTTERSPACE</a>
+  </header>
+
+  <div class="checkout-container">
+    <!-- Left Column: Checkout Information Form -->
+    <main class="checkout-form-column">
+      <form id="checkout-form" onsubmit="event.preventDefault(); alert('Order placed successfully! Order #OS-88219 confirmed.'); window.location.href='/';">
+        
+        <!-- Contact Section -->
+        <section class="form-section">
+          <div class="section-header">
+            <h2 class="section-title">Contact</h2>
+            <a href="#" class="section-link">Sign in</a>
+          </div>
+          <div class="field-wrap">
+            <input type="text" class="field-input" placeholder="Email or mobile phone number" required value="customer@outterspace.store">
+            <span class="field-icon" title="In case we need to contact you about your order">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            </span>
+          </div>
+        </section>
+
+        <!-- Delivery Section -->
+        <section class="form-section">
+          <div class="section-header">
+            <h2 class="section-title">Delivery</h2>
+          </div>
+
+          <!-- Ship / Pickup Toggle -->
+          <div class="segmented-control">
+            <button type="button" class="segmented-btn is-active" id="btn-ship" onclick="setDelivery('ship')">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+              Ship
+            </button>
+            <button type="button" class="segmented-btn" id="btn-pickup" onclick="setDelivery('pickup')">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              Pickup
+            </button>
+          </div>
+
+          <div class="field-group">
+            <div class="field-wrap">
+              <select class="field-select">
+                <option value="NG" selected>Nigeria</option>
+                <option value="US">United States</option>
+                <option value="GB">United Kingdom</option>
+                <option value="CA">Canada</option>
+                <option value="GH">Ghana</option>
+                <option value="ZA">South Africa</option>
+              </select>
+            </div>
+
+            <div class="field-row">
+              <div class="field-wrap">
+                <input type="text" class="field-input" placeholder="First name" required value="Alexander">
+              </div>
+              <div class="field-wrap">
+                <input type="text" class="field-input" placeholder="Last name" required value="Vance">
+              </div>
+            </div>
+
+            <div class="field-wrap">
+              <input type="text" class="field-input" placeholder="Address" required value="14 Victoria Island Road">
+            </div>
+
+            <div class="field-wrap">
+              <input type="text" class="field-input" placeholder="Apartment, suite, etc. (optional)" value="Suite 402">
+            </div>
+
+            <div class="field-row">
+              <div class="field-wrap">
+                <input type="text" class="field-input" placeholder="City" required value="Lagos">
+              </div>
+              <div class="field-wrap">
+                <select class="field-select">
+                  <option value="LA" selected>Lagos</option>
+                  <option value="AB">Abuja</option>
+                  <option value="RI">Rivers</option>
+                  <option value="OG">Ogun</option>
+                </select>
+              </div>
+              <div class="field-wrap">
+                <input type="text" class="field-input" placeholder="Postal code (optional)" value="101241">
+              </div>
+            </div>
+
+            <div class="field-wrap">
+              <input type="tel" class="field-input" placeholder="Phone" value="+234 803 123 4567">
+              <span class="field-icon" title="In case we need to call you for delivery">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              </span>
+            </div>
+
+            <label class="checkbox-wrap">
+              <input type="checkbox" checked>
+              <span>Save this information for next time</span>
+            </label>
+          </div>
+        </section>
+
+        <!-- Shipping Method -->
+        <section class="form-section">
+          <div class="section-header">
+            <h2 class="section-title">Shipping method</h2>
+          </div>
+          <div class="payment-options-block">
+            <div class="payment-opt">
+              <span style="font-size: 14px; font-weight: 500;">Standard Express Delivery (2–4 Business Days)</span>
+              <span style="font-family: var(--font-mono); font-weight: 600;">₦8,000.00</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Payment Section -->
+        <section class="form-section">
+          <div class="section-header">
+            <h2 class="section-title">Payment</h2>
+          </div>
+          <p style="font-size: 13px; color: var(--muted); margin-bottom: 12px;">All transactions are secure and 256-bit encrypted.</p>
+          <div class="payment-options-block">
+            <label class="payment-opt" style="cursor: pointer;">
+              <span style="display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 500;">
+                <input type="radio" name="pay-method" checked style="accent-color: #000;">
+                <span>Paystack / Flutterwave (Card, Bank Transfer, USSD, Apple Pay)</span>
+              </span>
+              <span style="font-size: 11px; font-family: var(--font-mono); font-weight: 600; color: #00875a;">SECURE</span>
+            </label>
+          </div>
+
+          <button type="submit" class="pay-btn">Pay now</button>
+        </section>
+
+      </form>
+    </main>
+
+    <!-- Right Column: Order Summary (Matching Screenshot) -->
+    <aside class="checkout-summary-column">
+      <div class="summary-items" id="summary-items-list">
+        <!-- Hydrated dynamically from Cart -->
+        <div class="summary-item">
+          <div class="summary-thumb">
+            <img src="/cowboy seriess/1.png" alt="OS-01 - OBSIDIAN">
+            <span class="summary-qty-badge">1</span>
+          </div>
+          <div class="summary-details">
+            <div class="summary-name">OS-01 - OBSIDIAN</div>
+            <div class="summary-size">1</div>
+          </div>
+          <div class="summary-price">₦288,000.00</div>
+        </div>
+      </div>
+
+      <!-- Discount Code Row -->
+      <div class="discount-row">
+        <input type="text" class="discount-input" placeholder="Discount code" id="discount-code">
+        <button type="button" class="discount-btn" onclick="applyDiscount()">Apply</button>
+      </div>
+
+      <!-- Calculations -->
+      <div class="calc-box">
+        <div class="calc-row">
+          <span class="calc-label">Subtotal</span>
+          <span class="calc-val" id="calc-subtotal">₦288,000.00</span>
+        </div>
+        <div class="calc-row">
+          <span class="calc-label">
+            Shipping
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="display:inline; opacity:0.6;"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </span>
+          <span class="calc-val" id="calc-shipping">₦8,000.00</span>
+        </div>
+      </div>
+
+      <!-- Total Row -->
+      <div class="total-row">
+        <span class="total-label">Total</span>
+        <div class="total-val-wrap">
+          <div>
+            <span class="total-curr">NGN</span>
+            <span class="total-val" id="calc-total">₦296,000.00</span>
+          </div>
+          <div class="total-tax-note" id="calc-tax">Including ₦20,093.02 in taxes</div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <script>
+    function setDelivery(mode) {
+      document.getElementById('btn-ship').classList.toggle('is-active', mode === 'ship');
+      document.getElementById('btn-pickup').classList.toggle('is-active', mode === 'pickup');
+      var shippingVal = mode === 'ship' ? 8000 : 0;
+      document.getElementById('calc-shipping').textContent = mode === 'ship' ? '₦8,000.00' : 'Free';
+      recalcTotal(shippingVal);
+    }
+
+    function recalcTotal(shippingRate) {
+      fetch('/cart.js').then(r => r.json()).then(cart => {
+        if (!cart || !cart.items || cart.items.length === 0) return;
+        var subtotal = 0;
+        var html = '';
+        cart.items.forEach(it => {
+          var unitNgn = (it.price / 100) * 1500;
+          var lineNgn = unitNgn * it.quantity;
+          subtotal += lineNgn;
+          var sizeVal = (it.variant_options && it.variant_options[0]) || (it.options_with_values && it.options_with_values[0] && it.options_with_values[0].value) || '1';
+          html += `
+            <div class="summary-item">
+              <div class="summary-thumb">
+                <img src="${it.image || it.featured_image.url}" alt="${it.title}">
+                <span class="summary-qty-badge">${it.quantity}</span>
+              </div>
+              <div class="summary-details">
+                <div class="summary-name">${it.title}</div>
+                <div class="summary-size">${sizeVal}</div>
+              </div>
+              <div class="summary-price">₦${lineNgn.toLocaleString('en-US', {minimumFractionDigits: 2})}</div>
+            </div>`;
+        });
+
+        document.getElementById('summary-items-list').innerHTML = html;
+        document.getElementById('calc-subtotal').textContent = '₦' + subtotal.toLocaleString('en-US', {minimumFractionDigits: 2});
+        
+        var total = subtotal + (shippingRate !== undefined ? shippingRate : 8000);
+        var tax = total * 0.075;
+        document.getElementById('calc-total').textContent = '₦' + total.toLocaleString('en-US', {minimumFractionDigits: 2});
+        document.getElementById('calc-tax').textContent = `Including ₦${tax.toLocaleString('en-US', {minimumFractionDigits: 2})} in taxes`;
+      }).catch(e => console.log(e));
+    }
+
+    function applyDiscount() {
+      var code = document.getElementById('discount-code').value.trim();
+      if (code) {
+        alert('Discount code "' + code + '" applied! 10% OFF');
+      }
+    }
+
+    // Hydrate cart on load
+    recalcTotal(8000);
+  </script>
+</body>
+</html>
