@@ -111,11 +111,11 @@
   {% section 'cart-drawer' %}
 
   <!-- SPLY scripts — exact order from localhost -->
+  {{ 'sply-rnnr.js' | asset_url | script_tag }}
+  {{ 'sply-roam.js' | asset_url | script_tag }}
   {{ 'sply-cart.js' | asset_url | script_tag }}
   {{ 'sply-base.js' | asset_url | script_tag }}
   {{ 'sply-engine.js' | asset_url | script_tag }}
-  {{ 'sply-rnnr.js' | asset_url | script_tag }}
-  {{ 'sply-roam.js' | asset_url | script_tag }}
 
 </body>
 </html>
