@@ -6,8 +6,20 @@ import sys
 import json
 import urllib.parse
 
-PORT = 8000
+
+# Load .env file if present
 DIRECTORY = os.path.dirname(os.path.abspath(__file__))
+env_file = os.path.join(DIRECTORY, '.env')
+if os.path.exists(env_file):
+    with open(env_file, 'r', encoding='utf-8') as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith('#') and '=' in line:
+                key, val = line.split('=', 1)
+                os.environ.setdefault(key.strip(), val.strip().strip('"').strip("'"))
+
+PORT = int(os.environ.get('PORT', 8000))
+
 
 with open(os.path.join(DIRECTORY, 'data', 'products.json'), 'r', encoding='utf-8') as f:
     catalog_data = json.load(f)
