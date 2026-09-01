@@ -10,7 +10,7 @@ export const PRODUCTS: ProductItem[] = [
     available: true,
     category: "HOODIES",
     tags: ["hoodie", "fleece", "heavyweight"],
-    images: ["/cowboy seriess/1.png", "/cowboy seriess/37.png"],
+    images: ["/products/1.png", "/products/37.png"],
     description: "Heavyweight 500GSM brushed cotton fleece hoodie. Custom boxy silhouette with dropped shoulders and raw hem detailing.",
     variants: [
       { id: "var-01-1", title: "1 (S)", available: true },
@@ -26,7 +26,7 @@ export const PRODUCTS: ProductItem[] = [
     available: true,
     category: "TOPS",
     tags: ["tee", "cotton"],
-    images: ["/cowboy seriess/2.png", "/cowboy seriess/39.png"],
+    images: ["/products/2.png", "/products/39.png"],
     description: "Relaxed fit 280GSM combed cotton jersey tee with vintage wash treatment and screenprinted graphic.",
     variants: [
       { id: "var-02-1", title: "1 (S)", available: true },
@@ -42,7 +42,7 @@ export const PRODUCTS: ProductItem[] = [
     available: true,
     category: "BOTTOMS",
     tags: ["denim", "pants", "roam-featured"],
-    images: ["/cowboy seriess/3.png", "/cowboy seriess/40.png"],
+    images: ["/products/3.png", "/products/40.png"],
     description: "14oz Japanese selvedge denim jeans. Wide straight leg cut with custom oxidized copper hardware.",
     variants: [
       { id: "var-03-1", title: "1 (30)", available: true },
@@ -59,7 +59,7 @@ export const PRODUCTS: ProductItem[] = [
     available: true,
     category: "OUTERWEAR",
     tags: ["jacket", "roam-featured"],
-    images: ["/cowboy seriess/64.png", "/cowboy seriess/41.png"],
+    images: ["/products/64.png", "/products/41.png"],
     description: "Waxed canvas insulated ranch jacket with corduroy collar and quilted thermal lining.",
     variants: [
       { id: "var-04-1", title: "1 (S)", available: true },
@@ -75,7 +75,7 @@ export const PRODUCTS: ProductItem[] = [
     available: true,
     category: "BOTTOMS",
     tags: ["cargo", "pants"],
-    images: ["/cowboy seriess/38.png", "/cowboy seriess/42.png"],
+    images: ["/products/38.png", "/products/42.png"],
     description: "Technical cargo trousers featuring articulated knee darts, waterproof zip pockets, and adjustable bungee cuffs.",
     variants: [
       { id: "var-05-1", title: "1 (30)", available: true },
@@ -91,7 +91,7 @@ export const PRODUCTS: ProductItem[] = [
     available: true,
     category: "OUTERWEAR",
     tags: ["fleece", "zip"],
-    images: ["/cowboy seriess/43.png", "/cowboy seriess/44.png"],
+    images: ["/products/43.png", "/products/44.png"],
     description: "Deep-pile sherpa fleece zip jacket with nylon taslan chest panelling and internal storm flap.",
     variants: [
       { id: "var-06-1", title: "1 (S)", available: true },
@@ -107,7 +107,7 @@ export const PRODUCTS: ProductItem[] = [
     available: true,
     category: "TOPS",
     tags: ["knit", "sweater"],
-    images: ["/cowboy seriess/45.png", "/cowboy seriess/46.png"],
+    images: ["/products/45.png", "/products/46.png"],
     description: "Waffle-knit thermal crewneck sweater in charcoal marl with flatlock seam construction.",
     variants: [
       { id: "var-07-1", title: "1 (S)", available: true },
@@ -123,7 +123,7 @@ export const PRODUCTS: ProductItem[] = [
     available: false,
     category: "OUTERWEAR",
     tags: ["jacket", "roam-featured"],
-    images: ["/cowboy seriess/47.png", "/cowboy seriess/48.png"],
+    images: ["/products/47.png", "/products/48.png"],
     description: "Heavy oiled cotton utility coat with brass snap buttons and waterproof finish. Sold out drop.",
     variants: [
       { id: "var-08-1", title: "1 (S)", available: false },
@@ -139,7 +139,7 @@ export const PRODUCTS: ProductItem[] = [
     available: true,
     category: "TOPS",
     tags: ["tee", "minimal"],
-    images: ["/cowboy seriess/49.png", "/cowboy seriess/50.png"],
+    images: ["/products/49.png", "/products/50.png"],
     description: "Unbleached organic cotton heavyweight short-sleeve shirt with tonal micro-embroidered emblem.",
     variants: [
       { id: "var-09-1", title: "1 (S)", available: true },
@@ -155,7 +155,7 @@ export const PRODUCTS: ProductItem[] = [
     available: true,
     category: "HOODIES",
     tags: ["hoodie", "black"],
-    images: ["/cowboy seriess/51.png", "/cowboy seriess/52.png"],
+    images: ["/products/51.png", "/products/52.png"],
     description: "Pigment dyed vintage black hoodie with subtle distressed cuff ribbing and kangaroo pocket.",
     variants: [
       { id: "var-10-1", title: "1 (S)", available: true },
@@ -171,7 +171,7 @@ export const PRODUCTS: ProductItem[] = [
     available: true,
     category: "TOPS",
     tags: ["tee", "graphic"],
-    images: ["/cowboy seriess/53.png", "/cowboy seriess/54.png"],
+    images: ["/products/53.png", "/products/54.png"],
     description: "Overdyed mineral wash graphic t-shirt featuring seasonal series typography.",
     variants: [
       { id: "var-11-1", title: "1 (S)", available: true },
@@ -187,7 +187,7 @@ export const PRODUCTS: ProductItem[] = [
     available: true,
     category: "BOTTOMS",
     tags: ["sweatpants", "fleece"],
-    images: ["/cowboy seriess/55.png", "/cowboy seriess/56.png"],
+    images: ["/products/55.png", "/products/56.png"],
     description: "500GSM heavyweight cotton sweatpants with interior drawcord and elasticated ankles.",
     variants: [
       { id: "var-12-1", title: "1 (S)", available: true },
@@ -203,7 +203,7 @@ export const PRODUCTS: ProductItem[] = [
     available: true,
     category: "TOPS",
     tags: ["longsleeve"],
-    images: ["/cowboy seriess/57.png", "/cowboy seriess/59.png"],
+    images: ["/products/57.png", "/products/59.png"],
     description: "Ribbed long-sleeve thermal tee with thumbhole cuffs and reinforced collar.",
     variants: [
       { id: "var-13-1", title: "1 (S)", available: true },
@@ -220,7 +220,7 @@ export const PRODUCTS: ProductItem[] = [
     available: true,
     category: "OUTERWEAR",
     tags: ["jacket", "wool"],
-    images: ["/cowboy seriess/60.png", "/cowboy seriess/62.png"],
+    images: ["/products/60.png", "/products/62.png"],
     description: "Melton wool blend work shirt jacket with satin lining and custom horn buttons.",
     variants: [
       { id: "var-14-1", title: "1 (S)", available: true },
@@ -236,7 +236,7 @@ export const PRODUCTS: ProductItem[] = [
     available: true,
     category: "TOPS",
     tags: ["over-shirt"],
-    images: ["/cowboy seriess/65.png", "/cowboy seriess/66.png"],
+    images: ["/products/65.png", "/products/66.png"],
     description: "Heavy canvas overshirt with dual flap pockets and antique silver metal snaps.",
     variants: [
       { id: "var-15-1", title: "1 (S)", available: true },
@@ -252,7 +252,7 @@ export const PRODUCTS: ProductItem[] = [
     available: true,
     category: "ACCESSORIES",
     tags: ["belt", "leather"],
-    images: ["/cowboy seriess/67.png", "/cowboy seriess/68.png"],
+    images: ["/products/67.png", "/products/68.png"],
     description: "Full-grain Italian bridle leather belt with custom forged steel buckle and debossed branding.",
     variants: [
       { id: "var-16-1", title: "1 (S/M)", available: true },
@@ -267,7 +267,7 @@ export const PRODUCTS: ProductItem[] = [
     available: true,
     category: "FOOTWEAR",
     tags: ["boots", "leather", "roam-featured"],
-    images: ["/cowboy seriess/69.png", "/cowboy seriess/1.png"],
+    images: ["/products/69.png", "/products/1.png"],
     description: "Goodyear-welted roughout suede ankle boots with Vibram lug outsole and waxed cotton laces.",
     variants: [
       { id: "var-17-1", title: "41 EU", available: true },
