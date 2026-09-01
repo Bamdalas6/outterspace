@@ -1,0 +1,25 @@
+<li class="sply-card" data-type="{{ product.type | default: '' | upcase }}" data-tags="{{ product.tags | join: ' ' }}">
+  <a href="{{ product.url }}" class="sply-card__link" data-sply-handle="{{ product.handle }}">
+    <span class="sply-card__media">
+      {%- assign img_1 = product.featured_image | default: product.featured_media -%}
+      {%- assign img_2 = product.images[1] | default: img_1 -%}
+      {% if img_1 %}
+        <img class="sply-card__img sply-card__img--1" src="{{ img_1 | image_url: width: 700 }}" alt="{{ product.title | escape }}" width="700" height="700" loading="eager" decoding="sync">
+        <img class="sply-card__img sply-card__img--2" src="{{ img_2 | image_url: width: 700 }}" alt="" width="700" height="700" loading="lazy" decoding="async" aria-hidden="true">
+      {% else %}
+        <div class="sply-card__img sply-card__img--1" style="background:#1a1a1a; width:100%; height:100%; border-radius:4px;"></div>
+      {% endif %}
+    </span>
+    <span class="sply-card__name sply-card__name--title">{{ product.title }}</span>
+    <span class="sply-card__price">
+      {% if product.compare_at_price > product.price %}
+        <span class="sply-card__price--sale">
+          <span class="sply-card__price-now">{{ product.price | money_without_trailing_zeros | strip_html }}</span>
+          <s class="sply-card__price-was">{{ product.compare_at_price | money_without_trailing_zeros | strip_html }}</s>
+        </span>
+      {% else %}
+        {{ product.price | money_without_trailing_zeros | strip_html }}
+      {% endif %}
+    </span>
+  </a>
+</li>

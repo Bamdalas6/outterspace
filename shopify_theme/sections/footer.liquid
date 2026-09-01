@@ -1,0 +1,105 @@
+<!-- Exact footer from localhost index.html lines 362-435 -->
+<footer class="sply-footer sply-border">
+  <div class="sply-footer__inner is-collapsible" data-sply-footer>
+    <button type="button" class="sply-footer__info sply-icon" data-sply-footer-toggle aria-expanded="false" aria-controls="sply-footer-links-{{ section.id }}" aria-label="Store links">
+      <span class="sply-icon-swap" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5" stroke-linecap="round"/><circle cx="12" cy="7.75" r="0.6" fill="currentColor" stroke="none"/></svg></span>
+      <span class="sply-icon-swap sply-icon-swap--x" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
+    </button>
+    <span class="sply-footer__reveal" id="sply-footer-links-{{ section.id }}">
+      <nav class="sply-footer__social" aria-label="Social">
+        {% if section.settings.instagram_url != blank %}<a href="{{ section.settings.instagram_url }}" target="_blank" rel="noopener nofollow" aria-label="Instagram">IG</a>{% endif %}
+        {% if section.settings.tiktok_url != blank %}<a href="{{ section.settings.tiktok_url }}" target="_blank" rel="noopener nofollow" aria-label="TikTok">TT</a>{% endif %}
+        {% if section.settings.youtube_url != blank %}<a href="{{ section.settings.youtube_url }}" target="_blank" rel="noopener nofollow" aria-label="YouTube">YT</a>{% endif %}
+        {% if section.settings.twitter_url != blank %}<a href="{{ section.settings.twitter_url }}" target="_blank" rel="noopener nofollow" aria-label="X">X</a>{% endif %}
+        {% if section.settings.facebook_url != blank %}<a href="{{ section.settings.facebook_url }}" target="_blank" rel="noopener nofollow" aria-label="Facebook">FB</a>{% endif %}
+      </nav>
+      <nav class="sply-footer__nav" aria-label="Footer">
+        <a href="/search" class="sply-footer__link">Search</a>
+      </nav>
+    </span>
+    <span class="sply-footer__name">&copy; {{ 'now' | date: '%Y' }}, {{ shop.name }}</span>
+  </div>
+  <script>
+  (function () {
+    var f = document.querySelector('[data-sply-footer]');
+    if (!f) return;
+    var btn = f.querySelector('[data-sply-footer-toggle]');
+    if (!btn) return;
+    var links = f.querySelectorAll('.sply-footer__reveal a');
+    btn.addEventListener('click', function () {
+      var open = f.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      for (var i = 0; i < links.length; i++) {
+        links[i].style.transitionDelay = (open ? 90 + i * 45 : (links.length - 1 - i) * 22) + 'ms';
+      }
+    });
+  })();
+  </script>
+</footer>
+
+<!-- Newsletter popup — exact from localhost -->
+<aside class="sply-signup" data-sply-signup data-delay="6000" data-reappear="0" aria-label="Newsletter signup" hidden>
+  <div class="sply-signup__panel sply-border">
+    <span class="sply-signup__veil" aria-hidden="true"></span>
+    <button type="button" class="sply-signup__close" data-sply-signup-close aria-label="Close"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div class="sply-signup__inner sply-signup__inner--left">
+      <p class="sply-signup__title">Receive website updates</p>
+      <p class="sply-signup__desc sply-muted">Be the first to know about new drops and restocks.</p>
+      {% form 'customer', id: 'contact_form', class: 'contact-form' %}
+        <input type="hidden" name="contact[tags]" value="newsletter, sply-popup">
+        <input type="email" name="contact[email]" class="sply-signup__input" placeholder="Email" autocomplete="email" autocorrect="off" autocapitalize="off" required>
+        <button type="submit" class="sply-signup__btn">Subscribe</button>
+      {% endform %}
+    </div>
+  </div>
+</aside>
+<script>
+(function(){
+  var box = document.querySelector('[data-sply-signup]');
+  if (!box || box._splyInit) return; box._splyInit = true;
+  var KEY = 'sply-signup-v1';
+  var editor = window.Shopify && window.Shopify.designMode;
+  function open(){ box.classList.remove('is-closing'); box.hidden = false; void box.offsetHeight; box.classList.add('is-open'); }
+  function close(){
+    if (box.hidden || box.classList.contains('is-closing')) return;
+    box.classList.add('is-closing');
+    box.classList.remove('is-open');
+    try { localStorage.setItem(KEY, String(Date.now())); } catch (e) {}
+    window.setTimeout(function(){ box.hidden = true; box.classList.remove('is-closing'); }, 620);
+  }
+  var btn = box.querySelector('[data-sply-signup-close]');
+  if (btn) btn.addEventListener('click', close);
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && box.classList.contains('is-open')) close(); });
+  document.addEventListener('click', function(e){
+    if (box.classList.contains('is-open')) {
+      var panel = box.querySelector('.sply-signup__panel');
+      if (panel && !panel.contains(e.target)) close();
+    }
+  });
+  var posted = box.getAttribute('data-posted') === 'true' || /[?&](customer|contact)_posted=true/.test(window.location.search);
+  if (posted) { try { localStorage.setItem(KEY, String(Date.now())); } catch (e) {} box.classList.add('sply-signup--instant'); open(); return; }
+  if (!editor) {
+    var last = 0; try { last = parseInt(localStorage.getItem(KEY), 10) || 0; } catch (e) {}
+    var days = parseInt(box.getAttribute('data-reappear'), 10);
+    if (last) {
+      if (!days || days <= 0) return;
+      if (Date.now() - last < days * 86400000) return;
+    }
+  }
+  var delay = editor ? 250 : (parseInt(box.getAttribute('data-delay'), 10) || 3000);
+  window.setTimeout(open, delay);
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {"type":"url","id":"instagram_url","label":"Instagram URL"},
+    {"type":"url","id":"tiktok_url","label":"TikTok URL"},
+    {"type":"url","id":"youtube_url","label":"YouTube URL"},
+    {"type":"url","id":"twitter_url","label":"X / Twitter URL"},
+    {"type":"url","id":"facebook_url","label":"Facebook URL"}
+  ]
+}
+{% endschema %}

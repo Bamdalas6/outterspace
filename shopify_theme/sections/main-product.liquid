@@ -1,0 +1,137 @@
+{%- assign current_handle = product.handle -%}
+{%- assign all_products = collection.products | default: collections.all.products -%}
+
+<section class="sply-pdp" data-sply-pdp data-transition="slide" data-arrows-mobile="true" data-sply-magnify="true" data-sply-section-id="{{ section.id }}">
+
+  <!-- Image carousel stage -->
+  <span class="sply-pdp__stage">
+    <button type="button" class="sply-pdp__nav sply-pdp__prev sply-icon" aria-label="Previous image"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+    <span class="sply-pdp__viewport" data-pdp-viewport>
+      <span class="sply-pdp__track" data-pdp-track>
+        {%- for media in product.media -%}
+          <figure class="sply-pdp__slide{% if forloop.first %} is-active{% endif %}" data-index="{{ forloop.index0 }}">
+            <img src="{{ media | image_url: width: 1200 }}" data-magnify-src="{{ media | image_url: width: 2400 }}" alt="{{ product.title | escape }}" width="1200" height="1200" draggable="false" decoding="sync"{% if forloop.first %} fetchpriority="high"{% endif %}>
+          </figure>
+        {%- else -%}
+          <figure class="sply-pdp__slide is-active" data-index="0">
+            <img src="{{ product.featured_image | image_url: width: 1200 }}" data-magnify-src="{{ product.featured_image | image_url: width: 2400 }}" alt="{{ product.title | escape }}" width="1200" height="1200" draggable="false" decoding="sync" fetchpriority="high">
+          </figure>
+        {%- endfor -%}
+      </span>
+    </span>
+    <button type="button" class="sply-pdp__nav sply-pdp__next sply-icon" aria-label="Next image"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
+  </span>
+
+  <!-- Dot indicators -->
+  <span class="sply-pdp__dots" data-pdp-dots>
+    {%- for media in product.media -%}
+      <button type="button" class="sply-pdp__dot{% if forloop.first %} is-active{% endif %}" data-dot="{{ forloop.index0 }}" aria-label="Image {{ forloop.index }}"></button>
+    {%- else -%}
+      <button type="button" class="sply-pdp__dot is-active" data-dot="0" aria-label="Image 1"></button>
+    {%- endfor -%}
+  </span>
+
+  <!-- Product name -->
+  <p class="sply-pdp__name" data-sply-name>{{ product.title }}</p>
+
+  <!-- Buy head (size label bar, only visible when size picker open) -->
+  <span class="sply-pdp__buyhead" data-sply-buyhead hidden>
+    <button type="button" class="sply-pdp__hbtn" data-sply-sizechart aria-label="Size chart">
+      <svg viewBox="1.5 1.5 21 21" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><circle cx="12" cy="7.75" r="0.85" fill="currentColor" stroke="none"/></svg>
+    </button>
+    <span class="sply-pdp__hlabel" data-label="Select size">Select size</span>
+    <button type="button" class="sply-pdp__hbtn sply-pdp__hbtn--end" data-sply-buy-close aria-label="Close"><svg viewBox="5 5 14 14" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </span>
+
+  <p class="sply-pdp__adding" data-sply-adding hidden>Adding</p>
+
+  <!-- Buy block -->
+  <span class="sply-pdp__buy">
+    <p class="sply-pdp__price" data-sply-price>
+      {%- if product.compare_at_price > product.price -%}
+        <s>{{ product.compare_at_price | money_without_trailing_zeros | strip_html }}</s> {{ product.price | money_without_trailing_zeros | strip_html }}
+      {%- else -%}
+        {{ product.price | money_without_trailing_zeros | strip_html }}
+      {%- endif -%}
+    </p>
+
+    {%- assign first_variant = product.variants.first -%}
+    <form method="post" action="/cart/add" id="product_form_{{ product.id }}" accept-charset="UTF-8" class="shopify-product-form" enctype="multipart/form-data">
+      <input type="hidden" name="form_type" value="product">
+      <input type="hidden" name="utf8" value="✓">
+      <input type="hidden" name="id" value="{{ first_variant.id }}" data-sply-variant-id>
+      <button type="button" class="sply-pdp__add sply-icon" data-sply-buy aria-label="Select size">
+        <svg viewBox="4 4 16 16" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        <svg class="sply-spinner" viewBox="0 0 66 66" aria-hidden="true"><circle class="sply-spinner__path" cx="33" cy="33" r="30" fill="none" stroke="currentColor" stroke-width="6"/></svg>
+      </button>
+      <span class="sply-pdp__sizes" data-sply-sizes hidden>
+        {%- for variant in product.variants -%}
+          <button type="button" class="sply-size" data-variant-id="{{ variant.id }}" data-available="{{ variant.available }}">{{ variant.title }}</button>
+        {%- endfor -%}
+      </span>
+      <input type="hidden" name="product-id" value="{{ product.id }}">
+      <input type="hidden" name="section-id" value="{{ section.id }}">
+    </form>
+
+    <!-- Product description (expandable) -->
+    <div class="sply-rte sply-pdp__desc" data-sply-desc hidden>
+      {{ product.description }}
+    </div>
+    <button type="button" class="sply-pdp__infotoggle" data-sply-info-toggle hidden>Information</button>
+  </span>
+
+  <!-- Size chart modal -->
+  <div class="sply-modal" data-sply-sizechart-modal hidden>
+    <button type="button" class="sply-modal__scrim" data-sply-sizechart-close aria-label="Close"></button>
+    <div class="sply-modal__panel sply-surface" role="dialog" aria-modal="true" aria-label="Size chart">
+      <header class="sply-modal__head sply-border">
+        <span class="sply-modal__title">Size chart</span>
+        <button type="button" class="sply-icon" data-sply-sizechart-close aria-label="Close"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      </header>
+      <div class="sply-modal__body" style="padding: 24px 20px; font-family: 'Red Hat Mono', monospace;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; text-align: left;">
+          <thead>
+            <tr style="border-bottom: 1.5px solid currentColor;">
+              <th style="padding: 10px 6px;">Size</th>
+              <th style="padding: 10px 6px;">Chest (IN)</th>
+              <th style="padding: 10px 6px;">Length (IN)</th>
+              <th style="padding: 10px 6px;">Sleeve (IN)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid rgba(128,128,128,0.2);"><td style="padding: 10px 6px; font-weight:700;">1 (S)</td><td style="padding: 10px 6px;">46</td><td style="padding: 10px 6px;">26.5</td><td style="padding: 10px 6px;">34.0</td></tr>
+            <tr style="border-bottom: 1px solid rgba(128,128,128,0.2);"><td style="padding: 10px 6px; font-weight:700;">2 (M)</td><td style="padding: 10px 6px;">49</td><td style="padding: 10px 6px;">27.5</td><td style="padding: 10px 6px;">35.0</td></tr>
+            <tr style="border-bottom: 1px solid rgba(128,128,128,0.2);"><td style="padding: 10px 6px; font-weight:700;">3 (L)</td><td style="padding: 10px 6px;">52</td><td style="padding: 10px 6px;">28.5</td><td style="padding: 10px 6px;">36.0</td></tr>
+          </tbody>
+        </table>
+        <p style="font-size: 11px; margin-top: 16px; opacity: 0.65; text-transform: uppercase; letter-spacing: 0.05em;">* All measurements in inches. Unisex oversized silhouette.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sequence JSON for prev/next navigation — uses live collection products -->
+  <script type="application/json" data-sply-seq>
+    {
+      "current": "{{ product.handle }}",
+      "collection": "{{ collection.url | default: '/collections/all' }}",
+      "products": [
+        {%- assign seq_col = collection | default: collections.all -%}
+        {%- for p in seq_col.products -%}
+          {
+            "handle": "{{ p.handle }}",
+            "url": "{{ p.url }}",
+            "img": "{{ p.featured_image | image_url: width: 700 }}"
+          }{% unless forloop.last %},{% endunless %}
+        {%- endfor -%}
+      ]
+    }
+  </script>
+
+</section>
+
+{% schema %}
+{
+  "name": "Product",
+  "settings": []
+}
+{% endschema %}

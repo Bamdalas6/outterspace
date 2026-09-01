@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "enter_screen": {
+      "type": "enter-screen",
+      "settings": {
+        "rnnr_handle": "rnnr",
+        "roam_handle": "roam"
+      }
+    },
+    "main": {
+      "type": "main-collection-grid",
+      "settings": {}
+    }
+  },
+  "order": ["enter_screen", "main"]
+}

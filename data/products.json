@@ -1,0 +1,707 @@
+{
+  "products": [
+    {
+      "id": "os-cs-01",
+      "handle": "os-01-heavyweight-hoodie-obsidian",
+      "title": "OS-01 HEAVYWEIGHT HOODIE",
+      "subtitle": "COWBOY SERIES \u2014 OBSIDIAN",
+      "price": 140.0,
+      "compare_at_price": 180.0,
+      "category": "HOODIES",
+      "tags": [
+        "HOODIES",
+        "BESTSELLER",
+        "HEAVYWEIGHT"
+      ],
+      "badge": "BESTSELLER",
+      "images": [
+        "cowboy seriess/1.png",
+        "cowboy seriess/37.png"
+      ],
+      "description": "Custom-milled 520 GSM double-faced French Terry hoodie with drop-shoulder silhouette, oversized kangaroo pocket, raw edge hems, and sun-faded obsidian wash.",
+      "details": [
+        "100% Organic Heavyweight Cotton (520 GSM)",
+        "Sun-bleached enzyme wash finish",
+        "Hidden interior media stash pocket",
+        "Ribbed cuff and waistband with custom thumbholes",
+        "Made in Los Angeles / Assembled for Outterspace"
+      ],
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "stock": {
+        "XS": 4,
+        "S": 8,
+        "M": 15,
+        "L": 12,
+        "XL": 6,
+        "XXL": 2
+      },
+      "color": "Obsidian Fade",
+      "sku": "OS-CS-HD01-OBS"
+    },
+    {
+      "id": "os-cs-02",
+      "handle": "os-02-solar-flare-heavy-tee",
+      "title": "OS-02 SOLAR FLARE OVERSIZED TEE",
+      "subtitle": "COWBOY SERIES \u2014 BONE WHITE",
+      "price": 75.0,
+      "compare_at_price": 90.0,
+      "category": "TOPS",
+      "tags": [
+        "TOPS",
+        "TEES",
+        "OVERSIZED"
+      ],
+      "badge": "NEW",
+      "images": [
+        "cowboy seriess/2.png",
+        "cowboy seriess/48.png"
+      ],
+      "description": "Heavyweight 280 GSM combed cotton vintage cut tee with high ribbed collar, boxy drape, and signature Outterspace orbital distress print.",
+      "details": [
+        "280 GSM 100% Combed Compact Cotton",
+        "High 1.25-inch tight crewneck ribbing",
+        "Pre-shrunk vintage wash treatment",
+        "Pigment dyed with cracked plastisol graphic"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 14,
+        "M": 22,
+        "L": 18,
+        "XL": 9
+      },
+      "color": "Bone White",
+      "sku": "OS-CS-TEE02-BON"
+    },
+    {
+      "id": "os-cs-03",
+      "handle": "os-03-frontier-selvedge-denim",
+      "title": "OS-03 FRONTIER SELVEDGE DENIM",
+      "subtitle": "COWBOY SERIES \u2014 DEEP INDIGO",
+      "price": 220.0,
+      "compare_at_price": 260.0,
+      "category": "BOTTOMS",
+      "tags": [
+        "BOTTOMS",
+        "DENIM",
+        "SELVEDGE"
+      ],
+      "badge": "LIMITED",
+      "images": [
+        "cowboy seriess/3.png",
+        "cowboy seriess/46.png"
+      ],
+      "description": "14.5oz Japanese shuttle-loom selvedge denim in a relaxed stacked cowboy silhouette with reinforced knee paneling and custom oxidised silver hardware.",
+      "details": [
+        "14.5oz Kurabo Mill Japanese Selvedge Denim",
+        "Custom Outterspace branded oxidized copper rivets",
+        "Straight relaxed leg with subtle boot stack drape",
+        "Hand-sanded whiskering and honeycombs"
+      ],
+      "sizes": [
+        "28",
+        "30",
+        "32",
+        "34",
+        "36"
+      ],
+      "stock": {
+        "28": 3,
+        "30": 7,
+        "32": 11,
+        "34": 8,
+        "36": 4
+      },
+      "color": "Deep Indigo",
+      "sku": "OS-CS-DN03-IND"
+    },
+    {
+      "id": "os-cs-04",
+      "handle": "os-04-orbital-suede-work-jacket",
+      "title": "OS-04 ORBITAL SUEDE WORK JACKET",
+      "subtitle": "COWBOY SERIES \u2014 COYOTE TAN",
+      "price": 380.0,
+      "compare_at_price": 450.0,
+      "category": "OUTERWEAR",
+      "tags": [
+        "OUTERWEAR",
+        "JACKETS",
+        "PREMIUM"
+      ],
+      "badge": "PREMIUM",
+      "images": [
+        "cowboy seriess/64.png",
+        "cowboy seriess/44.png"
+      ],
+      "description": "Heavyweight split cowhide suede work jacket featuring quilted satin thermal lining, heavy-duty 2-way matte nickel zipper, and corduroy collar accent.",
+      "details": [
+        "100% Genuine Split Cowhide Roughout Suede",
+        "100g Thinsulate thermal quilted satin lining",
+        "Dual welt chest handwarmer pockets",
+        "YKK 2-way industrial metal zipper with suede pull tabs"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 4,
+        "M": 6,
+        "L": 5,
+        "XL": 2
+      },
+      "color": "Coyote Tan",
+      "sku": "OS-CS-JK04-TAN"
+    },
+    {
+      "id": "os-cs-05",
+      "handle": "os-05-tactical-dust-cargo-pant",
+      "title": "OS-05 TACTICAL DUST CARGO PANT",
+      "subtitle": "COWBOY SERIES \u2014 SHADOW BLACK",
+      "price": 175.0,
+      "compare_at_price": 210.0,
+      "category": "BOTTOMS",
+      "tags": [
+        "BOTTOMS",
+        "CARGO",
+        "PANTS"
+      ],
+      "badge": "",
+      "images": [
+        "cowboy seriess/38.png",
+        "cowboy seriess/41.png"
+      ],
+      "description": "Tactical ripstop cargo pants with 8-pocket modular storage, articulated knee darts for freedom of movement, and adjustable shock-cord ankle cinches.",
+      "details": [
+        "340 GSM Cotton-Nylon High Density Ripstop",
+        "Magnetic closure bellow cargo pockets",
+        "Adjustable bungee drawcord hem",
+        "Water repellent DWR coating"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 10,
+        "M": 14,
+        "L": 12,
+        "XL": 5
+      },
+      "color": "Shadow Black",
+      "sku": "OS-CS-PT05-BLK"
+    },
+    {
+      "id": "os-cs-06",
+      "handle": "os-06-skyline-fleece-pullover",
+      "title": "OS-06 SKYLINE POLAR FLEECE",
+      "subtitle": "COWBOY SERIES \u2014 GLACIER BLUE",
+      "price": 160.0,
+      "compare_at_price": 195.0,
+      "category": "OUTERWEAR",
+      "tags": [
+        "OUTERWEAR",
+        "FLEECE",
+        "HOODIES"
+      ],
+      "badge": "NEW",
+      "images": [
+        "cowboy seriess/39.png",
+        "cowboy seriess/40.png"
+      ],
+      "description": "High-loft bonded sherpa fleece pullover with high-neck storm collar, nylon taslan contrast chest panels, and zippered kangaroo pouch.",
+      "details": [
+        "450 GSM Thermal Bonded Sherpa Fleece",
+        "Windproof nylon taslan overlay across shoulders and chest",
+        "Elastic bound cuffs and bottom hem",
+        "Contrast reflective pull cords"
+      ],
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "XS": 3,
+        "S": 9,
+        "M": 16,
+        "L": 11,
+        "XL": 4
+      },
+      "color": "Glacier Blue",
+      "sku": "OS-CS-FL06-BLU"
+    },
+    {
+      "id": "os-cs-07",
+      "handle": "os-07-meteorite-knit-crewneck",
+      "title": "OS-07 METEORITE WAFFLE CREW",
+      "subtitle": "COWBOY SERIES \u2014 CHARCOAL",
+      "price": 110.0,
+      "compare_at_price": 135.0,
+      "category": "TOPS",
+      "tags": [
+        "TOPS",
+        "KNITWEAR",
+        "WAFFLE"
+      ],
+      "badge": "",
+      "images": [
+        "cowboy seriess/42.png",
+        "cowboy seriess/51.png"
+      ],
+      "description": "Heavyweight thermal waffle knit constructed from combed organic cotton yarn with extended sleeves, thumbhole cuffs, and raw cut roll collar.",
+      "details": [
+        "400 GSM 100% Organic Waffle Knit Cotton",
+        "Flatlock seam stitching throughout",
+        "Extended cuff ribbing with laser-cut thumbhole",
+        "Garment washed for ultra-soft lived-in handfeel"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "stock": {
+        "S": 6,
+        "M": 12,
+        "L": 14,
+        "XL": 8,
+        "XXL": 3
+      },
+      "color": "Charcoal Smoke",
+      "sku": "OS-CS-KN07-CHR"
+    },
+    {
+      "id": "os-cs-08",
+      "handle": "os-08-canyon-duster-trench",
+      "title": "OS-08 CANYON DUSTER COAT",
+      "subtitle": "COWBOY SERIES \u2014 RAW OILSKIN",
+      "price": 420.0,
+      "compare_at_price": 520.0,
+      "category": "OUTERWEAR",
+      "tags": [
+        "OUTERWEAR",
+        "COATS",
+        "PREMIUM",
+        "ARCHIVE"
+      ],
+      "badge": "GRAIL",
+      "images": [
+        "cowboy seriess/43.png",
+        "cowboy seriess/47.png"
+      ],
+      "description": "Full-length waxed canvas duster trench coat inspired by high-desert outlaws and futuristic space exploration. Built with weather-treated British Millerain cotton.",
+      "details": [
+        "12oz British Millerain Waxed Cotton Canvas",
+        "Removable storm capelet and storm throat latch",
+        "Full flannel lining with internal leg straps for riding/mobility",
+        "Horn button front with hidden heavy zipper placket"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 2,
+        "M": 5,
+        "L": 4,
+        "XL": 1
+      },
+      "color": "Raw Oilskin Brown",
+      "sku": "OS-CS-CT08-BRN"
+    },
+    {
+      "id": "os-cs-09",
+      "handle": "os-09-starlight-minimal-tee",
+      "title": "OS-09 STARLIGHT BOXY TEE",
+      "subtitle": "COWBOY SERIES \u2014 RAW CHALK",
+      "price": 70.0,
+      "compare_at_price": 85.0,
+      "category": "TOPS",
+      "tags": [
+        "TOPS",
+        "TEES",
+        "ESSENTIAL"
+      ],
+      "badge": "",
+      "images": [
+        "cowboy seriess/45.png",
+        "cowboy seriess/49.png"
+      ],
+      "description": "Minimalist boxy tee with tonal embroidered Outterspace typography at the nape. Clean seamless side construction with double-needle hems.",
+      "details": [
+        "260 GSM Single Jersey Combed Cotton",
+        "Drop shoulder boxy relaxed fit",
+        "Tonal micro-embroidered insignia on back neck",
+        "Garment pre-washed to prevent shrinkage"
+      ],
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "XS": 8,
+        "S": 15,
+        "M": 20,
+        "L": 16,
+        "XL": 7
+      },
+      "color": "Raw Chalk",
+      "sku": "OS-CS-TEE09-CHK"
+    },
+    {
+      "id": "os-cs-10",
+      "handle": "os-10-eclipse-raw-hem-hoodie",
+      "title": "OS-10 ECLIPSE DOUBLE LAYER HOODIE",
+      "subtitle": "COWBOY SERIES \u2014 NOCTURNAL BLACK",
+      "price": 155.0,
+      "compare_at_price": 190.0,
+      "category": "HOODIES",
+      "tags": [
+        "HOODIES",
+        "HEAVYWEIGHT",
+        "BESTSELLER"
+      ],
+      "badge": "POPULAR",
+      "images": [
+        "cowboy seriess/52.png",
+        "cowboy seriess/53.png"
+      ],
+      "description": "Double-layered heavyweight fleece hoodie engineered without drawstrings for an uninterrupted, architectural hood drape and structured oversized body.",
+      "details": [
+        "580 GSM Combined Double Layer Cotton Fleece",
+        "Seamless hood construction with cross-neck collar",
+        "Raw distressed waistband edge",
+        "Silicone dipped aglets and interior branding"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "stock": {
+        "S": 7,
+        "M": 18,
+        "L": 21,
+        "XL": 9,
+        "XXL": 4
+      },
+      "color": "Nocturnal Black",
+      "sku": "OS-CS-HD10-BLK"
+    },
+    {
+      "id": "os-cs-11",
+      "handle": "os-11-nebula-washed-graphic-tee",
+      "title": "OS-11 NEBULA VINTAGE DRIFT TEE",
+      "subtitle": "COWBOY SERIES \u2014 CYAN WASH",
+      "price": 85.0,
+      "compare_at_price": 100.0,
+      "category": "TOPS",
+      "tags": [
+        "TOPS",
+        "TEES",
+        "GRAPHIC"
+      ],
+      "badge": "",
+      "images": [
+        "cowboy seriess/54.png",
+        "cowboy seriess/60.png"
+      ],
+      "description": "Multi-stage mineral washed tee with celestial gradient hue, distressed collar edge, and front screen-printed Cowboy Series galactic topography graphic.",
+      "details": [
+        "300 GSM Heavyweight Mineral Wash Cotton",
+        "Hand-applied distressing around collar and sleeves",
+        "Screen-printed with water-based discharge inks",
+        "Each piece is uniquely washed and faded"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 6,
+        "M": 14,
+        "L": 15,
+        "XL": 8
+      },
+      "color": "Cyan Wash",
+      "sku": "OS-CS-TEE11-CYN"
+    },
+    {
+      "id": "os-cs-12",
+      "handle": "os-12-void-cargo-sweatpant",
+      "title": "OS-12 VOID CARGO SWEATPANT",
+      "subtitle": "COWBOY SERIES \u2014 CARBON",
+      "price": 135.0,
+      "compare_at_price": 165.0,
+      "category": "BOTTOMS",
+      "tags": [
+        "BOTTOMS",
+        "SWEATPANTS",
+        "CARGO"
+      ],
+      "badge": "RESTOCKED",
+      "images": [
+        "cowboy seriess/55.png",
+        "cowboy seriess/65.png"
+      ],
+      "description": "500 GSM heavyweight brushed fleece sweatpants with low-profile snap cargo pockets, thick ribbed elastic waistband, and internal cotton drawcords.",
+      "details": [
+        "500 GSM Heavyweight Brushed Back Fleece",
+        "Dual side zipper pockets + snap flap cargo pockets",
+        "Heavy custom woven waistband cord",
+        "Deep relaxed rise with tapered ankle elastic"
+      ],
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "XS": 5,
+        "S": 11,
+        "M": 17,
+        "L": 13,
+        "XL": 6
+      },
+      "color": "Carbon Grey",
+      "sku": "OS-CS-SW12-CRB"
+    },
+    {
+      "id": "os-cs-13",
+      "handle": "os-13-lunar-crest-oversized-tee",
+      "title": "OS-13 LUNAR CREST POCKET TEE",
+      "subtitle": "COWBOY SERIES \u2014 OFF-WHITE",
+      "price": 75.0,
+      "compare_at_price": 90.0,
+      "category": "TOPS",
+      "tags": [
+        "TOPS",
+        "TEES",
+        "POCKET"
+      ],
+      "badge": "",
+      "images": [
+        "cowboy seriess/56.png",
+        "cowboy seriess/57.png"
+      ],
+      "description": "Boxy pocket tee with reinforced reinforced seams, tonal chest pocket with laser engraved Outterspace metallic stud, and relaxed drop-shoulder cut.",
+      "details": [
+        "280 GSM Compact Ringspun Cotton",
+        "Reinforced chest pocket with metal branded stud",
+        "Thick set-in rib neckband",
+        "Pre-shrunk for consistent sizing"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "stock": {
+        "S": 12,
+        "M": 19,
+        "L": 17,
+        "XL": 10,
+        "XXL": 5
+      },
+      "color": "Off-White",
+      "sku": "OS-CS-TEE13-OFW"
+    },
+    {
+      "id": "os-cs-14",
+      "handle": "os-14-sagebrush-tactical-vest",
+      "title": "OS-14 SAGEBRUSH TACTICAL VEST",
+      "subtitle": "COWBOY SERIES \u2014 FOREST GREEN",
+      "price": 190.0,
+      "compare_at_price": 240.0,
+      "category": "OUTERWEAR",
+      "tags": [
+        "OUTERWEAR",
+        "VESTS",
+        "TACTICAL"
+      ],
+      "badge": "LIMITED",
+      "images": [
+        "cowboy seriess/59.png",
+        "cowboy seriess/67.png"
+      ],
+      "description": "Utility vest built from ballistic Cordura nylon with modular D-ring attachment points, mesh airflow lining, and magnetic quick-release buckle closures.",
+      "details": [
+        "500D Cordura Ballistic Nylon Shell",
+        "Breathable 3D mesh interior lining",
+        "Fidlock magnetic quick-release front closure",
+        "6 exterior utility storage pockets with waterproof zippers"
+      ],
+      "sizes": [
+        "S/M",
+        "L/XL"
+      ],
+      "stock": {
+        "S/M": 8,
+        "L/XL": 9
+      },
+      "color": "Forest Sage",
+      "sku": "OS-CS-VST14-SGE"
+    },
+    {
+      "id": "os-cs-15",
+      "handle": "os-15-mirage-linen-overshirt",
+      "title": "OS-15 MIRAGE LINEN WORKSHIRT",
+      "subtitle": "COWBOY SERIES \u2014 BLEACHED SAND",
+      "price": 165.0,
+      "compare_at_price": 200.0,
+      "category": "TOPS",
+      "tags": [
+        "TOPS",
+        "SHIRTS",
+        "LINEN"
+      ],
+      "badge": "NEW",
+      "images": [
+        "cowboy seriess/62.png",
+        "cowboy seriess/66.png"
+      ],
+      "description": "Heavyweight washed Belgian linen overshirt with pearlized matte snap buttons, western yoke detailing, and relaxed chest fit.",
+      "details": [
+        "100% Belgian Heavyweight Washed Linen (290 GSM)",
+        "Western pointed yoke design front and back",
+        "Matte metal snap button front closure",
+        "Curved hem with reinforced side gussets"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "stock": {
+        "S": 5,
+        "M": 12,
+        "L": 10,
+        "XL": 4
+      },
+      "color": "Bleached Sand",
+      "sku": "OS-CS-SH15-SND"
+    },
+    {
+      "id": "os-cs-16",
+      "handle": "os-16-frontier-leather-orbit-belt",
+      "title": "OS-16 FRONTIER ORBIT LEATHER BELT",
+      "subtitle": "COWBOY SERIES \u2014 SADDLE TAN",
+      "price": 95.0,
+      "compare_at_price": 120.0,
+      "category": "ACCESSORIES",
+      "tags": [
+        "ACCESSORIES",
+        "LEATHER",
+        "BELTS"
+      ],
+      "badge": "",
+      "images": [
+        "cowboy seriess/68.png",
+        "cowboy seriess/50.png"
+      ],
+      "description": "4mm full-grain vegetable tanned bridle leather belt featuring custom cast iron orbital cowboy buckle and blind embossed Outterspace coordinate stamp.",
+      "details": [
+        "4mm Full Grain Italian Bridle Leather",
+        "Custom matte black alloy cast buckle",
+        "Blind heat debossed coordinate branding",
+        "Hand-beveled and burnished wax edges"
+      ],
+      "sizes": [
+        "S (30-32)",
+        "M (32-34)",
+        "L (34-36)",
+        "XL (36-38)"
+      ],
+      "stock": {
+        "S (30-32)": 15,
+        "M (32-34)": 20,
+        "L (34-36)": 18,
+        "XL (36-38)": 8
+      },
+      "color": "Saddle Tan / Matte Black",
+      "sku": "OS-CS-ACC16-BLT"
+    },
+    {
+      "id": "os-cs-17",
+      "handle": "os-17-outlaw-crepe-sole-chelsea-boot",
+      "title": "OS-17 OUTLAW CREPE SOLE BOOT",
+      "subtitle": "COWBOY SERIES \u2014 DESERT ROUGH",
+      "price": 290.0,
+      "compare_at_price": 360.0,
+      "category": "FOOTWEAR",
+      "tags": [
+        "FOOTWEAR",
+        "BOOTS",
+        "LEATHER"
+      ],
+      "badge": "EXCLUSIVE",
+      "images": [
+        "cowboy seriess/69.png",
+        "cowboy seriess/37.png"
+      ],
+      "description": "Hand-stitched roughout suede cowboy chelsea boot featuring stacked natural crepe rubber outsole, pull tabs, and reinforced leather insole.",
+      "details": [
+        "Premium Italian Calf Roughout Suede",
+        "100% Natural Plantation Crepe Cushion Outsole",
+        "Goodyear welted resoleable construction",
+        "Elastic side gussets with suede pull straps"
+      ],
+      "sizes": [
+        "US 8",
+        "US 9",
+        "US 10",
+        "US 11",
+        "US 12",
+        "US 13"
+      ],
+      "stock": {
+        "US 8": 3,
+        "US 9": 6,
+        "US 10": 8,
+        "US 11": 7,
+        "US 12": 4,
+        "US 13": 2
+      },
+      "color": "Desert Rough Suede",
+      "sku": "OS-CS-FT17-BOT"
+    }
+  ],
+  "collection": "COWBOY SERIES 01",
+  "store": "OUTTERSPACE STORE",
+  "total": 17
+}

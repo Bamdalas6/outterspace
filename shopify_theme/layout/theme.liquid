@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}" class="sply sply--dark" data-sply-cardhover="grow">
+<head>
+  <!-- Exact theme mode restore — runs before paint -->
+  <script>
+    (function(){try{var toggle=true;if(!toggle)return;var m=localStorage.getItem('sply-mode');if(m==='light'||m==='dark'){var r=document.documentElement;r.classList.remove('sply--light','sply--dark');r.classList.add('sply--'+m);}}catch(e){}})();
+  </script>
+  <script>
+    (function(){try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&(!sessionStorage.getItem('sply-landed')||sessionStorage.getItem('sply-restagger'))){document.documentElement.classList.add('sply-prestagger');}}catch(e){}})();
+  </script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0F0F0F">
+  <link rel="canonical" href="{{ canonical_url }}">
+  <title>{{ page_title }}{% if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif %}{% if current_page != 1 %} &ndash; Page {{ current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}</title>
+  {% if page_description %}<meta name="description" content="{{ page_description | escape }}">{% endif %}
+
+  {{ content_for_header }}
+
+  <!-- Core SPLY stylesheet -->
+  {{ 'sply-base.css' | asset_url | stylesheet_tag }}
+
+  <!-- Exact colour-scheme tokens (copied verbatim from localhost) -->
+  <style>
+    .sply--light{background:#FAFAFA;color:#0F0F0F;color-scheme:light;}
+    .sply--light .sply-surface{background:#fdfdfd;}
+    .sply--light .sply-border{border-color:#e3e3e3;}
+    .sply--light .sply-muted{color:#797979;}
+    .sply--dark{background:#0F0F0F;color:#FAFAFA;color-scheme:dark;}
+    .sply--dark .sply-surface{background:#1c1c1c;}
+    .sply--dark .sply-border{border-color:#2e2e2e;}
+    .sply--dark .sply-muted{color:#909090;}
+    .sply--light .sply-drawer__scrim,.sply--light .sply-menu__scrim{background:rgba(250,250,250,0.55);}
+    .sply--dark .sply-drawer__scrim,.sply--dark .sply-menu__scrim{background:rgba(15,15,15,0.5);}
+    .sply--light .sply-drawer__empty-cta{background:#0F0F0F;color:#FAFAFA;}
+    .sply--dark .sply-drawer__empty-cta{background:#FAFAFA;color:#0F0F0F;}
+    .sply--light .sply-btn{background:#0F0F0F;color:#FAFAFA;}
+    .sply--dark .sply-btn{background:#FAFAFA;color:#0F0F0F;}
+    .sply--light .sply-drawer__checkout{background:#0F0F0F;color:#FAFAFA;border-color:#0F0F0F;}
+    .sply--dark .sply-drawer__checkout{background:#FAFAFA;color:#0F0F0F;border-color:#FAFAFA;}
+    .sply--light .sply-enter__frost{background:rgba(250,250,250,var(--enter-frost-op,.6));}
+    .sply--dark .sply-enter__frost{background:rgba(15,15,15,var(--enter-frost-op,.52));}
+    .sply--light .sply-upsell__add:hover{background:#0F0F0F;color:#FAFAFA;border-color:#0F0F0F;}
+    .sply--dark .sply-upsell__add:hover{background:#FAFAFA;color:#0F0F0F;border-color:#FAFAFA;}
+    :root{--sply-soldout-blur:3px;}
+  </style>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    .sply-body{font-family:'Red Hat Mono',ui-monospace,SFMono-Regular,Menlo,monospace;}
+    .sply-h1,.sply-enter__logo,.sply-enter__link,.sply-logo__text,.sply-card__name,.sply-roam__name,
+    .sply-pdp__name,.sply-pdp__adding,.sply-pdp__hlabel,.sply-drawer__title,.sply-menu__title,
+    .sply-menu__link,.sply-citem__name,.sply-drawer__upsell-title,.sply-upsell__name,.sply-drawer__total{
+      font-family:'Red Hat Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+    }
+  </style>
+
+  <!-- Loader styles -->
+  <style>
+    .sply-loader{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:#FAFAFA;color:#0F0F0F;text-align:center;padding:24px;transition:opacity .6s ease,visibility .6s;}
+    .sply--dark .sply-loader{background:#0F0F0F;color:#FAFAFA;}
+    .sply-loader.is-done{opacity:0;visibility:hidden;}
+    .sply-loader__heading{font-weight:700;font-size:clamp(26px,5vw,46px);letter-spacing:.02em;text-transform:uppercase;line-height:1;}
+    .sply-loader__text{margin-top:14px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;opacity:.5;}
+  </style>
+</head>
+
+<body class="sply-body">
+
+  <!-- Animated scramble loader (exact from localhost) -->
+  <div class="sply-loader" data-sply-loader data-loader-once>
+    <div>
+      <div class="sply-loader__heading" data-loader-scramble>{{ settings.store_name | default: shop.name | default: 'OUTTERSPACE' }}</div>
+      <div class="sply-loader__text" data-loader-scramble>{{ settings.collection_subtitle | default: 'COWBOY SERIES 01' }}</div>
+    </div>
+  </div>
+  <script>
+  (function(){
+    var L=document.querySelector('[data-sply-loader]'); if(!L) return;
+    function kill(){ try{sessionStorage.setItem('sply-loaded','1');}catch(e){} if(L.parentNode) L.parentNode.removeChild(L); }
+    if(L.hasAttribute('data-loader-once')){ try{ if(sessionStorage.getItem('sply-loaded')){ kill(); return; } }catch(e){} }
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches){ kill(); return; }
+    window.__splyLoaderActive=true;
+    var MIN=2000, start=Date.now(), glyphs='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    document.querySelectorAll('[data-loader-scramble]').forEach(function(el){
+      var fin=el.textContent, q=[];
+      for(var i=0;i<fin.length;i++){var c=fin.charAt(i),fx=(c===' '||c==='-'||c==='/'||c==='.');q.push({c:c,fx:fx,end:fx?0:Math.round(i*1.7)+6+Math.floor(Math.random()*6)});}
+      var fr=0,iv=setInterval(function(){var o='',d=0;for(var j=0;j<q.length;j++){var t=q[j];if(t.fx||fr>=t.end){o+=t.c;d++;}else{o+=glyphs.charAt(Math.floor(Math.random()*glyphs.length));}}el.textContent=o;fr++;if(d===q.length){clearInterval(iv);el.textContent=fin;}},32);
+    });
+    function done(){ var w=Math.max(0,MIN-(Date.now()-start)); setTimeout(function(){ L.classList.add('is-done'); window.__splyLoaderActive=false; document.dispatchEvent(new CustomEvent('sply:loaderdone')); try{sessionStorage.setItem('sply-loaded','1');}catch(e){} setTimeout(function(){ if(L.parentNode) L.parentNode.removeChild(L); },700); }, w); }
+    if(document.readyState==='complete') done(); else window.addEventListener('load',done);
+  })();
+  </script>
+
+  <!-- Header & Menu (shared across all pages) -->
+  {% section 'header' %}
+
+  <!-- Main page content -->
+  <main class="sply-main" id="MainContent" role="main">
+    {{ content_for_layout }}
+  </main>
+
+  <!-- Footer -->
+  {% section 'footer' %}
+
+  <!-- Cart Drawer -->
+  {% section 'cart-drawer' %}
+
+  <!-- SPLY scripts — exact order from localhost -->
+  {{ 'sply-cart.js' | asset_url | script_tag }}
+  {{ 'sply-base.js' | asset_url | script_tag }}
+  {{ 'sply-engine.js' | asset_url | script_tag }}
+  {{ 'sply-rnnr.js' | asset_url | script_tag }}
+  {{ 'sply-roam.js' | asset_url | script_tag }}
+
+</body>
+</html>

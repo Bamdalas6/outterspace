@@ -1,0 +1,73 @@
+<style data-shopify>
+  @media (min-width: 1024px) {
+    #sply-surface-{{ section.id }}[data-sply-zoom="0"] .sply-surface-grid { grid-template-columns: repeat(6, 1fr); }
+  }
+  @media (max-width: 767px) {
+    #sply-surface-{{ section.id }}[data-sply-zoom="0"] .sply-surface-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; padding-left: 12px; padding-right: 12px; }
+    #sply-surface-{{ section.id }}[data-sply-zoom="0"] .sply-card__name { font-size: 9.5px; letter-spacing: .03em; margin-top: 11px; }
+    #sply-surface-{{ section.id }}[data-sply-zoom="0"] .sply-card__price { font-size: 11px; }
+  }
+</style>
+
+<section id="sply-surface-{{ section.id }}" class="sply-collection-surface" data-sply-surface data-sply-zoom="0">
+  <ul class="sply-surface-grid" data-sply-grid>
+    {%- assign found_products = collection.products -%}
+    {%- if found_products == blank or found_products.size == 0 -%}
+      {%- assign found_products = collections.all.products -%}
+    {%- endif -%}
+    {%- if found_products == blank or found_products.size == 0 -%}
+      {%- assign found_products = collections['all'].products -%}
+    {%- endif -%}
+    {%- if found_products == blank or found_products.size == 0 -%}
+      {%- for c in collections -%}
+        {%- if c.products.size > 0 and found_products == blank or found_products.size == 0 -%}
+          {%- assign found_products = c.products -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+
+    {%- if found_products != blank and found_products.size > 0 -%}
+      {%- for product in found_products limit: 50 -%}
+        {%- assign img1 = product.featured_image | default: product.featured_media -%}
+        {%- assign img2 = product.images[1] | default: img1 -%}
+        {%- assign is_soldout = false -%}
+        {%- unless product.available -%}
+          {%- assign is_soldout = true -%}
+        {%- endunless -%}
+        <li class="sply-card{% if is_soldout %} sply-card--soldout{% endif %}" data-type="{{ product.type | default: '' | upcase }}" data-tags="{{ product.tags | join: ' ' }}">
+          <a href="{{ product.url }}" class="sply-card__link" data-sply-handle="{{ product.handle }}">
+            <span class="sply-card__media">
+              {% if img1 %}
+                <img class="sply-card__img sply-card__img--1" src="{{ img1 | image_url: width: 700 }}" alt="{{ product.title | escape }}" width="700" height="700" loading="eager" decoding="sync">
+                <img class="sply-card__img sply-card__img--2" src="{{ img2 | image_url: width: 700 }}" alt="" width="700" height="700" loading="lazy" decoding="async" aria-hidden="true">
+              {% else %}
+                <div class="sply-card__img sply-card__img--1" style="background:#1a1a1a; width:100%; height:100%; border-radius:4px;"></div>
+              {% endif %}
+            </span>
+            <span class="sply-card__name sply-card__name--title">{{ product.title }}</span>
+            {% if is_soldout %}
+              <span class="sply-card__name sply-card__name--soldout">Sold out</span>
+            {% endif %}
+            {%- if product.compare_at_price > product.price -%}
+              <span class="sply-card__price sply-card__price--sale">
+                <span class="sply-card__price-now">{{ product.price | money_without_trailing_zeros | strip_html }}</span>
+                <s class="sply-card__price-was">{{ product.compare_at_price | money_without_trailing_zeros | strip_html }}</s>
+              </span>
+            {%- elsif is_soldout -%}
+              <span class="sply-card__price sply-card__price--soldout">Sold out</span>
+            {%- else -%}
+              <span class="sply-card__price">{{ product.price | money_without_trailing_zeros | strip_html }}</span>
+            {%- endif -%}
+          </a>
+        </li>
+      {%- endfor -%}
+    {%- endif -%}
+  </ul>
+</section>
+
+{% schema %}
+{
+  "name": "Collection Grid",
+  "settings": []
+}
+{% endschema %}

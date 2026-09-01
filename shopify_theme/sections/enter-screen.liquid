@@ -1,0 +1,21 @@
+<!-- Exact enter screen from localhost index.html lines 248-252 -->
+<div class="sply-enter" data-sply-enter data-exit="slide" hidden style="--bg-op:0.7;--enter-blur:10px;--enter-frost-op:0.6">
+  <span class="sply-enter__frost"></span>
+  <div class="sply-enter__inner">
+    <nav class="sply-enter__links">
+      <button type="button" class="sply-enter__link sply-enter__link--primary" data-enter-go>GRID VIEW</button>
+      <a class="sply-enter__link" href="/collections/{{ section.settings.rnnr_handle | default: 'rnnr' }}">RNNR VIEW</a>
+      <a class="sply-enter__link" href="/collections/{{ section.settings.roam_handle | default: 'roam' }}">ROAM VIEW</a>
+    </nav>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Enter Screen",
+  "settings": [
+    {"type":"text","id":"rnnr_handle","label":"RNNR Collection Handle","default":"rnnr"},
+    {"type":"text","id":"roam_handle","label":"ROAM Collection Handle","default":"roam"}
+  ]
+}
+{% endschema %}

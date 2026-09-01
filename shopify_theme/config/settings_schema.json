@@ -1,0 +1,17 @@
+{
+  "name": "OUTTERSPACE Theme",
+  "settings": [
+    {
+      "type": "text",
+      "id": "store_name",
+      "label": "Store Name",
+      "default": "OUTTERSPACE"
+    },
+    {
+      "type": "text",
+      "id": "collection_subtitle",
+      "label": "Collection Subtitle (loader)",
+      "default": "COWBOY SERIES 01"
+    }
+  ]
+}

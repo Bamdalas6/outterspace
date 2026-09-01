@@ -1,0 +1,46 @@
+<!-- Exact header + menu from localhost index.html lines 221-245 -->
+<header class="sply-topbar">
+  <span class="sply-topbar__left">
+    <button type="button" class="sply-icon sply-menu-btn" data-sply-menu-open aria-label="Menu" aria-haspopup="true">
+      <span class="sply-icon-swap" aria-hidden="true"><svg viewBox="4 4 16 16" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 10L19 10"></path><path d="M5 14L19 14"></path></svg></span>
+      <span class="sply-icon-swap sply-icon-swap--x" aria-hidden="true"><svg viewBox="4 4 16 16" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6L18 18"></path><path d="M18 6L6 18"></path></svg></span>
+    </button>
+    <button type="button" class="sply-icon sply-zoom-out" aria-label="Back" hidden><svg class="sply-navicon" data-sply-navicon viewBox="4 4 16 16" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path data-np1 d="M15 6L9 12"></path><path data-np2 d="M9 12L15 18"></path></svg></button>
+    <button type="button" class="sply-icon sply-zoom-in" aria-label="Zoom in"><svg class="sply-navicon" data-sply-navicon viewBox="4 4 16 16" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path data-np1 d="M12 5L12 19"></path><path data-np2 d="M5 12L19 12"></path></svg></button>
+  </span>
+  <a href="{{ routes.root_url }}" class="sply-logo" aria-label="{{ shop.name }}"><span class="sply-logo__text" style="font-family: inherit; font-size: 15px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;">{{ settings.store_name | default: shop.name }}</span></a>
+  <span class="sply-topbar__right">
+    <button type="button" class="sply-icon sply-mode-toggle" aria-label="Toggle light or dark mode">
+      <svg class="sply-icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg class="sply-icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <a href="/cart" class="sply-icon sply-cart-link" data-sply-cart-open aria-label="Cart">
+      <span class="sply-cart-count" data-cart-count {% if cart.item_count == 0 %}hidden{% endif %}>{{ cart.item_count }}</span>
+      <span class="sply-icon-swap" aria-hidden="true"><svg viewBox="4 3 16 16" width="20" height="20" fill="none" aria-hidden="true"><rect x="6" y="8" width="12" height="10" rx="2" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/><path d="M9 7C9 5.34315 10.3431 4 12 4C13.6569 4 15 5.34315 15 7" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg></span>
+      <span class="sply-icon-swap sply-icon-swap--x" aria-hidden="true"><svg viewBox="4 4 16 16" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6L18 18"></path><path d="M18 6L6 18"></path></svg></span>
+    </a>
+  </span>
+</header>
+
+<!-- Menu drawer — exact from localhost line 239-243 -->
+<div class="sply-menu" data-sply-menu hidden>
+  <button type="button" class="sply-menu__scrim" data-sply-menu-close aria-label="Close menu"></button>
+  <aside class="sply-menu__panel" role="dialog" aria-modal="true" aria-label="Menu">
+    <nav class="sply-menu__nav">
+      <a class="sply-menu__link" href="/" {% if request.path == '/' %}aria-current="page"{% endif %}>GRID VIEW</a>
+      <a class="sply-menu__link" href="/collections/{{ section.settings.rnnr_handle | default: 'rnnr' }}">RNNR VIEW</a>
+      <a class="sply-menu__link" href="/collections/{{ section.settings.roam_handle | default: 'roam' }}">ROAM VIEW</a>
+    </nav>
+  </aside>
+</div>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {"type":"text","id":"store_name","label":"Store Name","default":"OUTTERSPACE"},
+    {"type":"text","id":"rnnr_handle","label":"RNNR Collection Handle","default":"rnnr"},
+    {"type":"text","id":"roam_handle","label":"ROAM Collection Handle","default":"roam"}
+  ]
+}
+{% endschema %}

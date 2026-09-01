@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "rnnr-collection",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}
