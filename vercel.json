@@ -1,4 +1,11 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/collections/rnnr", "destination": "/collections/rnnr.html" },
+    { "source": "/collections/roam", "destination": "/collections/roam.html" },
+    { "source": "/products/:handle", "destination": "/products/:handle.html" },
+    { "source": "/checkout", "destination": "/checkout.html" },
+    { "source": "/", "destination": "/index.html" }
+  ]
 }
