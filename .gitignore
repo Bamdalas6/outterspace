@@ -14,6 +14,13 @@ __pycache__/
 *.pyc
 *.pyo
 
+# Node / Next.js
+node_modules/
+.next/
+out/
+build/
+dist/
+
 # Scratch & Logs
 .gemini/
 *.log
