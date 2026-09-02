@@ -13,11 +13,11 @@
       };
     })();
   </script>
-  <script>(function(){try{var toggle=true;if(!toggle)return;var m=localStorage.getItem('sply-mode');if(m==='light'||m==='dark'){var r=document.documentElement;r.classList.remove('sply--light','sply--dark');r.classList.add('sply--'+m);}}catch(e){}})();</script>
+  <script>(function(){try{localStorage.setItem('sply-mode','light');sessionStorage.setItem('sply-mode','light');var r=document.documentElement;r.classList.remove('sply--dark');r.classList.add('sply--light');}catch(e){}})();</script>
   <script>(function(){try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&(!sessionStorage.getItem('sply-landed')||sessionStorage.getItem('sply-restagger'))){document.documentElement.classList.add('sply-prestagger');}}catch(e){}})();</script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0F0F0F">
+  <meta name="theme-color" content="#FAFAFA">
   <link rel="canonical" href="https://sply-studio.webexp.dev/">
   <title>OUTTERSPACE STORE — COWBOY SERIES 01 (GRID VIEW)</title><meta property="og:site_name" content="SPLY - STUDIO (PW: EXP)">
 <meta property="og:url" content="https://sply-studio.webexp.dev/">
@@ -118,10 +118,10 @@
 .sply--light .sply-surface{background:#fdfdfd;}
 .sply--light .sply-border{border-color:#e3e3e3;}
 .sply--light .sply-muted{color:#797979;}
-.sply--dark{background:#0F0F0F;color:#FAFAFA;color-scheme:dark;}
-.sply--dark .sply-surface{background:#1c1c1c;}
-.sply--dark .sply-border{border-color:#2e2e2e;}
-.sply--dark .sply-muted{color:#909090;}
+.sply--dark, .sply--light, html, body {background:#FAFAFA !important;color:#0F0F0F !important;color-scheme:light !important;}
+.sply-surface{background:#FDFDFD !important;}
+.sply-border{border-color:#E3E3E3 !important;}
+.sply-muted{color:#797979 !important;}
 .sply--light .sply-signup__panel{background:rgba(250, 250, 250, 0.7);border-color:#e3e3e3;}
 .sply--light .sply-signup__input{border-color:#e3e3e3;}
 .sply--light .sply-signup__btn{background:#0F0F0F;color:#FAFAFA;}
@@ -149,7 +149,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"><style>.sply-body{font-family:'Red Hat Mono',ui-monospace,SFMono-Regular,Menlo,monospace;}.sply-h1,.sply-video__heading,.sply-enter__logo,.sply-enter__link,.sply-logo__text,.sply-card__name,.sply-roam__name,.sply-pdp__name,.sply-pdp__adding,.sply-pdp__hlabel,.sply-drawer__title,.sply-menu__title,.sply-menu__link,.sply-citem__name,.sply-drawer__upsell-title,.sply-upsell__name,.sply-drawer__total{font-family:'Red Hat Mono',ui-monospace,SFMono-Regular,Menlo,monospace;}</style><style>
       .sply-loader{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:#FAFAFA;color:#0F0F0F;text-align:center;padding:24px;transition:opacity .6s ease,visibility .6s;}
-      .sply--dark .sply-loader{background:#0F0F0F;color:#FAFAFA;}
+      .sply-loader{background:#FAFAFA !important;color:#0F0F0F !important;}
       .sply-loader.is-done{opacity:0;visibility:hidden;}
       .sply-loader__logo{display:block;width:auto;object-fit:contain;}
       .sply-loader__heading{font-weight:700;font-size:clamp(26px,5vw,46px);letter-spacing:.02em;text-transform:uppercase;line-height:1;}
@@ -230,10 +230,7 @@
 </button>
   </span>
   <a href="/" class="sply-logo" aria-label="OUTTERSPACE STORE"><span class="sply-logo__text" style="font-family: inherit; font-size: 15px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;">OUTTERSPACE</span></a>
-  <span class="sply-topbar__right"><button type="button" class="sply-icon sply-mode-toggle" aria-label="Toggle light or dark mode">
-        <svg class="sply-icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-        <svg class="sply-icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-      </button><a href="/cart" class="sply-icon sply-cart-link" data-sply-cart-open aria-label="Cart"><span class="sply-cart-count" data-cart-count hidden>0</span><span class="sply-icon-swap" aria-hidden="true"><svg viewBox="4 3 16 16" width="20" height="20" fill="none" aria-hidden="true"><rect x="6" y="8" width="12" height="10" rx="2" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/><path d="M9 7C9 5.34315 10.3431 4 12 4C13.6569 4 15 5.34315 15 7" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg></span><span class="sply-icon-swap sply-icon-swap--x" aria-hidden="true"><svg viewBox="4 4 16 16" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6L18 18"></path><path d="M18 6L6 18"></path></svg></span></a>
+  <span class="sply-topbar__right"><a href="/cart" class="sply-icon sply-cart-link" data-sply-cart-open aria-label="Cart"><span class="sply-cart-count" data-cart-count hidden>0</span><span class="sply-icon-swap" aria-hidden="true"><svg viewBox="4 3 16 16" width="20" height="20" fill="none" aria-hidden="true"><rect x="6" y="8" width="12" height="10" rx="2" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/><path d="M9 7C9 5.34315 10.3431 4 12 4C13.6569 4 15 5.34315 15 7" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg></span><span class="sply-icon-swap sply-icon-swap--x" aria-hidden="true"><svg viewBox="4 4 16 16" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6L18 18"></path><path d="M18 6L6 18"></path></svg></span></a>
   </span>
 </header>
 <div class="sply-menu" data-sply-menu hidden>
@@ -257,100 +254,94 @@
   @media (max-width: 767px) {
     #sply-surface-template--21552234234021__main[data-sply-zoom="0"] .sply-surface-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; padding-left: 12px; padding-right: 12px; }#sply-surface-template--21552234234021__main[data-sply-zoom="0"] .sply-card__name { font-size: 9.5px; letter-spacing: .03em; margin-top: 11px; }
     #sply-surface-template--21552234234021__main[data-sply-zoom="0"] .sply-card__price { font-size: 11px; }}</style><section id="sply-surface-template--21552234234021__main" class="sply-collection-surface" data-sply-surface data-sply-zoom="0"><ul class="sply-surface-grid" data-sply-grid>
-      <li class="sply-card" data-type="HOODIES" data-tags="">
-        <a href="/products/os-01-obsidian" class="sply-card__link" data-sply-handle="os-01-obsidian">
-          <span class="sply-card__media"><img class="sply-card__img sply-card__img--1" src="cowboy seriess/1.png" alt="OS-01 - Obsidian" width="700" height="700" loading="eager" decoding="sync"><img class="sply-card__img sply-card__img--2" src="cowboy seriess/37.png" alt="" width="700" height="700" loading="lazy" decoding="async" aria-hidden="true"></span>
-          <span class="sply-card__name sply-card__name--title">OS-01 - Obsidian</span><span class="sply-card__price sply-card__price--sale"><span class="sply-card__price-now">$140</span><s class="sply-card__price-was">$180</s></span>
+      <li class="sply-card" data-type="COWBOY SERIES" data-tags="">
+        <a href="/products/rangers-white" class="sply-card__link" data-sply-handle="rangers-white">
+          <span class="sply-card__media"><img class="sply-card__img sply-card__img--1" src="/cowboy seriess/rangers-white-1-nobg.png" alt="Rangers - White" width="700" height="700" loading="eager" decoding="sync"><img class="sply-card__img sply-card__img--2" src="/cowboy seriess/rangers-white-2-nobg.png" alt="" width="700" height="700" loading="lazy" decoding="async" aria-hidden="true"></span>
+          <span class="sply-card__name sply-card__name--title">Rangers - White</span><span class="sply-card__price"><span class="sply-card__price-now">₦286,000</span></span>
         </a>
-      </li>      <li class="sply-card" data-type="TOPS" data-tags="">
-        <a href="/products/os-02-bone" class="sply-card__link" data-sply-handle="os-02-bone">
-          <span class="sply-card__media"><img class="sply-card__img sply-card__img--1" src="cowboy seriess/2.png" alt="OS-02 - Bone White" width="700" height="700" loading="eager" decoding="sync"><img class="sply-card__img sply-card__img--2" src="cowboy seriess/48.png" alt="" width="700" height="700" loading="lazy" decoding="async" aria-hidden="true"></span>
-          <span class="sply-card__name sply-card__name--title">OS-02 - Bone White</span><span class="sply-card__price">$75
-</span>
+      </li>
+      <li class="sply-card" data-type="COWBOY SERIES" data-tags="">
+        <a href="/products/frontier" class="sply-card__link" data-sply-handle="frontier">
+          <span class="sply-card__media"><img class="sply-card__img sply-card__img--1" src="/cowboy seriess/frontier-1-nobg.png" alt="Frontier" width="700" height="700" loading="eager" decoding="sync"><img class="sply-card__img sply-card__img--2" src="/cowboy seriess/frontier-2-nobg.png" alt="" width="700" height="700" loading="lazy" decoding="async" aria-hidden="true"></span>
+          <span class="sply-card__name sply-card__name--title">Frontier</span><span class="sply-card__price"><span class="sply-card__price-now">₦325,000</span></span>
         </a>
-      </li>      <li class="sply-card" data-type="BOTTOMS" data-tags="roam-featured">
-        <a href="/products/os-03-indigo" class="sply-card__link" data-sply-handle="os-03-indigo">
-          <span class="sply-card__media"><img class="sply-card__img sply-card__img--1" src="cowboy seriess/3.png" alt="OS-03 - Indigo" width="700" height="700" loading="eager" decoding="sync"><img class="sply-card__img sply-card__img--2" src="cowboy seriess/46.png" alt="" width="700" height="700" loading="lazy" decoding="async" aria-hidden="true"></span>
-          <span class="sply-card__name sply-card__name--title">OS-03 - Indigo</span><span class="sply-card__price">$220
-</span>
+      </li>
+      <li class="sply-card" data-type="COWBOY SERIES" data-tags="">
+        <a href="/products/lago-di-como" class="sply-card__link" data-sply-handle="lago-di-como">
+          <span class="sply-card__media"><img class="sply-card__img sply-card__img--1" src="/cowboy seriess/lago-di-como-1-nobg.png" alt="Lago di Como" width="700" height="700" loading="eager" decoding="sync"><img class="sply-card__img sply-card__img--2" src="/cowboy seriess/lago-di-como-2-nobg.png" alt="" width="700" height="700" loading="lazy" decoding="async" aria-hidden="true"></span>
+          <span class="sply-card__name sply-card__name--title">Lago di Como</span><span class="sply-card__price"><span class="sply-card__price-now">₦279,500</span></span>
         </a>
-      </li>      <li class="sply-card" data-type="OUTERWEAR" data-tags="roam-featured">
-        <a href="/products/os-04-coyote" class="sply-card__link" data-sply-handle="os-04-coyote">
-          <span class="sply-card__media"><img class="sply-card__img sply-card__img--1" src="cowboy seriess/64.png" alt="OS-04 - Coyote Tan" width="700" height="700" loading="eager" decoding="sync"><img class="sply-card__img sply-card__img--2" src="cowboy seriess/44.png" alt="" width="700" height="700" loading="lazy" decoding="async" aria-hidden="true"></span>
-          <span class="sply-card__name sply-card__name--title">OS-04 - Coyote Tan</span><span class="sply-card__price sply-card__price--sale"><span class="sply-card__price-now">$380</span><s class="sply-card__price-was">$450</s></span>
+      </li>
+      <li class="sply-card" data-type="COWBOY SERIES" data-tags="">
+        <a href="/products/cowboy-patch" class="sply-card__link" data-sply-handle="cowboy-patch">
+          <span class="sply-card__media"><img class="sply-card__img sply-card__img--1" src="/cowboy seriess/cowboy-patch-1-nobg.png" alt="Cowboy Patch" width="700" height="700" loading="eager" decoding="sync"><img class="sply-card__img sply-card__img--2" src="/cowboy seriess/cowboy-patch-2-nobg.png" alt="" width="700" height="700" loading="lazy" decoding="async" aria-hidden="true"></span>
+          <span class="sply-card__name sply-card__name--title">Cowboy Patch</span><span class="sply-card__price"><span class="sply-card__price-now">₦305,500</span></span>
         </a>
-      </li>      <li class="sply-card" data-type="BOTTOMS" data-tags="">
-        <a href="/products/os-05-shadow" class="sply-card__link" data-sply-handle="os-05-shadow">
-          <span class="sply-card__media"><img class="sply-card__img sply-card__img--1" src="cowboy seriess/38.png" alt="OS-05 - Shadow Black" width="700" height="700" loading="eager" decoding="sync"><img class="sply-card__img sply-card__img--2" src="cowboy seriess/41.png" alt="" width="700" height="700" loading="lazy" decoding="async" aria-hidden="true"></span>
-          <span class="sply-card__name sply-card__name--title">OS-05 - Shadow Black</span><span class="sply-card__price">$175
-</span>
+      </li>
+      <li class="sply-card" data-type="COWBOY SERIES" data-tags="">
+        <a href="/products/outterspace-symbol-shirt" class="sply-card__link" data-sply-handle="outterspace-symbol-shirt">
+          <span class="sply-card__media"><img class="sply-card__img sply-card__img--1" src="/cowboy seriess/outterspace-symbol-shirt-1-nobg.png" alt="Outterspace Symbol Shirt" width="700" height="700" loading="eager" decoding="sync"><img class="sply-card__img sply-card__img--2" src="/cowboy seriess/outterspace-symbol-shirt-2-nobg.png" alt="" width="700" height="700" loading="lazy" decoding="async" aria-hidden="true"></span>
+          <span class="sply-card__name sply-card__name--title">Outterspace Symbol Shirt</span><span class="sply-card__price"><span class="sply-card__price-now">₦292,500</span></span>
         </a>
-      </li>      <li class="sply-card" data-type="OUTERWEAR" data-tags="">
-        <a href="/products/os-06-glacier" class="sply-card__link" data-sply-handle="os-06-glacier">
-          <span class="sply-card__media"><img class="sply-card__img sply-card__img--1" src="cowboy seriess/39.png" alt="OS-06 - Glacier Blue" width="700" height="700" loading="eager" decoding="sync"><img class="sply-card__img sply-card__img--2" src="cowboy seriess/40.png" alt="" width="700" height="700" loading="lazy" decoding="async" aria-hidden="true"></span>
-          <span class="sply-card__name sply-card__name--title">OS-06 - Glacier Blue</span><span class="sply-card__price sply-card__price--sale"><span class="sply-card__price-now">$160</span><s class="sply-card__price-was">$195</s></span>
+      </li>
+      <li class="sply-card" data-type="COWBOY SERIES" data-tags="">
+        <a href="/products/pearl-reglan" class="sply-card__link" data-sply-handle="pearl-reglan">
+          <span class="sply-card__media"><img class="sply-card__img sply-card__img--1" src="/cowboy seriess/pearl-reglan-1-nobg.png" alt="Pearl Reglan" width="700" height="700" loading="eager" decoding="sync"><img class="sply-card__img sply-card__img--2" src="/cowboy seriess/pearl-reglan-2-nobg.png" alt="" width="700" height="700" loading="lazy" decoding="async" aria-hidden="true"></span>
+          <span class="sply-card__name sply-card__name--title">Pearl Reglan</span><span class="sply-card__price"><span class="sply-card__price-now">₦286,000</span></span>
         </a>
-      </li>      <li class="sply-card" data-type="TOPS" data-tags="">
-        <a href="/products/os-07-charcoal" class="sply-card__link" data-sply-handle="os-07-charcoal">
-          <span class="sply-card__media"><img class="sply-card__img sply-card__img--1" src="cowboy seriess/42.png" alt="OS-07 - Charcoal" width="700" height="700" loading="eager" decoding="sync"><img class="sply-card__img sply-card__img--2" src="cowboy seriess/51.png" alt="" width="700" height="700" loading="lazy" decoding="async" aria-hidden="true"></span>
-          <span class="sply-card__name sply-card__name--title">OS-07 - Charcoal</span><span class="sply-card__price">$110
-</span>
+      </li>
+      <li class="sply-card" data-type="COWBOY SERIES" data-tags="">
+        <a href="/products/rangers" class="sply-card__link" data-sply-handle="rangers">
+          <span class="sply-card__media"><img class="sply-card__img sply-card__img--1" src="/cowboy seriess/rangers-1-nobg.png" alt="Rangers - Black" width="700" height="700" loading="eager" decoding="sync"><img class="sply-card__img sply-card__img--2" src="/cowboy seriess/rangers-2-nobg.png" alt="" width="700" height="700" loading="lazy" decoding="async" aria-hidden="true"></span>
+          <span class="sply-card__name sply-card__name--title">Rangers - Black</span><span class="sply-card__price"><span class="sply-card__price-now">₦299,000</span></span>
         </a>
-      </li>      <li class="sply-card" data-type="OUTERWEAR" data-tags="roam-featured">
-        <a href="/products/os-08-oilskin" class="sply-card__link" data-sply-handle="os-08-oilskin">
-          <span class="sply-card__media"><img class="sply-card__img sply-card__img--1" src="cowboy seriess/43.png" alt="OS-08 - Raw Oilskin" width="700" height="700" loading="eager" decoding="sync"><img class="sply-card__img sply-card__img--2" src="cowboy seriess/47.png" alt="" width="700" height="700" loading="lazy" decoding="async" aria-hidden="true"></span>
-          <span class="sply-card__name sply-card__name--title">OS-08 - Raw Oilskin</span><span class="sply-card__price sply-card__price--sale"><span class="sply-card__price-now">$420</span><s class="sply-card__price-was">$520</s></span>
+      </li>
+      <li class="sply-card" data-type="COWBOY SERIES" data-tags="">
+        <a href="/products/nocta-flare-pant" class="sply-card__link" data-sply-handle="nocta-flare-pant">
+          <span class="sply-card__media"><img class="sply-card__img sply-card__img--1" src="/cowboy seriess/nocta-flare-pant-1-nobg.png" alt="Noctra Flare Pant" width="700" height="700" loading="eager" decoding="sync"><img class="sply-card__img sply-card__img--2" src="/cowboy seriess/nocta-flare-pant-2-nobg.png" alt="" width="700" height="700" loading="lazy" decoding="async" aria-hidden="true"></span>
+          <span class="sply-card__name sply-card__name--title">Noctra Flare Pant</span><span class="sply-card__price"><span class="sply-card__price-now">₦448,500</span></span>
         </a>
-      </li>      <li class="sply-card" data-type="TOPS" data-tags="">
-        <a href="/products/os-09-chalk" class="sply-card__link" data-sply-handle="os-09-chalk">
-          <span class="sply-card__media"><img class="sply-card__img sply-card__img--1" src="cowboy seriess/45.png" alt="OS-09 - Raw Chalk" width="700" height="700" loading="eager" decoding="sync"><img class="sply-card__img sply-card__img--2" src="cowboy seriess/49.png" alt="" width="700" height="700" loading="lazy" decoding="async" aria-hidden="true"></span>
-          <span class="sply-card__name sply-card__name--title">OS-09 - Raw Chalk</span><span class="sply-card__price">$70
-</span>
+      </li>
+      <li class="sply-card" data-type="COWBOY SERIES" data-tags="">
+        <a href="/products/equis-rodeo" class="sply-card__link" data-sply-handle="equis-rodeo">
+          <span class="sply-card__media"><img class="sply-card__img sply-card__img--1" src="/cowboy seriess/equis-rodeo-1-nobg.png" alt="Equis Rodeo Shirt" width="700" height="700" loading="eager" decoding="sync"><img class="sply-card__img sply-card__img--2" src="/cowboy seriess/equis-rodeo-2-nobg.png" alt="" width="700" height="700" loading="lazy" decoding="async" aria-hidden="true"></span>
+          <span class="sply-card__name sply-card__name--title">Equis Rodeo Shirt</span><span class="sply-card__price"><span class="sply-card__price-now">₦377,000</span></span>
         </a>
-      </li>      <li class="sply-card" data-type="HOODIES" data-tags="">
-        <a href="/products/os-10-nocturnal" class="sply-card__link" data-sply-handle="os-10-nocturnal">
-          <span class="sply-card__media"><img class="sply-card__img sply-card__img--1" src="cowboy seriess/52.png" alt="OS-10 - Nocturnal" width="700" height="700" loading="eager" decoding="sync"><img class="sply-card__img sply-card__img--2" src="cowboy seriess/53.png" alt="" width="700" height="700" loading="lazy" decoding="async" aria-hidden="true"></span>
-          <span class="sply-card__name sply-card__name--title">OS-10 - Nocturnal</span><span class="sply-card__price">$155
-</span>
+      </li>
+      <li class="sply-card" data-type="COWBOY SERIES" data-tags="">
+        <a href="/products/admiral" class="sply-card__link" data-sply-handle="admiral">
+          <span class="sply-card__media"><img class="sply-card__img sply-card__img--1" src="/cowboy seriess/admiral-1-nobg.png" alt="Admiral" width="700" height="700" loading="eager" decoding="sync"><img class="sply-card__img sply-card__img--2" src="/cowboy seriess/admiral-2-nobg.png" alt="" width="700" height="700" loading="lazy" decoding="async" aria-hidden="true"></span>
+          <span class="sply-card__name sply-card__name--title">Admiral</span><span class="sply-card__price"><span class="sply-card__price-now">₦338,000</span></span>
         </a>
-      </li>      <li class="sply-card" data-type="TOPS" data-tags="">
-        <a href="/products/os-11-cyan" class="sply-card__link" data-sply-handle="os-11-cyan">
-          <span class="sply-card__media"><img class="sply-card__img sply-card__img--1" src="cowboy seriess/54.png" alt="OS-11 - Cyan Wash" width="700" height="700" loading="eager" decoding="sync"><img class="sply-card__img sply-card__img--2" src="cowboy seriess/60.png" alt="" width="700" height="700" loading="lazy" decoding="async" aria-hidden="true"></span>
-          <span class="sply-card__name sply-card__name--title">OS-11 - Cyan Wash</span><span class="sply-card__price sply-card__price--sale"><span class="sply-card__price-now">$85</span><s class="sply-card__price-was">$100</s></span>
+      </li>
+      <li class="sply-card" data-type="COWBOY SERIES" data-tags="">
+        <a href="/products/outfield-mirage" class="sply-card__link" data-sply-handle="outfield-mirage">
+          <span class="sply-card__media"><img class="sply-card__img sply-card__img--1" src="/cowboy seriess/outfield-mirage-1-nobg.png" alt="Outfield Mirage" width="700" height="700" loading="eager" decoding="sync"><img class="sply-card__img sply-card__img--2" src="/cowboy seriess/outfield-mirage-2-nobg.png" alt="" width="700" height="700" loading="lazy" decoding="async" aria-hidden="true"></span>
+          <span class="sply-card__name sply-card__name--title">Outfield Mirage</span><span class="sply-card__price"><span class="sply-card__price-now">₦338,000</span></span>
         </a>
-      </li>      <li class="sply-card" data-type="BOTTOMS" data-tags="">
-        <a href="/products/os-12-carbon" class="sply-card__link" data-sply-handle="os-12-carbon">
-          <span class="sply-card__media"><img class="sply-card__img sply-card__img--1" src="cowboy seriess/55.png" alt="OS-12 - Carbon" width="700" height="700" loading="eager" decoding="sync"><img class="sply-card__img sply-card__img--2" src="cowboy seriess/65.png" alt="" width="700" height="700" loading="lazy" decoding="async" aria-hidden="true"></span>
-          <span class="sply-card__name sply-card__name--title">OS-12 - Carbon</span><span class="sply-card__price">$135
-</span>
+      </li>
+      <li class="sply-card" data-type="COWBOY SERIES" data-tags="">
+        <a href="/products/the-entourage" class="sply-card__link" data-sply-handle="the-entourage">
+          <span class="sply-card__media"><img class="sply-card__img sply-card__img--1" src="/cowboy seriess/the-entourage-1-nobg.png" alt="The Entourage Pants" width="700" height="700" loading="eager" decoding="sync"><img class="sply-card__img sply-card__img--2" src="/cowboy seriess/the-entourage-2-nobg.png" alt="" width="700" height="700" loading="lazy" decoding="async" aria-hidden="true"></span>
+          <span class="sply-card__name sply-card__name--title">The Entourage Pants</span><span class="sply-card__price"><span class="sply-card__price-now">₦383,500</span></span>
         </a>
-      </li>      <li class="sply-card" data-type="TOPS" data-tags="">
-        <a href="/products/os-13-offwhite" class="sply-card__link" data-sply-handle="os-13-offwhite">
-          <span class="sply-card__media"><img class="sply-card__img sply-card__img--1" src="cowboy seriess/56.png" alt="OS-13 - Off-White" width="700" height="700" loading="eager" decoding="sync"><img class="sply-card__img sply-card__img--2" src="cowboy seriess/57.png" alt="" width="700" height="700" loading="lazy" decoding="async" aria-hidden="true"></span>
-          <span class="sply-card__name sply-card__name--title">OS-13 - Off-White</span><span class="sply-card__price">$75
-</span>
+      </li>
+      <li class="sply-card" data-type="COWBOY SERIES" data-tags="">
+        <a href="/products/starwave-hat" class="sply-card__link" data-sply-handle="starwave-hat">
+          <span class="sply-card__media"><img class="sply-card__img sply-card__img--1" src="/cowboy seriess/starwave-hat-1-nobg.png" alt="Starwave Cap" width="700" height="700" loading="eager" decoding="sync"><img class="sply-card__img sply-card__img--2" src="/cowboy seriess/starwave-hat-2-nobg.png" alt="" width="700" height="700" loading="lazy" decoding="async" aria-hidden="true"></span>
+          <span class="sply-card__name sply-card__name--title">Starwave Cap</span><span class="sply-card__price"><span class="sply-card__price-now">₦130,000</span></span>
         </a>
-      </li>      <li class="sply-card" data-type="OUTERWEAR" data-tags="">
-        <a href="/products/os-14-forest" class="sply-card__link" data-sply-handle="os-14-forest">
-          <span class="sply-card__media"><img class="sply-card__img sply-card__img--1" src="cowboy seriess/59.png" alt="OS-14 - Forest Sage" width="700" height="700" loading="eager" decoding="sync"><img class="sply-card__img sply-card__img--2" src="cowboy seriess/67.png" alt="" width="700" height="700" loading="lazy" decoding="async" aria-hidden="true"></span>
-          <span class="sply-card__name sply-card__name--title">OS-14 - Forest Sage</span><span class="sply-card__price sply-card__price--sale"><span class="sply-card__price-now">$190</span><s class="sply-card__price-was">$240</s></span>
+      </li>
+      <li class="sply-card" data-type="COWBOY SERIES" data-tags="">
+        <a href="/products/black-embellish-cowboy-shirt" class="sply-card__link" data-sply-handle="black-embellish-cowboy-shirt">
+          <span class="sply-card__media"><img class="sply-card__img sply-card__img--1" src="/cowboy seriess/black-embellish-cowboy-shirt-1-nobg.png" alt="Black Embellish Cowboy Shirt" width="700" height="700" loading="eager" decoding="sync"><img class="sply-card__img sply-card__img--2" src="/cowboy seriess/black-embellish-cowboy-shirt-2-nobg.png" alt="" width="700" height="700" loading="lazy" decoding="async" aria-hidden="true"></span>
+          <span class="sply-card__name sply-card__name--title">Black Embellish Cowboy Shirt</span><span class="sply-card__price"><span class="sply-card__price-now">₦383,500</span></span>
         </a>
-      </li>      <li class="sply-card" data-type="TOPS" data-tags="">
-        <a href="/products/os-15-sand" class="sply-card__link" data-sply-handle="os-15-sand">
-          <span class="sply-card__media"><img class="sply-card__img sply-card__img--1" src="cowboy seriess/62.png" alt="OS-15 - Bleached Sand" width="700" height="700" loading="eager" decoding="sync"><img class="sply-card__img sply-card__img--2" src="cowboy seriess/66.png" alt="" width="700" height="700" loading="lazy" decoding="async" aria-hidden="true"></span>
-          <span class="sply-card__name sply-card__name--title">OS-15 - Bleached Sand</span><span class="sply-card__price">$165
-</span>
-        </a>
-      </li>      <li class="sply-card" data-type="ACCESSORIES" data-tags="">
-        <a href="/products/os-16-tan" class="sply-card__link" data-sply-handle="os-16-tan">
-          <span class="sply-card__media"><img class="sply-card__img sply-card__img--1" src="cowboy seriess/68.png" alt="OS-16 - Saddle Tan" width="700" height="700" loading="eager" decoding="sync"><img class="sply-card__img sply-card__img--2" src="cowboy seriess/50.png" alt="" width="700" height="700" loading="lazy" decoding="async" aria-hidden="true"></span>
-          <span class="sply-card__name sply-card__name--title">OS-16 - Saddle Tan</span><span class="sply-card__price">$95
-</span>
-        </a>
-      </li>      <li class="sply-card" data-type="FOOTWEAR" data-tags="roam-featured">
-        <a href="/products/os-17-rough" class="sply-card__link" data-sply-handle="os-17-rough">
-          <span class="sply-card__media"><img class="sply-card__img sply-card__img--1" src="cowboy seriess/69.png" alt="OS-17 - Desert Rough" width="700" height="700" loading="eager" decoding="sync"><img class="sply-card__img sply-card__img--2" src="cowboy seriess/37.png" alt="" width="700" height="700" loading="lazy" decoding="async" aria-hidden="true"></span>
-          <span class="sply-card__name sply-card__name--title">OS-17 - Desert Rough</span><span class="sply-card__price sply-card__price--sale"><span class="sply-card__price-now">$290</span><s class="sply-card__price-was">$360</s></span>
+      </li>
+      <li class="sply-card" data-type="COWBOY SERIES" data-tags="">
+        <a href="/products/western-romance" class="sply-card__link" data-sply-handle="western-romance">
+          <span class="sply-card__media"><img class="sply-card__img sply-card__img--1" src="/cowboy seriess/western-romance-1-nobg.png" alt="Western Romance Shirt" width="700" height="700" loading="eager" decoding="sync"><img class="sply-card__img sply-card__img--2" src="/cowboy seriess/western-romance-2-nobg.png" alt="" width="700" height="700" loading="lazy" decoding="async" aria-hidden="true"></span>
+          <span class="sply-card__name sply-card__name--title">Western Romance Shirt</span><span class="sply-card__price"><span class="sply-card__price-now">₦325,000</span></span>
         </a>
       </li>
     </ul>
