@@ -3,10 +3,33 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
-    { "source": "/collections/rnnr", "destination": "/collections/rnnr.html" },
-    { "source": "/collections/roam", "destination": "/collections/roam.html" },
-    { "source": "/products/:handle", "destination": "/products/:handle.html" },
-    { "source": "/checkout", "destination": "/checkout.html" },
-    { "source": "/", "destination": "/index.html" }
+    {
+      "source": "/collections/rnnr",
+      "destination": "/collections/rnnr.html"
+    },
+    {
+      "source": "/collections/roam",
+      "destination": "/collections/roam.html"
+    },
+    {
+      "source": "/collections/home-page-copy",
+      "destination": "/collections/rnnr.html"
+    },
+    {
+      "source": "/collections/rnnr-view-copy",
+      "destination": "/collections/roam.html"
+    },
+    {
+      "source": "/products/:handle",
+      "destination": "/products/:handle.html"
+    },
+    {
+      "source": "/checkout",
+      "destination": "/checkout.html"
+    },
+    {
+      "source": "/",
+      "destination": "/index.html"
+    }
   ]
 }
