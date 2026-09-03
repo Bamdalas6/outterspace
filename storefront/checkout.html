@@ -512,7 +512,7 @@
           <div class="payment-options-block">
             <div class="payment-opt">
               <span style="font-size: 14px; font-weight: 500;">Standard Express Delivery (2–4 Business Days)</span>
-              <span style="font-family: var(--font-mono); font-weight: 600;">₦8,000.00</span>
+              <span style="font-family: var(--font-mono); font-weight: 600;">₦8,000 / $5</span>
             </div>
           </div>
         </section>
@@ -552,7 +552,7 @@
             <div class="summary-name">OS-01 - OBSIDIAN</div>
             <div class="summary-size">1</div>
           </div>
-          <div class="summary-price">₦288,000.00</div>
+          <div class="summary-price">₦286,000 / $191</div>
         </div>
       </div>
 
@@ -566,14 +566,14 @@
       <div class="calc-box">
         <div class="calc-row">
           <span class="calc-label">Subtotal</span>
-          <span class="calc-val" id="calc-subtotal">₦288,000.00</span>
+          <span class="calc-val" id="calc-subtotal">₦286,000 / $191</span>
         </div>
         <div class="calc-row">
           <span class="calc-label">
             Shipping
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="display:inline; opacity:0.6;"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
           </span>
-          <span class="calc-val" id="calc-shipping">₦8,000.00</span>
+          <span class="calc-val" id="calc-shipping">₦8,000 / $5</span>
         </div>
       </div>
 
@@ -582,10 +582,10 @@
         <span class="total-label">Total</span>
         <div class="total-val-wrap">
           <div>
-            <span class="total-curr">NGN</span>
-            <span class="total-val" id="calc-total">₦296,000.00</span>
+            <span class="total-curr">NGN / USD</span>
+            <span class="total-val" id="calc-total">₦294,000 / $196</span>
           </div>
-          <div class="total-tax-note" id="calc-tax">Including ₦20,093.02 in taxes</div>
+          <div class="total-tax-note" id="calc-tax">Including ₦20,511 / $14 in taxes</div>
         </div>
       </div>
     </aside>
@@ -596,7 +596,7 @@
       document.getElementById('btn-ship').classList.toggle('is-active', mode === 'ship');
       document.getElementById('btn-pickup').classList.toggle('is-active', mode === 'pickup');
       var shippingVal = mode === 'ship' ? 8000 : 0;
-      document.getElementById('calc-shipping').textContent = mode === 'ship' ? '₦8,000.00' : 'Free';
+      document.getElementById('calc-shipping').textContent = mode === 'ship' ? '₦8,000 / $5' : 'Free';
       recalcTotal(shippingVal);
     }
 
@@ -606,31 +606,38 @@
         var subtotal = 0;
         var html = '';
         cart.items.forEach(it => {
-          var unitNgn = (it.price / 100) * 1500;
+          var unitNgn = Math.round(it.price / 100);
           var lineNgn = unitNgn * it.quantity;
+          var lineUsd = Math.round(lineNgn / 1500);
           subtotal += lineNgn;
-          var sizeVal = (it.variant_options && it.variant_options[0]) || (it.options_with_values && it.options_with_values[0] && it.options_with_values[0].value) || '1';
+          var sizeVal = (it.variant_options && it.variant_options[0]) || (it.options_with_values && it.options_with_values[0] && it.options_with_values[0].value) || 'M';
           html += `
             <div class="summary-item">
               <div class="summary-thumb">
-                <img src="${it.image || it.featured_image.url}" alt="${it.title}">
+                <img src="${it.image || (it.featured_image && it.featured_image.url) || ''}" alt="${it.title}">
                 <span class="summary-qty-badge">${it.quantity}</span>
               </div>
               <div class="summary-details">
                 <div class="summary-name">${it.title}</div>
                 <div class="summary-size">${sizeVal}</div>
               </div>
-              <div class="summary-price">₦${lineNgn.toLocaleString('en-US', {minimumFractionDigits: 2})}</div>
+              <div class="summary-price">₦${lineNgn.toLocaleString('en-US')} / $${lineUsd}</div>
             </div>`;
         });
 
         document.getElementById('summary-items-list').innerHTML = html;
-        document.getElementById('calc-subtotal').textContent = '₦' + subtotal.toLocaleString('en-US', {minimumFractionDigits: 2});
+        var subtotalUsd = Math.round(subtotal / 1500);
+        document.getElementById('calc-subtotal').textContent = '₦' + subtotal.toLocaleString('en-US') + ' / $' + subtotalUsd;
         
-        var total = subtotal + (shippingRate !== undefined ? shippingRate : 8000);
-        var tax = total * 0.075;
-        document.getElementById('calc-total').textContent = '₦' + total.toLocaleString('en-US', {minimumFractionDigits: 2});
-        document.getElementById('calc-tax').textContent = `Including ₦${tax.toLocaleString('en-US', {minimumFractionDigits: 2})} in taxes`;
+        var shipNgn = (shippingRate !== undefined ? shippingRate : 8000);
+        var shipUsd = Math.round(shipNgn / 1500);
+        var totalNgn = subtotal + shipNgn;
+        var totalUsd = Math.round(totalNgn / 1500);
+        var taxNgn = Math.round(totalNgn * 0.075);
+        var taxUsd = Math.round(taxNgn / 1500);
+
+        document.getElementById('calc-total').textContent = '₦' + totalNgn.toLocaleString('en-US') + ' / $' + totalUsd;
+        document.getElementById('calc-tax').textContent = `Including ₦${taxNgn.toLocaleString('en-US')} / $${taxUsd} in taxes`;
       }).catch(e => console.log(e));
     }
 
