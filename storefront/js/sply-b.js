@@ -2,6 +2,7 @@
  * OUTTERSPACE "SECTION B" - EDITORIAL MIX-AND-MATCH & PARALLAX RUNWAY ENGINE
  * 60-Second Master Runway Sequence with Full-Outfit Match Zoom In/Out
  * and Automatic Bottom Variant Remixing for All 15 Models.
+ * Order reversed so that Rangers - White culminates as the grand finale look.
  */
 (function () {
   'use strict';
@@ -9,66 +10,66 @@
   var PRODUCTS = [
     {
       index: 1,
-      title: "Rangers - White",
-      price: "\u20A6286,000 / $220",
-      handle: "rangers-white",
-      topImg: "/cowboy seriess/bview/top-01-rangers-white.jpg",
-      botImg: "/cowboy seriess/bview/bot-01-rangers-white.jpg",
-      parImg: "/cowboy seriess/bview/par-01-rangers-white.jpg"
+      title: "Western Romance Shirt",
+      price: "\u20A6325,000 / $250",
+      handle: "western-romance",
+      topImg: "/cowboy seriess/bview/top-15-western-romance.jpg",
+      botImg: "/cowboy seriess/bview/bot-15-western-romance.jpg",
+      parImg: "/cowboy seriess/bview/par-15-western-romance.jpg"
     },
     {
       index: 2,
-      title: "Frontier",
-      price: "\u20A6325,000 / $250",
-      handle: "frontier",
-      topImg: "/cowboy seriess/bview/top-02-frontier.jpg",
-      botImg: "/cowboy seriess/bview/bot-02-frontier.jpg",
-      parImg: "/cowboy seriess/bview/par-02-frontier.jpg"
+      title: "Black Embellish Cowboy Shirt",
+      price: "\u20A6383,500 / $295",
+      handle: "black-embellish-cowboy-shirt",
+      topImg: "/cowboy seriess/bview/top-14-black-embellish-cowboy-shirt.jpg",
+      botImg: "/cowboy seriess/bview/bot-14-black-embellish-cowboy-shirt.jpg",
+      parImg: "/cowboy seriess/bview/par-14-black-embellish-cowboy-shirt.jpg"
     },
     {
       index: 3,
-      title: "Lago di Como",
-      price: "\u20A6279,500 / $215",
-      handle: "lago-di-como",
-      topImg: "/cowboy seriess/bview/top-03-lago-di-como.jpg",
-      botImg: "/cowboy seriess/bview/bot-03-lago-di-como.jpg",
-      parImg: "/cowboy seriess/bview/par-03-lago-di-como.jpg"
+      title: "Starwave Cap",
+      price: "\u20A6130,000 / $100",
+      handle: "starwave-hat",
+      topImg: "/cowboy seriess/bview/top-13-starwave-hat.jpg",
+      botImg: "/cowboy seriess/bview/bot-13-starwave-hat.jpg",
+      parImg: "/cowboy seriess/bview/par-13-starwave-hat.jpg"
     },
     {
       index: 4,
-      title: "Cowboy Patch",
-      price: "\u20A6305,500 / $235",
-      handle: "cowboy-patch",
-      topImg: "/cowboy seriess/bview/top-04-cowboy-patch.jpg",
-      botImg: "/cowboy seriess/bview/bot-04-cowboy-patch.jpg",
-      parImg: "/cowboy seriess/bview/par-04-cowboy-patch.jpg"
+      title: "The Entourage Pants",
+      price: "\u20A6383,500 / $295",
+      handle: "the-entourage",
+      topImg: "/cowboy seriess/bview/top-12-the-entourage.jpg",
+      botImg: "/cowboy seriess/bview/bot-12-the-entourage.jpg",
+      parImg: "/cowboy seriess/bview/par-12-the-entourage.jpg"
     },
     {
       index: 5,
-      title: "Outterspace Symbol Shirt",
-      price: "\u20A6292,500 / $225",
-      handle: "outterspace-symbol-shirt",
-      topImg: "/cowboy seriess/bview/top-05-outterspace-symbol-shirt.jpg",
-      botImg: "/cowboy seriess/bview/bot-05-outterspace-symbol-shirt.jpg",
-      parImg: "/cowboy seriess/bview/par-05-outterspace-symbol-shirt.jpg"
+      title: "Outfield Mirage",
+      price: "\u20A6338,000 / $260",
+      handle: "outfield-mirage",
+      topImg: "/cowboy seriess/bview/top-11-outfield-mirage.jpg",
+      botImg: "/cowboy seriess/bview/bot-11-outfield-mirage.jpg",
+      parImg: "/cowboy seriess/bview/par-11-outfield-mirage.jpg"
     },
     {
       index: 6,
-      title: "Pearl Reglan",
-      price: "\u20A6286,000 / $220",
-      handle: "pearl-reglan",
-      topImg: "/cowboy seriess/bview/top-06-pearl-reglan.jpg",
-      botImg: "/cowboy seriess/bview/bot-06-pearl-reglan.jpg",
-      parImg: "/cowboy seriess/bview/par-06-pearl-reglan.jpg"
+      title: "Admiral",
+      price: "\u20A6338,000 / $260",
+      handle: "admiral",
+      topImg: "/cowboy seriess/bview/top-10-admiral.jpg",
+      botImg: "/cowboy seriess/bview/bot-10-admiral.jpg",
+      parImg: "/cowboy seriess/bview/par-10-admiral.jpg"
     },
     {
       index: 7,
-      title: "Rangers - Black",
-      price: "\u20A6299,000 / $230",
-      handle: "rangers",
-      topImg: "/cowboy seriess/bview/top-07-rangers.jpg",
-      botImg: "/cowboy seriess/bview/bot-07-rangers.jpg",
-      parImg: "/cowboy seriess/bview/par-07-rangers.jpg"
+      title: "Equis Rodeo Shirt",
+      price: "\u20A6377,000 / $290",
+      handle: "equis-rodeo",
+      topImg: "/cowboy seriess/bview/top-09-equis-rodeo.jpg",
+      botImg: "/cowboy seriess/bview/bot-09-equis-rodeo.jpg",
+      parImg: "/cowboy seriess/bview/par-09-equis-rodeo.jpg"
     },
     {
       index: 8,
@@ -81,86 +82,86 @@
     },
     {
       index: 9,
-      title: "Equis Rodeo Shirt",
-      price: "\u20A6377,000 / $290",
-      handle: "equis-rodeo",
-      topImg: "/cowboy seriess/bview/top-09-equis-rodeo.jpg",
-      botImg: "/cowboy seriess/bview/bot-09-equis-rodeo.jpg",
-      parImg: "/cowboy seriess/bview/par-09-equis-rodeo.jpg"
+      title: "Rangers - Black",
+      price: "\u20A6299,000 / $230",
+      handle: "rangers",
+      topImg: "/cowboy seriess/bview/top-07-rangers.jpg",
+      botImg: "/cowboy seriess/bview/bot-07-rangers.jpg",
+      parImg: "/cowboy seriess/bview/par-07-rangers.jpg"
     },
     {
       index: 10,
-      title: "Admiral",
-      price: "\u20A6338,000 / $260",
-      handle: "admiral",
-      topImg: "/cowboy seriess/bview/top-10-admiral.jpg",
-      botImg: "/cowboy seriess/bview/bot-10-admiral.jpg",
-      parImg: "/cowboy seriess/bview/par-10-admiral.jpg"
+      title: "Pearl Reglan",
+      price: "\u20A6286,000 / $220",
+      handle: "pearl-reglan",
+      topImg: "/cowboy seriess/bview/top-06-pearl-reglan.jpg",
+      botImg: "/cowboy seriess/bview/bot-06-pearl-reglan.jpg",
+      parImg: "/cowboy seriess/bview/par-06-pearl-reglan.jpg"
     },
     {
       index: 11,
-      title: "Outfield Mirage",
-      price: "\u20A6338,000 / $260",
-      handle: "outfield-mirage",
-      topImg: "/cowboy seriess/bview/top-11-outfield-mirage.jpg",
-      botImg: "/cowboy seriess/bview/bot-11-outfield-mirage.jpg",
-      parImg: "/cowboy seriess/bview/par-11-outfield-mirage.jpg"
+      title: "Outterspace Symbol Shirt",
+      price: "\u20A6292,500 / $225",
+      handle: "outterspace-symbol-shirt",
+      topImg: "/cowboy seriess/bview/top-05-outterspace-symbol-shirt.jpg",
+      botImg: "/cowboy seriess/bview/bot-05-outterspace-symbol-shirt.jpg",
+      parImg: "/cowboy seriess/bview/par-05-outterspace-symbol-shirt.jpg"
     },
     {
       index: 12,
-      title: "The Entourage Pants",
-      price: "\u20A6383,500 / $295",
-      handle: "the-entourage",
-      topImg: "/cowboy seriess/bview/top-12-the-entourage.jpg",
-      botImg: "/cowboy seriess/bview/bot-12-the-entourage.jpg",
-      parImg: "/cowboy seriess/bview/par-12-the-entourage.jpg"
+      title: "Cowboy Patch",
+      price: "\u20A6305,500 / $235",
+      handle: "cowboy-patch",
+      topImg: "/cowboy seriess/bview/top-04-cowboy-patch.jpg",
+      botImg: "/cowboy seriess/bview/bot-04-cowboy-patch.jpg",
+      parImg: "/cowboy seriess/bview/par-04-cowboy-patch.jpg"
     },
     {
       index: 13,
-      title: "Starwave Cap",
-      price: "\u20A6130,000 / $100",
-      handle: "starwave-hat",
-      topImg: "/cowboy seriess/bview/top-13-starwave-hat.jpg",
-      botImg: "/cowboy seriess/bview/bot-13-starwave-hat.jpg",
-      parImg: "/cowboy seriess/bview/par-13-starwave-hat.jpg"
+      title: "Lago di Como",
+      price: "\u20A6279,500 / $215",
+      handle: "lago-di-como",
+      topImg: "/cowboy seriess/bview/top-03-lago-di-como.jpg",
+      botImg: "/cowboy seriess/bview/bot-03-lago-di-como.jpg",
+      parImg: "/cowboy seriess/bview/par-03-lago-di-como.jpg"
     },
     {
       index: 14,
-      title: "Black Embellish Cowboy Shirt",
-      price: "\u20A6383,500 / $295",
-      handle: "black-embellish-cowboy-shirt",
-      topImg: "/cowboy seriess/bview/top-14-black-embellish-cowboy-shirt.jpg",
-      botImg: "/cowboy seriess/bview/bot-14-black-embellish-cowboy-shirt.jpg",
-      parImg: "/cowboy seriess/bview/par-14-black-embellish-cowboy-shirt.jpg"
+      title: "Frontier",
+      price: "\u20A6325,000 / $250",
+      handle: "frontier",
+      topImg: "/cowboy seriess/bview/top-02-frontier.jpg",
+      botImg: "/cowboy seriess/bview/bot-02-frontier.jpg",
+      parImg: "/cowboy seriess/bview/par-02-frontier.jpg"
     },
     {
       index: 15,
-      title: "Western Romance Shirt",
-      price: "\u20A6325,000 / $250",
-      handle: "western-romance",
-      topImg: "/cowboy seriess/bview/top-15-western-romance.jpg",
-      botImg: "/cowboy seriess/bview/bot-15-western-romance.jpg",
-      parImg: "/cowboy seriess/bview/par-15-western-romance.jpg"
+      title: "Rangers - White",
+      price: "\u20A6286,000 / $220",
+      handle: "rangers-white",
+      topImg: "/cowboy seriess/bview/top-01-rangers-white.jpg",
+      botImg: "/cowboy seriess/bview/bot-01-rangers-white.jpg",
+      parImg: "/cowboy seriess/bview/par-01-rangers-white.jpg"
     }
   ];
 
-  // Distinct alternative bottom pants variant for each of the 15 models
+  // Distinct alternative bottom pants variant for each look in the reversed sequence
   var BOTTOM_VARIANTS = [
-    7,  // 0 Rangers White Top -> 7 Noctra Flare Pant Bottom
-    11, // 1 Frontier Top -> 11 The Entourage Bottom
-    0,  // 2 Lago di Como Top -> 0 Rangers White Bottom
-    11, // 3 Cowboy Patch Top -> 11 The Entourage Bottom
-    7,  // 4 Outterspace Symbol Top -> 7 Noctra Flare Bottom
-    6,  // 5 Pearl Reglan Top -> 6 Rangers Black Bottom
-    11, // 6 Rangers Black Top -> 11 The Entourage Bottom
-    2,  // 7 Noctra Flare Top -> 2 Lago di Como Bottom
-    7,  // 8 Equis Rodeo Top -> 7 Noctra Flare Bottom
-    6,  // 9 Admiral Top -> 6 Rangers Black Bottom
-    0,  // 10 Outfield Mirage Top -> 0 Rangers White Bottom
-    7,  // 11 The Entourage Top -> 7 Noctra Flare Bottom
-    11, // 12 Starwave Cap Top -> 11 The Entourage Bottom
-    6,  // 13 Black Embellish Top -> 6 Rangers Black Bottom
-    10  // 14 Western Romance Top -> 10 Outfield Mirage Bottom
+    8,  // 0 Western Romance Top -> 8 Rangers Black Bottom
+    3,  // 1 Black Embellish Top -> 3 The Entourage Bottom
+    7,  // 2 Starwave Cap Top -> 7 Noctra Flare Bottom
+    8,  // 3 The Entourage Top -> 8 Rangers Black Bottom
+    14, // 4 Outfield Mirage Top -> 14 Rangers White Bottom
+    3,  // 5 Admiral Top -> 3 The Entourage Bottom
+    7,  // 6 Equis Rodeo Top -> 7 Noctra Flare Bottom
+    12, // 7 Noctra Flare Top -> 12 Lago di Como Bottom
+    3,  // 8 Rangers Black Top -> 3 The Entourage Bottom
+    8,  // 9 Pearl Reglan Top -> 8 Rangers Black Bottom
+    7,  // 10 Outterspace Symbol Top -> 7 Noctra Flare Bottom
+    3,  // 11 Cowboy Patch Top -> 3 The Entourage Bottom
+    14, // 12 Lago di Como Top -> 14 Rangers White Bottom
+    3,  // 13 Frontier Top -> 3 The Entourage Bottom
+    7   // 14 Rangers White Top (Finale) -> 7 Noctra Flare Bottom
   ];
 
   // Preload all assets
@@ -313,7 +314,7 @@
         if (currentTopIdx !== modelIdx) slideTo('top', modelIdx);
         if (currentBotIdx !== modelIdx) slideTo('bot', modelIdx);
 
-        // Zoom In from 300ms to 1100ms, Zoom Out from 1100ms onwards
+        // Zoom In from 300ms to 1150ms, Zoom Out from 1150ms onwards
         var shouldZoom = (localMs >= 300 && localMs < 1150);
         setZoomState(shouldZoom);
 
