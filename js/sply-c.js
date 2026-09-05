@@ -7,17 +7,17 @@
 (function () {
   'use strict';
 
-  // Product Data for the 6 Radial Capsules
+  // Product Data for the 6 Radial Capsules (Altoro Black Pant & Caballo)
   var CAPSULE_ITEMS = [
     {
       id: 1,
       pos: 1,
-      handle: 'nocta-flare-pant',
-      title: 'Noctra Flare Pant',
-      subtitle: 'Front Flat Silhouette',
+      handle: 'altoro-black-pant',
+      title: 'Altoro Black Pant',
+      subtitle: 'Front Flare Silhouette',
       price_ngn: '₦448,500',
       price_usd: '$345',
-      image: '/cowboy seriess/nocta-flare-pant-1-nobg.png',
+      image: '/cowboy seriess/altoro-front.jpg',
       variants: [
         { id: 58051664642379, size: 'S' },
         { id: 58051664675147, size: 'M' },
@@ -26,17 +26,17 @@
         { id: 58051664773451, size: '2XL' },
         { id: 58051664806219, size: '3XL' }
       ],
-      desc: 'Luxury heavyweight French terry flared trousers featuring crystal stud Outterspace lettering, tailored relaxed flare drape, and deep jet black finish.'
+      desc: 'Milled from luxury heavyweight black denim with dramatic flared leg opening. Featuring tactile Outterspace Cowboy Series rope embroidery, running mustang horses with golden lasso artwork, and branded rear leather patch with cap-wearing stallion back pocket illustration.'
     },
     {
       id: 2,
       pos: 2,
-      handle: 'the-entourage',
-      title: 'The Entourage Pants',
-      subtitle: 'Front Flat Twill & Denim',
+      handle: 'caballo',
+      title: 'Caballo Jort',
+      subtitle: 'Pearl Flap & Cargo Jort',
       price_ngn: '₦383,500',
       price_usd: '$295',
-      image: '/cowboy seriess/the-entourage-1-nobg.png',
+      image: '/cowboy seriess/caballo-front.jpg',
       variants: [
         { id: 58037098938699, size: 'S' },
         { id: 58037098971467, size: 'M' },
@@ -45,55 +45,36 @@
         { id: 58037099069771, size: '2XL' },
         { id: 58037099102539, size: '3XL' }
       ],
-      desc: 'Sand heavyweight cotton denim twill flared pants / jorts featuring authentic cowboy frontier illustrated graphics and hand-finished distressing.'
+      desc: 'Crafted from light indigo vintage wash heavyweight denim. Accented with handcrafted pearl flower studs across dual cargo pocket flaps, grazing stallion embroidery, Outterspace Cowboy Series script, and dual-grommet utility belt with polished hardware buckle.'
     },
     {
       id: 3,
       pos: 3,
-      handle: 'the-entourage',
-      title: 'The Entourage Pants',
-      subtitle: 'Back Flap Graphic Detail',
-      price_ngn: '₦383,500',
-      price_usd: '$295',
-      image: '/cowboy seriess/the-entourage-2-nobg.png',
+      handle: 'altoro-black-pant',
+      title: 'Altoro Black Pant',
+      subtitle: 'Back Silhouette & Pocket Patch',
+      price_ngn: '₦448,500',
+      price_usd: '$345',
+      image: '/cowboy seriess/altoro-back.jpg',
       variants: [
-        { id: 58037098938699, size: 'S' },
-        { id: 58037098971467, size: 'M' },
-        { id: 58037099004235, size: 'L' },
-        { id: 58037099037003, size: 'XL' },
-        { id: 58037099069771, size: '2XL' },
-        { id: 58037099102539, size: '3XL' }
+        { id: 58051664642379, size: 'S' },
+        { id: 58051664675147, size: 'M' },
+        { id: 58051664707915, size: 'L' },
+        { id: 58051664740683, size: 'XL' },
+        { id: 58051664773451, size: '2XL' },
+        { id: 58051664806219, size: '3XL' }
       ],
-      desc: 'Detailed back flap cowboy artwork with reinforced dual rear patch pockets and authentic Western Americana character illustrations.'
+      desc: 'Rear perspective of the Altoro flared silhouette, featuring Outterspace genuine leather waistband patch, welt pocket construction, and cap-wearing horse back pocket embroidery.'
     },
     {
       id: 4,
       pos: 4,
-      handle: 'nocta-flare-pant',
-      title: 'Noctra Flare Pant',
-      subtitle: 'Side Stud Drape & Profile',
-      price_ngn: '₦448,500',
-      price_usd: '$345',
-      image: '/cowboy seriess/nocta-flare-pant-2-nobg.png',
-      variants: [
-        { id: 58051664642379, size: 'S' },
-        { id: 58051664675147, size: 'M' },
-        { id: 58051664707915, size: 'L' },
-        { id: 58051664740683, size: 'XL' },
-        { id: 58051664773451, size: '2XL' },
-        { id: 58051664806219, size: '3XL' }
-      ],
-      desc: 'Side profile silhouette highlighting the elongated stacked flare drape and signature crystal stud lettering down the outer leg.'
-    },
-    {
-      id: 5,
-      pos: 5,
-      handle: 'the-entourage',
-      title: 'The Entourage Pants',
-      subtitle: 'Editorial Model Fit Look',
+      handle: 'caballo',
+      title: 'Caballo Jort',
+      subtitle: 'Horse & Pearl Pocket Detail',
       price_ngn: '₦383,500',
       price_usd: '$295',
-      image: '/cowboy seriess/the-entourage-3-nobg.png',
+      image: '/cowboy seriess/caballo-detail.jpg',
       variants: [
         { id: 58037098938699, size: 'S' },
         { id: 58037098971467, size: 'M' },
@@ -102,17 +83,17 @@
         { id: 58037099069771, size: '2XL' },
         { id: 58037099102539, size: '3XL' }
       ],
-      desc: 'Full runway silhouette showcasing true-to-size drape, relaxed leg opening, and high-impact street-frontier styling.'
+      desc: 'Macro focus on the handcrafted pearl cluster studs along the pocket flaps and pastoral stallion grazing illustration with field wildflower embroidery.'
     },
     {
-      id: 6,
-      pos: 6,
-      handle: 'nocta-flare-pant',
-      title: 'Noctra Flare Pant',
-      subtitle: 'Editorial Model Fit Look',
+      id: 5,
+      pos: 5,
+      handle: 'altoro-black-pant',
+      title: 'Altoro Black Pant',
+      subtitle: 'Mustang Horses & Lasso Detail',
       price_ngn: '₦448,500',
       price_usd: '$345',
-      image: '/cowboy seriess/nocta-flare-pant-3-nobg.png',
+      image: '/cowboy seriess/altoro-detail.jpg',
       variants: [
         { id: 58051664642379, size: 'S' },
         { id: 58051664675147, size: 'M' },
@@ -121,7 +102,26 @@
         { id: 58051664773451, size: '2XL' },
         { id: 58051664806219, size: '3XL' }
       ],
-      desc: 'Editorial fit presentation demonstrating structured heavyweight drape, fluid movement, and luxury proportions.'
+      desc: 'Detailed view of the multi-horse stampede embroidery and golden lasso swirling around the flare hem with Cowboy Series 2026 lettering.'
+    },
+    {
+      id: 6,
+      pos: 6,
+      handle: 'altoro-black-pant',
+      title: 'Altoro Black Pant',
+      subtitle: 'Stallion Cap Back Pocket Patch',
+      price_ngn: '₦448,500',
+      price_usd: '$345',
+      image: '/cowboy seriess/altoro-back-detail.jpg',
+      variants: [
+        { id: 58051664642379, size: 'S' },
+        { id: 58051664675147, size: 'M' },
+        { id: 58051664707915, size: 'L' },
+        { id: 58051664740683, size: 'XL' },
+        { id: 58051664773451, size: '2XL' },
+        { id: 58051664806219, size: '3XL' }
+      ],
+      desc: 'Close-up of the signature yellow cap horse character back patch, tonal stitching, and bespoke leather label.'
     }
   ];
 

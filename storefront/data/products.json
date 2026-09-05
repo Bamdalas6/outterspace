@@ -873,6 +873,127 @@
       ],
       "available": true,
       "price_usd": 250
+    },
+    {
+      "id": "os-15909113954699",
+      "handle": "altoro-black-pant",
+      "title": "Altoro Black Pant",
+      "price": 448500.0,
+      "price_formatted": "₦448,500 / ",
+      "price_usd": 345,
+      "description": "Milled from luxury heavyweight black denim with dramatic flared leg opening. Featuring tactile Outterspace Cowboy Series rope embroidery, running mustang horses with golden lasso artwork, and branded rear leather patch with cap-wearing stallion back pocket illustration.",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL",
+        "3XL"
+      ],
+      "variants": [
+        {
+          "id": 58051664642379,
+          "title": "S",
+          "available": true,
+          "price": 448500.0
+        },
+        {
+          "id": 58051664675147,
+          "title": "M",
+          "available": true,
+          "price": 448500.0
+        },
+        {
+          "id": 58051664707915,
+          "title": "L",
+          "available": true,
+          "price": 448500.0
+        },
+        {
+          "id": 58051664740683,
+          "title": "XL",
+          "available": true,
+          "price": 448500.0
+        },
+        {
+          "id": 58051664773451,
+          "title": "2XL",
+          "available": true,
+          "price": 448500.0
+        },
+        {
+          "id": 58051664806219,
+          "title": "3XL",
+          "available": true,
+          "price": 448500.0
+        }
+      ],
+      "images": [
+        "cowboy seriess/altoro-front.jpg",
+        "cowboy seriess/altoro-back.jpg",
+        "cowboy seriess/altoro-detail.jpg"
+      ],
+      "available": true
+    },
+    {
+      "id": "os-15905841414499",
+      "handle": "caballo",
+      "title": "Caballo Jort",
+      "price": 383500.0,
+      "price_formatted": "₦383,500 / ",
+      "price_usd": 295,
+      "description": "Crafted from light indigo vintage wash heavyweight denim. Accented with handcrafted pearl flower studs across dual cargo pocket flaps, grazing stallion embroidery, Outterspace Cowboy Series script, and dual-grommet utility belt with polished hardware buckle.",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "2XL",
+        "3XL"
+      ],
+      "variants": [
+        {
+          "id": 58037098938699,
+          "title": "S",
+          "available": true,
+          "price": 383500.0
+        },
+        {
+          "id": 58037098971467,
+          "title": "M",
+          "available": true,
+          "price": 383500.0
+        },
+        {
+          "id": 58037099004235,
+          "title": "L",
+          "available": true,
+          "price": 383500.0
+        },
+        {
+          "id": 58037099037003,
+          "title": "XL",
+          "available": true,
+          "price": 383500.0
+        },
+        {
+          "id": 58037099069771,
+          "title": "2XL",
+          "available": true,
+          "price": 383500.0
+        },
+        {
+          "id": 58037099102539,
+          "title": "3XL",
+          "available": true,
+          "price": 383500.0
+        }
+      ],
+      "images": [
+        "cowboy seriess/caballo-front.jpg",
+        "cowboy seriess/caballo-detail.jpg"
+      ],
+      "available": true
     }
   ]
 }
