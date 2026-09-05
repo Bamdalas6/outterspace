@@ -1,6 +1,7 @@
 /**
  * OUTTERSPACE "SECTION B" - EDITORIAL MIX-AND-MATCH & PARALLAX RUNWAY ENGINE
- * Timed to exactly 60 seconds (1 minute) with seamless looping.
+ * 60-Second Master Runway Sequence with Full-Outfit Match Zoom In/Out
+ * and Automatic Bottom Variant Remixing for All 15 Models.
  */
 (function () {
   'use strict';
@@ -9,7 +10,7 @@
     {
       index: 1,
       title: "Rangers - White",
-      price: "?286,000 / $220",
+      price: "\u20A6286,000 / $220",
       handle: "rangers-white",
       topImg: "/cowboy seriess/bview/top-01-rangers-white.jpg",
       botImg: "/cowboy seriess/bview/bot-01-rangers-white.jpg",
@@ -18,7 +19,7 @@
     {
       index: 2,
       title: "Frontier",
-      price: "?325,000 / $250",
+      price: "\u20A6325,000 / $250",
       handle: "frontier",
       topImg: "/cowboy seriess/bview/top-02-frontier.jpg",
       botImg: "/cowboy seriess/bview/bot-02-frontier.jpg",
@@ -27,7 +28,7 @@
     {
       index: 3,
       title: "Lago di Como",
-      price: "?279,500 / $215",
+      price: "\u20A6279,500 / $215",
       handle: "lago-di-como",
       topImg: "/cowboy seriess/bview/top-03-lago-di-como.jpg",
       botImg: "/cowboy seriess/bview/bot-03-lago-di-como.jpg",
@@ -36,7 +37,7 @@
     {
       index: 4,
       title: "Cowboy Patch",
-      price: "?305,500 / $235",
+      price: "\u20A6305,500 / $235",
       handle: "cowboy-patch",
       topImg: "/cowboy seriess/bview/top-04-cowboy-patch.jpg",
       botImg: "/cowboy seriess/bview/bot-04-cowboy-patch.jpg",
@@ -45,7 +46,7 @@
     {
       index: 5,
       title: "Outterspace Symbol Shirt",
-      price: "?292,500 / $225",
+      price: "\u20A6292,500 / $225",
       handle: "outterspace-symbol-shirt",
       topImg: "/cowboy seriess/bview/top-05-outterspace-symbol-shirt.jpg",
       botImg: "/cowboy seriess/bview/bot-05-outterspace-symbol-shirt.jpg",
@@ -54,7 +55,7 @@
     {
       index: 6,
       title: "Pearl Reglan",
-      price: "?286,000 / $220",
+      price: "\u20A6286,000 / $220",
       handle: "pearl-reglan",
       topImg: "/cowboy seriess/bview/top-06-pearl-reglan.jpg",
       botImg: "/cowboy seriess/bview/bot-06-pearl-reglan.jpg",
@@ -63,7 +64,7 @@
     {
       index: 7,
       title: "Rangers - Black",
-      price: "?299,000 / $230",
+      price: "\u20A6299,000 / $230",
       handle: "rangers",
       topImg: "/cowboy seriess/bview/top-07-rangers.jpg",
       botImg: "/cowboy seriess/bview/bot-07-rangers.jpg",
@@ -72,7 +73,7 @@
     {
       index: 8,
       title: "Noctra Flare Pant",
-      price: "?448,500 / $345",
+      price: "\u20A6448,500 / $345",
       handle: "nocta-flare-pant",
       topImg: "/cowboy seriess/bview/top-08-nocta-flare-pant.jpg",
       botImg: "/cowboy seriess/bview/bot-08-nocta-flare-pant.jpg",
@@ -81,7 +82,7 @@
     {
       index: 9,
       title: "Equis Rodeo Shirt",
-      price: "?377,000 / $290",
+      price: "\u20A6377,000 / $290",
       handle: "equis-rodeo",
       topImg: "/cowboy seriess/bview/top-09-equis-rodeo.jpg",
       botImg: "/cowboy seriess/bview/bot-09-equis-rodeo.jpg",
@@ -90,7 +91,7 @@
     {
       index: 10,
       title: "Admiral",
-      price: "?338,000 / $260",
+      price: "\u20A6338,000 / $260",
       handle: "admiral",
       topImg: "/cowboy seriess/bview/top-10-admiral.jpg",
       botImg: "/cowboy seriess/bview/bot-10-admiral.jpg",
@@ -99,7 +100,7 @@
     {
       index: 11,
       title: "Outfield Mirage",
-      price: "?338,000 / $260",
+      price: "\u20A6338,000 / $260",
       handle: "outfield-mirage",
       topImg: "/cowboy seriess/bview/top-11-outfield-mirage.jpg",
       botImg: "/cowboy seriess/bview/bot-11-outfield-mirage.jpg",
@@ -108,7 +109,7 @@
     {
       index: 12,
       title: "The Entourage Pants",
-      price: "?383,500 / $295",
+      price: "\u20A6383,500 / $295",
       handle: "the-entourage",
       topImg: "/cowboy seriess/bview/top-12-the-entourage.jpg",
       botImg: "/cowboy seriess/bview/bot-12-the-entourage.jpg",
@@ -117,7 +118,7 @@
     {
       index: 13,
       title: "Starwave Cap",
-      price: "?130,000 / $100",
+      price: "\u20A6130,000 / $100",
       handle: "starwave-hat",
       topImg: "/cowboy seriess/bview/top-13-starwave-hat.jpg",
       botImg: "/cowboy seriess/bview/bot-13-starwave-hat.jpg",
@@ -126,7 +127,7 @@
     {
       index: 14,
       title: "Black Embellish Cowboy Shirt",
-      price: "?383,500 / $295",
+      price: "\u20A6383,500 / $295",
       handle: "black-embellish-cowboy-shirt",
       topImg: "/cowboy seriess/bview/top-14-black-embellish-cowboy-shirt.jpg",
       botImg: "/cowboy seriess/bview/bot-14-black-embellish-cowboy-shirt.jpg",
@@ -135,12 +136,31 @@
     {
       index: 15,
       title: "Western Romance Shirt",
-      price: "?325,000 / $250",
+      price: "\u20A6325,000 / $250",
       handle: "western-romance",
       topImg: "/cowboy seriess/bview/top-15-western-romance.jpg",
       botImg: "/cowboy seriess/bview/bot-15-western-romance.jpg",
       parImg: "/cowboy seriess/bview/par-15-western-romance.jpg"
     }
+  ];
+
+  // Distinct alternative bottom pants variant for each of the 15 models
+  var BOTTOM_VARIANTS = [
+    7,  // 0 Rangers White Top -> 7 Noctra Flare Pant Bottom
+    11, // 1 Frontier Top -> 11 The Entourage Bottom
+    0,  // 2 Lago di Como Top -> 0 Rangers White Bottom
+    11, // 3 Cowboy Patch Top -> 11 The Entourage Bottom
+    7,  // 4 Outterspace Symbol Top -> 7 Noctra Flare Bottom
+    6,  // 5 Pearl Reglan Top -> 6 Rangers Black Bottom
+    11, // 6 Rangers Black Top -> 11 The Entourage Bottom
+    2,  // 7 Noctra Flare Top -> 2 Lago di Como Bottom
+    7,  // 8 Equis Rodeo Top -> 7 Noctra Flare Bottom
+    6,  // 9 Admiral Top -> 6 Rangers Black Bottom
+    0,  // 10 Outfield Mirage Top -> 0 Rangers White Bottom
+    7,  // 11 The Entourage Top -> 7 Noctra Flare Bottom
+    11, // 12 Starwave Cap Top -> 11 The Entourage Bottom
+    6,  // 13 Black Embellish Top -> 6 Rangers Black Bottom
+    10  // 14 Western Romance Top -> 10 Outfield Mirage Bottom
   ];
 
   // Preload all assets
@@ -151,36 +171,18 @@
   });
 
   var TOTAL_DURATION_MS = 60000; // Exactly 60 seconds (1 minute)
-  var PARADE_START_MS = 38000;  // Parallax phase starts at 38s
-  var OUTRO_START_MS = 54000;   // Outro phase starts at 54s
-
-  // Keyframe schedule for the Split Mix-and-Match phase (0s to 38s)
-  var SCHEDULE = [
-    { time: 0,     top: 0,  bot: 0  },
-    { time: 3500,  top: 3,  bot: 0  }, // Cowboy Patch top
-    { time: 7000,  top: 3,  bot: 11 }, // The Entourage bottom
-    { time: 10500, top: 1,  bot: 11 }, // Frontier top
-    { time: 14000, top: 1,  bot: 7  }, // Nocta flare bottom
-    { time: 17500, top: 8,  bot: 7  }, // Equis rodeo top
-    { time: 21000, top: 8,  bot: 6  }, // Rangers black bottom
-    { time: 24500, top: 13, bot: 6  }, // Black embellish top
-    { time: 28000, top: 13, bot: 2  }, // Lago di Como bottom
-    { time: 31500, top: 14, bot: 2  }, // Western romance top
-    { time: 35000, top: 14, bot: 10 }  // Outfield mirage bottom
-  ];
+  var CHAPTER_COUNT = PRODUCTS.length; // 15 models
+  var CHAPTER_MS = TOTAL_DURATION_MS / CHAPTER_COUNT; // 4000ms per model
 
   function initSectionB() {
     var root = document.querySelector('[data-sply-b]');
     if (!root) return;
 
+    var stageContainer = root.querySelector('[data-b-stage]');
+    var matchBadge = root.querySelector('[data-b-match-badge]');
     var topTrack = root.querySelector('[data-b-top-track]');
     var botTrack = root.querySelector('[data-b-bot-track]');
     var dividerEl = root.querySelector('[data-b-divider]');
-    var paradeEl = root.querySelector('[data-b-parade]');
-    var planeBack = root.querySelector('[data-b-plane-back]');
-    var planeMid = root.querySelector('[data-b-plane-mid]');
-    var planeFront = root.querySelector('[data-b-plane-front]');
-    var outroEl = root.querySelector('[data-b-outro]');
     var scrubberFill = root.querySelector('[data-b-scrub-fill]');
     var scrubberTrack = root.querySelector('[data-b-scrub-track]');
     var timeEl = root.querySelector('[data-b-time]');
@@ -199,10 +201,12 @@
 
     var currentTopIdx = 0;
     var currentBotIdx = 0;
+    var isZooming = false;
     var elapsedMs = 0;
     var isPlaying = true;
     var lastTick = Date.now();
-    var rafId = null;
+    var manualZoomTimer = null;
+    var manualVariantTimer = null;
 
     // Build slides for top and bottom reels
     function buildReels() {
@@ -224,48 +228,12 @@
       });
     }
 
-    // Build parallax planes
-    function buildParallaxPlanes() {
-      // Back plane: 6 items
-      var backItems = [0, 2, 4, 6, 8, 10];
-      planeBack.innerHTML = '';
-      backItems.forEach(function (idx) {
-        var p = PRODUCTS[idx];
-        var item = document.createElement('div');
-        item.className = 'sply-b__plane-item';
-        item.innerHTML = '<img class="sply-b__plane-img" src="' + p.parImg + '" alt="' + p.title + '">';
-        planeBack.appendChild(item);
-      });
-
-      // Mid plane: 6 items
-      var midItems = [1, 3, 5, 7, 9, 11];
-      planeMid.innerHTML = '';
-      midItems.forEach(function (idx) {
-        var p = PRODUCTS[idx];
-        var item = document.createElement('div');
-        item.className = 'sply-b__plane-item';
-        item.innerHTML = '<img class="sply-b__plane-img" src="' + p.parImg + '" alt="' + p.title + '">';
-        planeMid.appendChild(item);
-      });
-
-      // Front plane: 4 items (larger close-up crops)
-      var frontItems = [13, 14, 0, 3];
-      planeFront.innerHTML = '';
-      frontItems.forEach(function (idx) {
-        var p = PRODUCTS[idx];
-        var item = document.createElement('div');
-        item.className = 'sply-b__plane-item';
-        item.innerHTML = '<img class="sply-b__plane-img" src="' + p.topImg + '" alt="' + p.title + '">';
-        planeFront.appendChild(item);
-      });
-    }
-
     function slideTo(reelType, targetIdx) {
       var track = reelType === 'top' ? topTrack : botTrack;
       var slides = track.querySelectorAll('.sply-b__slide');
       var oldIdx = reelType === 'top' ? currentTopIdx : currentBotIdx;
 
-      if (targetIdx === oldIdx) return;
+      if (targetIdx === oldIdx && slides[targetIdx] && slides[targetIdx].classList.contains('is-current')) return;
 
       slides.forEach(function (slide, i) {
         slide.classList.remove('is-prev', 'is-current', 'is-next');
@@ -305,6 +273,23 @@
       if (botLink) botLink.href = '/products/' + p.handle;
     }
 
+    function setZoomState(zoomActive) {
+      if (isZooming === zoomActive) return;
+      isZooming = zoomActive;
+      if (stageContainer) {
+        if (zoomActive) stageContainer.classList.add('is-matched-zoom');
+        else stageContainer.classList.remove('is-matched-zoom');
+      }
+      if (matchBadge) {
+        if (zoomActive) matchBadge.classList.add('is-visible');
+        else matchBadge.classList.remove('is-visible');
+      }
+      if (dividerEl) {
+        if (zoomActive) dividerEl.classList.add('is-matched');
+        else dividerEl.classList.remove('is-matched');
+      }
+    }
+
     function formatTime(ms) {
       var sec = Math.floor(ms / 1000);
       var m = Math.floor(sec / 60);
@@ -318,48 +303,35 @@
       if (scrubberFill) scrubberFill.style.width = pct + '%';
       if (timeEl) timeEl.textContent = formatTime(elapsedMs) + ' / 1:00';
 
-      // Stage State Routing:
-      if (elapsedMs < PARADE_START_MS) {
-        // Phase 1: Split Screen Mix & Match
-        dividerEl.classList.remove('is-hidden');
-        paradeEl.classList.remove('is-active');
-        outroEl.classList.remove('is-active');
-        if (phasePill) phasePill.textContent = 'MIX & MATCH';
+      // Determine active model chapter (0 to 14)
+      var modelIdx = Math.floor(elapsedMs / CHAPTER_MS);
+      if (modelIdx >= CHAPTER_COUNT) modelIdx = CHAPTER_COUNT - 1;
+      var localMs = elapsedMs % CHAPTER_MS;
 
-        // Check active schedule step
-        var currentStep = SCHEDULE[0];
-        for (var i = 0; i < SCHEDULE.length; i++) {
-          if (elapsedMs >= SCHEDULE[i].time) {
-            currentStep = SCHEDULE[i];
-          } else {
-            break;
-          }
+      // Segment 1 (0ms to 1800ms): Top & Bottom MATCH!
+      if (localMs < 1800) {
+        if (currentTopIdx !== modelIdx) slideTo('top', modelIdx);
+        if (currentBotIdx !== modelIdx) slideTo('bot', modelIdx);
+
+        // Zoom In from 300ms to 1100ms, Zoom Out from 1100ms onwards
+        var shouldZoom = (localMs >= 300 && localMs < 1150);
+        setZoomState(shouldZoom);
+
+        if (phasePill) {
+          phasePill.textContent = 'MATCHED LOOK ' + String(modelIdx + 1).padStart(2, '0');
         }
-        if (currentTopIdx !== currentStep.top) slideTo('top', currentStep.top);
-        if (currentBotIdx !== currentStep.bot) slideTo('bot', currentStep.bot);
+      } 
+      // Segment 2 (1800ms to 4000ms): Bottom slides to another variant!
+      else {
+        setZoomState(false); // Finished zoom out
 
-      } else if (elapsedMs < OUTRO_START_MS) {
-        // Phase 2: Parallax Runway Parade
-        dividerEl.classList.add('is-hidden');
-        paradeEl.classList.add('is-active');
-        outroEl.classList.remove('is-active');
-        if (phasePill) phasePill.textContent = 'RUNWAY PARADE';
+        if (currentTopIdx !== modelIdx) slideTo('top', modelIdx);
+        var variantBot = BOTTOM_VARIANTS[modelIdx];
+        if (currentBotIdx !== variantBot) slideTo('bot', variantBot);
 
-        var paradeProgress = (elapsedMs - PARADE_START_MS) / (OUTRO_START_MS - PARADE_START_MS);
-        var backX = -paradeProgress * 48;
-        var midX = -paradeProgress * 75;
-        var frontX = -paradeProgress * 115;
-
-        planeBack.style.transform = 'translateX(' + backX + '%)';
-        planeMid.style.transform = 'translateX(' + midX + '%)';
-        planeFront.style.transform = 'translateX(' + frontX + '%)';
-
-      } else {
-        // Phase 3: Outro
-        dividerEl.classList.add('is-hidden');
-        paradeEl.classList.remove('is-active');
-        outroEl.classList.add('is-active');
-        if (phasePill) phasePill.textContent = 'FINALE';
+        if (phasePill) {
+          phasePill.textContent = 'REMIX VARIANT ' + String(modelIdx + 1).padStart(2, '0');
+        }
       }
     }
 
@@ -372,12 +344,12 @@
       if (isPlaying) {
         elapsedMs += delta;
         if (elapsedMs >= TOTAL_DURATION_MS) {
-          elapsedMs = 0; // Seamless continuous loop
+          elapsedMs = 0; // Seamless 1-minute continuous loop
         }
         applyTime(elapsedMs);
       }
 
-      rafId = requestAnimationFrame(tick);
+      requestAnimationFrame(tick);
     }
 
     // Controls
@@ -396,13 +368,34 @@
       });
     }
 
+    // Trigger match zoom & bottom variant sequence on demand
+    function triggerInteractiveMatchSequence(matchIdx) {
+      clearTimeout(manualZoomTimer);
+      clearTimeout(manualVariantTimer);
+
+      slideTo('top', matchIdx);
+      slideTo('bot', matchIdx);
+
+      // Zoom in after 150ms
+      manualZoomTimer = setTimeout(function () {
+        setZoomState(true);
+        // Zoom out after 850ms
+        setTimeout(function () {
+          setZoomState(false);
+          // Slide in alternative variant bottom after another 600ms
+          manualVariantTimer = setTimeout(function () {
+            slideTo('bot', BOTTOM_VARIANTS[matchIdx]);
+          }, 600);
+        }, 850);
+      }, 150);
+    }
+
     if (remixBtn) {
       remixBtn.addEventListener('click', function () {
-        // Randomize top and bottom
-        var nextTop = (currentTopIdx + Math.floor(Math.random() * 5) + 1) % PRODUCTS.length;
-        var nextBot = (currentBotIdx + Math.floor(Math.random() * 5) + 1) % PRODUCTS.length;
-        slideTo('top', nextTop);
-        slideTo('bot', nextBot);
+        // Step to next model complete match sequence
+        var nextModel = (currentTopIdx + 1) % PRODUCTS.length;
+        elapsedMs = nextModel * CHAPTER_MS;
+        triggerInteractiveMatchSequence(nextModel);
       });
     }
 
@@ -413,6 +406,9 @@
         e.stopPropagation();
         var nextTop = (currentTopIdx + 1) % PRODUCTS.length;
         slideTo('top', nextTop);
+        if (nextTop === currentBotIdx) {
+          triggerInteractiveMatchSequence(nextTop);
+        }
       });
     }
 
@@ -422,6 +418,9 @@
         e.stopPropagation();
         var nextBot = (currentBotIdx + 1) % PRODUCTS.length;
         slideTo('bot', nextBot);
+        if (nextBot === currentTopIdx) {
+          triggerInteractiveMatchSequence(nextBot);
+        }
       });
     }
 
@@ -463,26 +462,25 @@
       });
     }
 
-    // Keyboard support
+    // Keyboard navigation
     window.addEventListener('keydown', function (e) {
       if (e.key === ' ') {
         e.preventDefault();
         setPlayState(!isPlaying);
       } else if (e.key === 'ArrowRight') {
-        applyTime(elapsedMs + 5000);
+        applyTime((elapsedMs + 4000) % TOTAL_DURATION_MS);
       } else if (e.key === 'ArrowLeft') {
-        applyTime(elapsedMs - 5000);
+        applyTime((elapsedMs - 4000 + TOTAL_DURATION_MS) % TOTAL_DURATION_MS);
       }
     });
 
-    // Initialize DOM and start ticker
+    // Initialize reels & state
     buildReels();
-    buildParallaxPlanes();
     updateTopHUD(PRODUCTS[0]);
     updateBotHUD(PRODUCTS[0]);
     applyTime(0);
     lastTick = Date.now();
-    rafId = requestAnimationFrame(tick);
+    requestAnimationFrame(tick);
   }
 
   if (document.readyState === 'loading') {
