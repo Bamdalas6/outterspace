@@ -1,7 +1,7 @@
 /**
- * OUTTERSPACE — SECTION C (PRODUCT REVIEW SHOWCASE)
- * Pure product review experience: reviews each garment angle and fit
- * with 12-tick loading animation, without any video play/pause controls.
+ * OUTTERSPACE — SECTION C (CLOCKWISE REVEAL & PRE-ORDER SHOWCASE)
+ * Loads products clockwise (12 -> 2 -> 4 -> 6 -> 8 -> 10 o'clock).
+ * Once a product is loaded and revealed, it remains revealed and never loads again.
  */
 
 (function () {
@@ -129,13 +129,6 @@
   var capsules = document.querySelectorAll('.sply-c-capsule');
   var headerStatusText = document.querySelector('[data-c-status-text]');
 
-  // Central Product Review Hub References
-  var reviewCard = document.querySelector('[data-c-review-card]');
-  var reviewTitle = document.querySelector('[data-c-review-title]');
-  var reviewAngle = document.querySelector('[data-c-review-angle]');
-  var reviewPrice = document.querySelector('[data-c-review-price]');
-  var reviewCta = document.querySelector('[data-c-review-cta]');
-
   // Drawer References
   var drawer = document.querySelector('[data-c-drawer]');
   var drawerScrim = document.querySelector('[data-c-drawer-scrim]');
@@ -148,10 +141,7 @@
   var drawerSizesGrid = document.querySelector('[data-c-sizes-grid]');
   var drawerCta = document.querySelector('[data-c-drawer-cta]');
 
-  // Active State
-  var currentIndex = 0;
-  var isHoverPaused = false;
-  var autoReviewTimer = null;
+  // Active Pre-Order State
   var activeItem = CAPSULE_ITEMS[0];
   var activeVariantId = activeItem.variants[0].id;
 
@@ -164,97 +154,60 @@
   }
   preloadImages();
 
-  // Focus and Review a Product
-  function setReviewedProduct(index) {
-    if (index < 0 || index >= CAPSULE_ITEMS.length) index = 0;
-    currentIndex = index;
-    var item = CAPSULE_ITEMS[index];
-    activeItem = item;
-    activeVariantId = item.variants[0].id;
+  /**
+   * Clockwise Reveal Sequence:
+   * Positions are ordered 1 (12 o'clock) -> 2 (2 o'clock) -> 3 (4 o'clock)
+   * -> 4 (6 o'clock) -> 5 (8 o'clock) -> 6 (10 o'clock).
+   * Each capsule spins and loads, then reveals and REMAINS revealed.
+   * Once all 6 are revealed, they never load again.
+   */
+  var STEP_DELAY = 1200; // 1.2s per capsule reveal
+  var revealedCount = 0;
 
-    // Update Capsules Reveal State
-    capsules.forEach(function (cap, idx) {
-      if (idx === index) {
-        cap.classList.add('is-revealed');
-      } else {
-        cap.classList.remove('is-revealed');
+  function revealCapsule(index) {
+    if (index >= capsules.length) return;
+    var cap = capsules[index];
+    if (cap && !cap.classList.contains('is-revealed')) {
+      cap.classList.add('is-revealed');
+      revealedCount++;
+      if (headerStatusText) {
+        if (revealedCount >= capsules.length) {
+          headerStatusText.textContent = 'ALL REVEALED • SELECT TO PRE-ORDER';
+        } else {
+          headerStatusText.textContent = 'REVEALED ' + revealedCount + '/6 • CLOCKWISE LOADING';
+        }
       }
-    });
-
-    // Update Central Review Card
-    if (reviewTitle) reviewTitle.textContent = item.title;
-    if (reviewAngle) reviewAngle.textContent = item.subtitle;
-    if (reviewPrice) reviewPrice.textContent = item.price_ngn + ' / ' + item.price_usd;
-    if (reviewCta) reviewCta.textContent = 'PRE-ORDER NOW';
-
-    // Update Header Pill
-    if (headerStatusText) {
-      headerStatusText.textContent = 'PRODUCT REVIEW ' + (index + 1) + '/6 • ' + item.title.toUpperCase();
     }
   }
 
-  // Automatic Rotation of Product Reviews (every 3.2 seconds)
-  function startAutoReviewCycle() {
-    stopAutoReviewCycle();
-    autoReviewTimer = setInterval(function () {
-      if (!isHoverPaused) {
-        var nextIndex = (currentIndex + 1) % CAPSULE_ITEMS.length;
-        setReviewedProduct(nextIndex);
-      }
-    }, 3200);
-  }
+  function startClockwiseReveal() {
+    // Reveal position 1 (index 0) after initial spinner presentation (800ms)
+    setTimeout(function () {
+      revealCapsule(0);
+    }, 900);
 
-  function stopAutoReviewCycle() {
-    if (autoReviewTimer) {
-      clearInterval(autoReviewTimer);
-      autoReviewTimer = null;
+    // Reveal positions 2 through 6 in clockwise succession
+    for (var i = 1; i < capsules.length; i++) {
+      (function (idx) {
+        setTimeout(function () {
+          revealCapsule(idx);
+        }, 900 + (idx * STEP_DELAY));
+      })(i);
     }
   }
 
-  // Capsule Hover and Click Handlers
+  // Capsule Click Handler: opens Pre-Order Drawer
   capsules.forEach(function (cap, idx) {
-    cap.addEventListener('mouseenter', function () {
-      isHoverPaused = true;
-      setReviewedProduct(idx);
-    });
-
-    cap.addEventListener('mouseleave', function () {
-      isHoverPaused = false;
-    });
-
     cap.addEventListener('click', function (e) {
       e.stopPropagation();
-      setReviewedProduct(idx);
+      // Ensure it is revealed if clicked early
+      revealCapsule(idx);
       openPreOrderDrawer(CAPSULE_ITEMS[idx]);
     });
   });
 
-  // Central Review Card Click Handlers
-  if (reviewCard) {
-    reviewCard.addEventListener('click', function (e) {
-      e.stopPropagation();
-      openPreOrderDrawer(activeItem);
-    });
-
-    reviewCard.addEventListener('mouseenter', function () {
-      isHoverPaused = true;
-    });
-
-    reviewCard.addEventListener('mouseleave', function () {
-      isHoverPaused = false;
-    });
-  }
-
-  if (reviewCta) {
-    reviewCta.addEventListener('click', function (e) {
-      e.stopPropagation();
-      openPreOrderDrawer(activeItem);
-    });
-  }
-
-  // Open Pre-Order Drawer for an Item
+  // Open Pre-Order Drawer
   function openPreOrderDrawer(item) {
-    isHoverPaused = true;
     activeItem = item;
     activeVariantId = item.variants[0].id;
 
@@ -300,7 +253,6 @@
   function closePreOrderDrawer() {
     if (drawer) drawer.classList.remove('is-open');
     document.body.style.overflow = '';
-    isHoverPaused = false;
   }
 
   if (drawerScrim) drawerScrim.addEventListener('click', closePreOrderDrawer);
@@ -373,8 +325,7 @@
     });
   }
 
-  // Initialize with First Item & Start Auto Cycle
-  setReviewedProduct(0);
-  startAutoReviewCycle();
+  // Kick off the one-time Clockwise Reveal Sequence on load
+  startClockwiseReveal();
 
 })();
