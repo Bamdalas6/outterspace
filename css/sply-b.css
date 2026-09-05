@@ -1,0 +1,521 @@
+/* OUTTERSPACE "SECTION B" - EDITORIAL MIX-AND-MATCH & PARALLAX RUNWAY */
+:root {
+  --sply-b-bg: #FFFFFF;
+  --sply-b-text: #000000;
+  --sply-b-border: #000000;
+  --sply-b-divider: #000000;
+  --sply-b-muted: rgba(0, 0, 0, 0.55);
+}
+
+.sply-b-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - 64px);
+  background: var(--sply-b-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px 24px 20px;
+  box-sizing: border-box;
+  overflow: hidden;
+  user-select: none;
+}
+
+/* Editorial Top Header Emblem */
+.sply-b__emblem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 24px;
+  border: 1.5px solid var(--sply-b-border);
+  background: #000000;
+  color: #FFFFFF;
+  text-decoration: none;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  z-index: 40;
+}
+
+.sply-b__emblem:hover {
+  transform: scale(1.02);
+}
+
+.sply-b__emblem-title {
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.sply-b__emblem-subtitle {
+  font-family: inherit;
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  margin-top: 2px;
+}
+
+/* Central Editorial Viewport (Aspect Ratio 9:16 or scaled) */
+.sply-b__stage-container {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  height: calc(100vh - 210px);
+  min-height: 480px;
+  max-height: 780px;
+  display: flex;
+  flex-direction: column;
+  background: #FFFFFF;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.07);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* The Horizontal Dividing Black Line */
+.sply-b__divider {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2.5px;
+  background: var(--sply-b-divider);
+  z-index: 30;
+  transform: translateY(-50%);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.sply-b__divider.is-hidden {
+  opacity: 0;
+  transform: translateY(-50%) scaleX(0);
+}
+
+/* Top and Bottom Slot Reels */
+.sply-b__reel {
+  position: relative;
+  width: 100%;
+  height: 50%;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.sply-b__reel--top {
+  border-bottom: none;
+}
+
+.sply-b__reel--bottom {
+  border-top: none;
+}
+
+.sply-b__reel-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sply-b__slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.45s ease;
+  will-change: transform, opacity;
+}
+
+.sply-b__slide.is-prev {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+.sply-b__slide.is-current {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.sply-b__slide.is-next {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+.sply-b__slide-img {
+  width: auto;
+  height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.sply-b__reel--top .sply-b__slide-img {
+  object-position: center bottom;
+}
+
+.sply-b__reel--bottom .sply-b__slide-img {
+  object-position: center top;
+}
+
+/* Subtle Interactive Tap Hint on Reels */
+.sply-b__reel-hint {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(4px);
+  padding: 3px 8px;
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 25;
+}
+
+.sply-b__reel:hover .sply-b__reel-hint {
+  opacity: 1;
+}
+
+/* Phase 2: Parallax Runway Parade Stage */
+.sply-b__parade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #FFFFFF;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 20;
+  overflow: hidden;
+  transition: opacity 0.6s ease;
+}
+
+.sply-b__parade.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* 3 Parallax Planes */
+.sply-b__plane {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 250%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  will-change: transform;
+}
+
+.sply-b__plane--back {
+  z-index: 21;
+  opacity: 0.85;
+}
+
+.sply-b__plane--mid {
+  z-index: 22;
+  opacity: 0.95;
+}
+
+.sply-b__plane--front {
+  z-index: 23;
+  opacity: 1;
+}
+
+.sply-b__plane-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.sply-b__plane--back .sply-b__plane-item {
+  height: 55%;
+}
+
+.sply-b__plane--mid .sply-b__plane-item {
+  height: 80%;
+}
+
+.sply-b__plane--front .sply-b__plane-item {
+  height: 110%;
+}
+
+.sply-b__plane-img {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Phase 3: Outro Showcase */
+.sply-b__outro {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #FFFFFF;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 35;
+  transition: opacity 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.sply-b__outro.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.sply-b__outro-card {
+  border: 2px solid #000000;
+  background: #000000;
+  color: #FFFFFF;
+  padding: 24px 36px;
+  text-align: center;
+  transform: scale(0.9);
+  transition: transform 0.8s cubic-bezier(0.2, 1, 0.2, 1);
+}
+
+.sply-b__outro.is-active .sply-b__outro-card {
+  transform: scale(1);
+}
+
+.sply-b__outro-title {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 0.25em;
+  margin: 0 0 6px 0;
+  text-transform: uppercase;
+}
+
+.sply-b__outro-tag {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  opacity: 0.8;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* Bottom Controls & Dual Product HUD */
+.sply-b__footer {
+  position: relative;
+  width: 100%;
+  max-width: 580px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 14px;
+  z-index: 40;
+}
+
+/* Timeline Scrubber */
+.sply-b__timeline {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.sply-b__scrubber {
+  flex: 1;
+  height: 5px;
+  background: rgba(0, 0, 0, 0.12);
+  border-radius: 999px;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.sply-b__scrubber-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background: #000000;
+  transition: width 0.08s linear;
+}
+
+.sply-b__time {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  font-variant-numeric: tabular-nums;
+  color: rgba(0, 0, 0, 0.75);
+  min-width: 75px;
+  text-align: right;
+}
+
+/* Dual Product Meta Card (Top Item + Bottom Item) */
+.sply-b__hud {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  width: 100%;
+}
+
+.sply-b__hud-card {
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: background 0.2s ease;
+}
+
+.sply-b__hud-card:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.sply-b__hud-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.5);
+  margin-bottom: 2px;
+}
+
+.sply-b__hud-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #000000;
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 2px;
+}
+
+.sply-b__hud-title:hover {
+  text-decoration: underline;
+}
+
+.sply-b__hud-price {
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.85);
+  margin-bottom: 6px;
+  white-space: nowrap;
+}
+
+.sply-b__hud-link {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #000000;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  opacity: 0.85;
+}
+
+.sply-b__hud-link:hover {
+  opacity: 1;
+}
+
+/* Action Control Bar */
+.sply-b__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.sply-b__btn-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sply-b__action-btn {
+  background: #000000;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 4px;
+  height: 32px;
+  padding: 0 14px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+}
+
+.sply-b__action-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.sply-b__action-btn--secondary {
+  background: transparent;
+  color: #000000;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.sply-b__action-btn--secondary:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.sply-b__phase-pill {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.06);
+  color: #000000;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .sply-b-wrapper {
+    padding: 10px 12px 16px 12px;
+  }
+  .sply-b__stage-container {
+    height: calc(100vh - 260px);
+    max-height: 560px;
+    min-height: 380px;
+  }
+  .sply-b__hud {
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+  .sply-b__hud-card {
+    padding: 6px 8px;
+  }
+}

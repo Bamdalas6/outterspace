@@ -87,6 +87,9 @@ class SplyHandler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=DIRECTORY, **kwargs)
 
+    def do_HEAD(self):
+        return self.do_GET()
+
     def do_POST(self):
         parsed = urllib.parse.urlparse(self.path)
         path = parsed.path.rstrip('/')
@@ -282,6 +285,16 @@ class SplyHandler(http.server.SimpleHTTPRequestHandler):
         # 4. Handle /collections/roam or /collections/rnnr-view-copy
         if path in ['/collections/roam', '/collections/rnnr-view-copy']:
             self.path = '/collections/roam.html'
+            return super().do_GET()
+
+        # 4b. Handle /collections/a-view
+        if path in ['/collections/a-view', '/collections/aview', '/collections/a_view']:
+            self.path = '/collections/a-view.html'
+            return super().do_GET()
+
+        # 4c. Handle /collections/b or /collections/b-view
+        if path in ['/collections/b', '/collections/b-view', '/collections/bview']:
+            self.path = '/collections/b.html'
             return super().do_GET()
 
         # 5. Handle /collections/all or other collections -> /index.html
