@@ -10,104 +10,104 @@
       title: "Rangers - White",
       price: "₦286,000 / $220",
       handle: "rangers-white",
-      img: "/cowboy seriess/rangers-white-2.jpg"
+      img: "/cowboy seriess/aview/look-01-rangers-white.jpg"
     },
     {
       title: "Frontier",
       price: "₦325,000 / $250",
       handle: "frontier",
-      img: "/cowboy seriess/frontier-2.png"
+      img: "/cowboy seriess/aview/look-02-frontier.jpg"
     },
     {
       title: "Lago di Como",
       price: "₦279,500 / $215",
       handle: "lago-di-como",
-      img: "/cowboy seriess/lago-di-como-2.png"
+      img: "/cowboy seriess/aview/look-03-lago-di-como.jpg"
     },
     {
       title: "Cowboy Patch",
       price: "₦305,500 / $235",
       handle: "cowboy-patch",
-      img: "/cowboy seriess/cowboy-patch-3.png"
+      img: "/cowboy seriess/aview/look-04-cowboy-patch.jpg"
     },
     {
       title: "Outterspace Symbol Shirt",
       price: "₦292,500 / $225",
       handle: "outterspace-symbol-shirt",
-      img: "/cowboy seriess/outterspace-symbol-shirt-2.png"
+      img: "/cowboy seriess/aview/look-05-symbol-shirt.jpg"
     },
     {
       title: "Pearl Reglan",
       price: "₦286,000 / $220",
       handle: "pearl-reglan",
-      img: "/cowboy seriess/pearl-reglan-2.png"
+      img: "/cowboy seriess/aview/look-06-pearl-reglan.jpg"
     },
     {
       title: "Rangers - Black",
       price: "₦299,000 / $230",
       handle: "rangers",
-      img: "/cowboy seriess/rangers-3.jpg"
+      img: "/cowboy seriess/aview/look-07-rangers-black.jpg"
     },
     {
       title: "Noctra Flare Pant",
       price: "₦448,500 / $345",
       handle: "nocta-flare-pant",
-      img: "/cowboy seriess/nocta-flare-pant-2.png"
+      img: "/cowboy seriess/aview/look-08-nocta-flare-pant.jpg"
     },
     {
       title: "Equis Rodeo Shirt",
       price: "₦377,000 / $290",
       handle: "equis-rodeo",
-      img: "/cowboy seriess/equis-rodeo-3.png"
+      img: "/cowboy seriess/aview/look-09-equis-rodeo.jpg"
     },
     {
       title: "Admiral",
       price: "₦338,000 / $260",
       handle: "admiral",
-      img: "/cowboy seriess/admiral-5.jpg"
+      img: "/cowboy seriess/aview/look-10-admiral.jpg"
     },
     {
       title: "Outfield Mirage",
       price: "₦338,000 / $260",
       handle: "outfield-mirage",
-      img: "/cowboy seriess/outfield-mirage-3.jpg"
+      img: "/cowboy seriess/aview/look-11-outfield-mirage.jpg"
     },
     {
       title: "The Entourage Pants",
       price: "₦383,500 / $295",
       handle: "the-entourage",
-      img: "/cowboy seriess/the-entourage-3.jpg"
+      img: "/cowboy seriess/aview/look-12-the-entourage.jpg"
     },
     {
       title: "Starwave Cap",
       price: "₦130,000 / $100",
       handle: "starwave-hat",
-      img: "/cowboy seriess/starwave-hat-2.png"
+      img: "/cowboy seriess/aview/look-13-starwave-hat.jpg"
     },
     {
       title: "Black Embellish Cowboy Shirt",
       price: "₦383,500 / $295",
       handle: "black-embellish-cowboy-shirt",
-      img: "/cowboy seriess/black-embellish-cowboy-shirt-3.png"
+      img: "/cowboy seriess/aview/look-14-black-embellish.jpg"
     },
     {
       title: "Western Romance Shirt",
       price: "₦325,000 / $250",
       handle: "western-romance",
-      img: "/cowboy seriess/western-romance-5.png"
+      img: "/cowboy seriess/aview/look-15-western-romance.jpg"
     }
   ];
 
-  // Preload all model images for instant transitions
+  // Preload all model images into cache immediately
   LOOKS.forEach(function (look) {
     var im = new Image();
     im.src = look.img;
   });
 
+  var TOTAL_CYCLE_MS = 20000; // Exactly 20s runway loop across all 15 looks
+  var durationPerLook = TOTAL_CYCLE_MS / LOOKS.length; // ~1333.33ms per look
   var currentIndex = 0;
   var isPlaying = true;
-  var isHovered = false;
-  var durationPerLook = 3000; // 3 seconds per look
   var progressElapsed = 0;
   var progressTimer = null;
   var lastTick = Date.now();
@@ -163,20 +163,24 @@
       var look = LOOKS[index];
       var prodUrl = '/products/' + look.handle;
 
-      // Animate transition
+      // Smooth editorial transition
       modelImg.classList.add('is-entering');
+      modelImg.src = look.img;
+      modelImg.alt = look.title;
       setTimeout(function () {
-        modelImg.src = look.img;
-        modelImg.alt = look.title;
         modelImg.classList.remove('is-entering');
-      }, 120);
+      }, 70);
 
-      modelLink.href = prodUrl;
-      titleEl.textContent = look.title;
-      titleEl.href = prodUrl;
-      priceEl.textContent = look.price;
-      ctaEl.href = prodUrl;
-      counterEl.textContent = 'LOOK ' + String(index + 1).padStart(2, '0') + ' / ' + String(LOOKS.length).padStart(2, '0');
+      if (modelLink) modelLink.href = prodUrl;
+      if (titleEl) {
+        titleEl.textContent = look.title.toUpperCase();
+        titleEl.href = prodUrl;
+      }
+      if (priceEl) priceEl.textContent = look.price;
+      if (ctaEl) ctaEl.href = prodUrl;
+      if (counterEl) {
+        counterEl.textContent = 'LOOK ' + String(index + 1).padStart(2, '0') + ' / ' + String(LOOKS.length).padStart(2, '0');
+      }
 
       progressElapsed = 0;
       updateProgressBars();
@@ -206,13 +210,13 @@
       }
     }
 
-    // Animation ticker
+    // Animation ticker - continuous runway playback across all looks
     function tick() {
       var now = Date.now();
       var delta = now - lastTick;
       lastTick = now;
 
-      if (isPlaying && !isHovered) {
+      if (isPlaying) {
         progressElapsed += delta;
         if (progressElapsed >= durationPerLook) {
           nextLook();
@@ -247,13 +251,6 @@
         e.preventDefault();
         setPlayState(!isPlaying);
       });
-    }
-
-    // Pause on hover over model stage so user can inspect
-    var stageEl = wrapper.querySelector('.sply-aview__stage');
-    if (stageEl) {
-      stageEl.addEventListener('mouseenter', function () { isHovered = true; });
-      stageEl.addEventListener('mouseleave', function () { isHovered = false; });
     }
 
     // Keyboard navigation
