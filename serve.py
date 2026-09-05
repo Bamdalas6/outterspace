@@ -297,6 +297,11 @@ class SplyHandler(http.server.SimpleHTTPRequestHandler):
             self.path = '/collections/b.html'
             return super().do_GET()
 
+        # 4d. Handle /collections/c or /collections/c-view
+        if path in ['/collections/c', '/collections/c-view', '/collections/cview']:
+            self.path = '/collections/c.html'
+            return super().do_GET()
+
         # 5. Handle /collections/all or other collections -> /index.html
         if path.startswith('/collections'):
             self.path = '/index.html'
