@@ -201,18 +201,19 @@
     var botLink = root.querySelector('[data-b-bot-link]');
 
     var currentTopIdx = 0;
-    var currentBotIdx = 0;
+    var currentBotIdx = BOTTOM_VARIANTS[0];
     var isZooming = false;
     var elapsedMs = 0;
     var isPlaying = true;
     var lastTick = Date.now();
     var manualZoomTimer = null;
-    var manualVariantTimer = null;
 
     // Build slides for top and bottom reels
     function buildReels() {
       topTrack.innerHTML = '';
       botTrack.innerHTML = '';
+
+      var initialBotIdx = BOTTOM_VARIANTS[0];
 
       PRODUCTS.forEach(function (p, i) {
         var topSlide = document.createElement('div');
@@ -222,7 +223,7 @@
         topTrack.appendChild(topSlide);
 
         var botSlide = document.createElement('div');
-        botSlide.className = 'sply-b__slide ' + (i === 0 ? 'is-current' : 'is-next');
+        botSlide.className = 'sply-b__slide ' + (i === initialBotIdx ? 'is-current' : (i < initialBotIdx ? 'is-prev' : 'is-next'));
         botSlide.setAttribute('data-index', i);
         botSlide.innerHTML = '<img class="sply-b__slide-img" src="' + p.botImg + '" alt="' + p.title + '">';
         botTrack.appendChild(botSlide);
@@ -309,29 +310,29 @@
       if (modelIdx >= CHAPTER_COUNT) modelIdx = CHAPTER_COUNT - 1;
       var localMs = elapsedMs % CHAPTER_MS;
 
-      // Segment 1 (0ms to 1800ms): Top & Bottom MATCH!
-      if (localMs < 1800) {
+      // Phase 1 (0ms to 1900ms): ALWAYS START WITH A REMIX VERSION
+      if (localMs < 1900) {
+        setZoomState(false);
+
+        if (currentTopIdx !== modelIdx) slideTo('top', modelIdx);
+        var remixBot = BOTTOM_VARIANTS[modelIdx];
+        if (currentBotIdx !== remixBot) slideTo('bot', remixBot);
+
+        if (phasePill) {
+          phasePill.textContent = 'REMIX LOOK ' + String(modelIdx + 1).padStart(2, '0');
+        }
+      } 
+      // Phase 2 (1900ms to 4000ms): SLIDE INTO FULL MATCH LOOK & CONCLUDE WITH MATCH ZOOM
+      else {
         if (currentTopIdx !== modelIdx) slideTo('top', modelIdx);
         if (currentBotIdx !== modelIdx) slideTo('bot', modelIdx);
 
-        // Zoom In from 300ms to 1150ms, Zoom Out from 1150ms onwards
-        var shouldZoom = (localMs >= 300 && localMs < 1150);
+        // When matched, Zoom In from 2400ms to 3450ms, then Zoom Out from 3450ms onwards
+        var shouldZoom = (localMs >= 2400 && localMs < 3450);
         setZoomState(shouldZoom);
 
         if (phasePill) {
-          phasePill.textContent = 'MATCHED LOOK ' + String(modelIdx + 1).padStart(2, '0');
-        }
-      } 
-      // Segment 2 (1800ms to 4000ms): Bottom slides to another variant!
-      else {
-        setZoomState(false); // Finished zoom out
-
-        if (currentTopIdx !== modelIdx) slideTo('top', modelIdx);
-        var variantBot = BOTTOM_VARIANTS[modelIdx];
-        if (currentBotIdx !== variantBot) slideTo('bot', variantBot);
-
-        if (phasePill) {
-          phasePill.textContent = 'REMIX VARIANT ' + String(modelIdx + 1).padStart(2, '0');
+          phasePill.textContent = 'FULL MATCH LOOK ' + String(modelIdx + 1).padStart(2, '0');
         }
       }
     }
@@ -369,34 +370,21 @@
       });
     }
 
-    // Trigger match zoom & bottom variant sequence on demand
-    function triggerInteractiveMatchSequence(matchIdx) {
+    // Trigger match zoom confirmation when user manually matches top & bottom
+    function triggerManualMatchConfirmation() {
       clearTimeout(manualZoomTimer);
-      clearTimeout(manualVariantTimer);
-
-      slideTo('top', matchIdx);
-      slideTo('bot', matchIdx);
-
-      // Zoom in after 150ms
+      setZoomState(true);
       manualZoomTimer = setTimeout(function () {
-        setZoomState(true);
-        // Zoom out after 850ms
-        setTimeout(function () {
-          setZoomState(false);
-          // Slide in alternative variant bottom after another 600ms
-          manualVariantTimer = setTimeout(function () {
-            slideTo('bot', BOTTOM_VARIANTS[matchIdx]);
-          }, 600);
-        }, 850);
-      }, 150);
+        setZoomState(false);
+      }, 1050);
     }
 
     if (remixBtn) {
       remixBtn.addEventListener('click', function () {
-        // Step to next model complete match sequence
+        // Step to next model chapter (always starts with remix version, then completes full match)
         var nextModel = (currentTopIdx + 1) % PRODUCTS.length;
         elapsedMs = nextModel * CHAPTER_MS;
-        triggerInteractiveMatchSequence(nextModel);
+        applyTime(elapsedMs);
       });
     }
 
@@ -408,7 +396,7 @@
         var nextTop = (currentTopIdx + 1) % PRODUCTS.length;
         slideTo('top', nextTop);
         if (nextTop === currentBotIdx) {
-          triggerInteractiveMatchSequence(nextTop);
+          triggerManualMatchConfirmation();
         }
       });
     }
@@ -420,7 +408,7 @@
         var nextBot = (currentBotIdx + 1) % PRODUCTS.length;
         slideTo('bot', nextBot);
         if (nextBot === currentTopIdx) {
-          triggerInteractiveMatchSequence(nextBot);
+          triggerManualMatchConfirmation();
         }
       });
     }
@@ -478,7 +466,7 @@
     // Initialize reels & state
     buildReels();
     updateTopHUD(PRODUCTS[0]);
-    updateBotHUD(PRODUCTS[0]);
+    updateBotHUD(PRODUCTS[BOTTOM_VARIANTS[0]]);
     applyTime(0);
     lastTick = Date.now();
     requestAnimationFrame(tick);
