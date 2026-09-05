@@ -12,6 +12,10 @@
       "destination": "/collections/roam.html"
     },
     {
+      "source": "/collections/a-view",
+      "destination": "/collections/a-view.html"
+    },
+    {
       "source": "/collections/home-page-copy",
       "destination": "/collections/rnnr.html"
     },
