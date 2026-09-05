@@ -103,13 +103,14 @@
 }
 
 .sply-aview__model-img {
-  max-height: calc(100vh - 230px);
-  max-width: 90vw;
+  max-height: calc(100vh - 220px);
+  max-width: min(88vw, 560px);
   width: auto;
   height: auto;
   object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
   transition: opacity 0.22s ease, transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
-  filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.06));
 }
 
 .sply-aview__model-img.is-entering {

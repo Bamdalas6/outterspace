@@ -10,91 +10,91 @@
       title: "Rangers - White",
       price: "₦286,000 / $220",
       handle: "rangers-white",
-      img: "/cowboy seriess/rangers-white-2-nobg.png"
+      img: "/cowboy seriess/rangers-white-2.jpg"
     },
     {
       title: "Frontier",
       price: "₦325,000 / $250",
       handle: "frontier",
-      img: "/cowboy seriess/frontier-2-nobg.png"
+      img: "/cowboy seriess/frontier-2.png"
     },
     {
       title: "Lago di Como",
       price: "₦279,500 / $215",
       handle: "lago-di-como",
-      img: "/cowboy seriess/lago-di-como-2-nobg.png"
+      img: "/cowboy seriess/lago-di-como-2.png"
     },
     {
       title: "Cowboy Patch",
       price: "₦305,500 / $235",
       handle: "cowboy-patch",
-      img: "/cowboy seriess/cowboy-patch-3-nobg.png"
+      img: "/cowboy seriess/cowboy-patch-3.png"
     },
     {
       title: "Outterspace Symbol Shirt",
       price: "₦292,500 / $225",
       handle: "outterspace-symbol-shirt",
-      img: "/cowboy seriess/outterspace-symbol-shirt-2-nobg.png"
+      img: "/cowboy seriess/outterspace-symbol-shirt-2.png"
     },
     {
       title: "Pearl Reglan",
       price: "₦286,000 / $220",
       handle: "pearl-reglan",
-      img: "/cowboy seriess/pearl-reglan-2-nobg.png"
+      img: "/cowboy seriess/pearl-reglan-2.png"
     },
     {
       title: "Rangers - Black",
       price: "₦299,000 / $230",
       handle: "rangers",
-      img: "/cowboy seriess/rangers-3-nobg.png"
+      img: "/cowboy seriess/rangers-3.jpg"
     },
     {
       title: "Noctra Flare Pant",
       price: "₦448,500 / $345",
       handle: "nocta-flare-pant",
-      img: "/cowboy seriess/nocta-flare-pant-2-nobg.png"
+      img: "/cowboy seriess/nocta-flare-pant-2.png"
     },
     {
       title: "Equis Rodeo Shirt",
       price: "₦377,000 / $290",
       handle: "equis-rodeo",
-      img: "/cowboy seriess/equis-rodeo-3-nobg.png"
+      img: "/cowboy seriess/equis-rodeo-3.png"
     },
     {
       title: "Admiral",
       price: "₦338,000 / $260",
       handle: "admiral",
-      img: "/cowboy seriess/admiral-5-nobg.png"
+      img: "/cowboy seriess/admiral-5.jpg"
     },
     {
       title: "Outfield Mirage",
       price: "₦338,000 / $260",
       handle: "outfield-mirage",
-      img: "/cowboy seriess/outfield-mirage-3-nobg.png"
+      img: "/cowboy seriess/outfield-mirage-3.jpg"
     },
     {
       title: "The Entourage Pants",
       price: "₦383,500 / $295",
       handle: "the-entourage",
-      img: "/cowboy seriess/the-entourage-3-nobg.png"
+      img: "/cowboy seriess/the-entourage-3.jpg"
     },
     {
       title: "Starwave Cap",
       price: "₦130,000 / $100",
       handle: "starwave-hat",
-      img: "/cowboy seriess/starwave-hat-2-nobg.png"
+      img: "/cowboy seriess/starwave-hat-2.png"
     },
     {
       title: "Black Embellish Cowboy Shirt",
       price: "₦383,500 / $295",
       handle: "black-embellish-cowboy-shirt",
-      img: "/cowboy seriess/black-embellish-cowboy-shirt-3-nobg.png"
+      img: "/cowboy seriess/black-embellish-cowboy-shirt-3.png"
     },
     {
       title: "Western Romance Shirt",
       price: "₦325,000 / $250",
       handle: "western-romance",
-      img: "/cowboy seriess/western-romance-5-nobg.png"
+      img: "/cowboy seriess/western-romance-5.png"
     }
   ];
 
