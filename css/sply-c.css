@@ -297,127 +297,133 @@
   pointer-events: auto;
 }
 
-/* Central Player Hub (Play/Pause & Scrubber Bar) */
-.sply-c-hub {
+/* Central Product Review Hub (Replaces video play/pause controls) */
+.sply-c-review-center {
   position: absolute;
-  top: 48%;
+  top: 49%;
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-align: center;
   z-index: 20;
   width: 220px;
-}
-
-/* Subtle Scrub Bar Behind/Underneath Play Button */
-.sply-c-scrub-track {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  height: 4px;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.08);
-  border-radius: 999px;
-  overflow: hidden;
+  padding: 18px 16px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--sply-c-border);
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
   cursor: pointer;
-  z-index: 1;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
 }
 
-.sply-c-scrub-fill {
-  height: 100%;
-  width: 0%;
-  background: rgba(0, 0, 0, 0.85);
-  border-radius: 999px;
-  transition: width 0.1s linear;
+@media (max-width: 768px) {
+  .sply-c-review-center {
+    width: 175px;
+    padding: 14px 10px;
+    top: 49%;
+  }
 }
 
-/* Play/Pause Central Disc */
-.sply-c-playbtn {
-  position: relative;
-  z-index: 2;
-  width: 66px;
-  height: 66px;
-  border-radius: 50%;
-  background: rgba(140, 140, 140, 0.65);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: none;
-  cursor: pointer;
+.sply-c-review-center:hover {
+  transform: translate(-50%, -50%) scale(1.03);
+  box-shadow: 0 14px 38px rgba(0, 0, 0, 0.09);
+  border-color: rgba(0, 0, 0, 0.18);
+}
+
+.sply-c-review-tag {
+  font-family: var(--sply-c-font-mono);
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--sply-c-muted);
+  margin-bottom: 6px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  color: #FFFFFF;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.14);
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.25s ease;
-  outline: none;
+  gap: 5px;
 }
 
-.sply-c-playbtn:hover {
-  transform: scale(1.08);
-  background: rgba(110, 110, 110, 0.85);
+.sply-c-review-tag__dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #22C55E;
+  animation: splyDotPulse 1.8s infinite ease-in-out;
 }
 
-.sply-c-playbtn:active {
-  transform: scale(0.96);
-}
-
-.sply-c-playbtn svg {
-  width: 26px;
-  height: 26px;
-  fill: currentColor;
-  stroke: none;
-}
-
-.sply-c-playbtn__play-icon {
-  margin-left: 3px; /* visual center for triangle */
-}
-
-.sply-c-playbtn.is-playing .sply-c-playbtn__play-icon {
-  display: none;
-}
-
-.sply-c-playbtn.is-playing .sply-c-playbtn__pause-icon {
-  display: block;
-}
-
-.sply-c-playbtn:not(.is-playing) .sply-c-playbtn__play-icon {
-  display: block;
-}
-
-.sply-c-playbtn:not(.is-playing) .sply-c-playbtn__pause-icon {
-  display: none;
-}
-
-/* Hub Action Links (Reveal All / Teaser Mode) */
-.sply-c-hub__actions {
-  margin-top: 50px;
-  display: flex;
-  gap: 12px;
-  z-index: 2;
-}
-
-.sply-c-hub__toggle-btn {
-  background: transparent;
-  border: 1px solid var(--sply-c-border);
-  color: var(--sply-c-muted);
-  padding: 4px 10px;
-  border-radius: 999px;
+.sply-c-review-title {
   font-family: var(--sply-c-font-mono);
-  font-size: 9px;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--sply-c-fg);
+  margin: 0 0 3px 0;
+  line-height: 1.2;
+}
+
+@media (max-width: 768px) {
+  .sply-c-review-title {
+    font-size: 11px;
+  }
+}
+
+.sply-c-review-angle {
+  font-family: var(--sply-c-font-mono);
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--sply-c-muted);
+  margin-bottom: 8px;
+}
+
+@media (max-width: 768px) {
+  .sply-c-review-angle {
+    font-size: 8.5px;
+    margin-bottom: 6px;
+  }
+}
+
+.sply-c-review-price {
+  font-family: var(--sply-c-font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--sply-c-fg);
+  margin-bottom: 12px;
+}
+
+@media (max-width: 768px) {
+  .sply-c-review-price {
+    font-size: 10.5px;
+    margin-bottom: 8px;
+  }
+}
+
+.sply-c-review-cta {
+  background: #000000;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-family: var(--sply-c-font-mono);
+  font-size: 9.5px;
+  font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+  width: 100%;
 }
 
-.sply-c-hub__toggle-btn:hover,
-.sply-c-hub__toggle-btn.is-active {
-  color: var(--sply-c-fg);
-  border-color: var(--sply-c-fg);
-  background: rgba(0, 0, 0, 0.04);
+.sply-c-review-cta:hover {
+  opacity: 0.85;
+  transform: scale(0.98);
 }
 
 /* Bottom Left Editorial Typography */

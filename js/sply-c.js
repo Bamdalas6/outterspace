@@ -1,7 +1,7 @@
 /**
- * OUTTERSPACE — SECTION C (EDITORIAL TEASER & PRE-ORDER SHOWCASE)
- * Handles sequential loading animation, radial capsule unblurring,
- * scrubber playback control, and pre-order drawer / cart integration.
+ * OUTTERSPACE — SECTION C (PRODUCT REVIEW SHOWCASE)
+ * Pure product review experience: reviews each garment angle and fit
+ * with 12-tick loading animation, without any video play/pause controls.
  */
 
 (function () {
@@ -127,12 +127,14 @@
 
   // DOM References
   var capsules = document.querySelectorAll('.sply-c-capsule');
-  var playBtn = document.querySelector('[data-c-playbtn]');
-  var scrubTrack = document.querySelector('[data-c-scrub-track]');
-  var scrubFill = document.querySelector('[data-c-scrub-fill]');
-  var revealAllBtn = document.querySelector('[data-c-reveal-all]');
-  var teaserModeBtn = document.querySelector('[data-c-teaser-mode]');
   var headerStatusText = document.querySelector('[data-c-status-text]');
+
+  // Central Product Review Hub References
+  var reviewCard = document.querySelector('[data-c-review-card]');
+  var reviewTitle = document.querySelector('[data-c-review-title]');
+  var reviewAngle = document.querySelector('[data-c-review-angle]');
+  var reviewPrice = document.querySelector('[data-c-review-price]');
+  var reviewCta = document.querySelector('[data-c-review-cta]');
 
   // Drawer References
   var drawer = document.querySelector('[data-c-drawer]');
@@ -146,15 +148,10 @@
   var drawerSizesGrid = document.querySelector('[data-c-sizes-grid]');
   var drawerCta = document.querySelector('[data-c-drawer-cta]');
 
-  // Animation & Timeline State
-  var TOTAL_DURATION = 18000; // 18 seconds full cycle
-  var isPlaying = true;
-  var isForcedReveal = false;
-  var currentTime = 0;
-  var lastTimestamp = null;
-  var animFrameId = null;
-
-  // Active Pre-Order selection
+  // Active State
+  var currentIndex = 0;
+  var isHoverPaused = false;
+  var autoReviewTimer = null;
   var activeItem = CAPSULE_ITEMS[0];
   var activeVariantId = activeItem.variants[0].id;
 
@@ -167,127 +164,97 @@
   }
   preloadImages();
 
-  // Update Capsules based on Timeline Progress (0 to 1)
-  function renderTimeline(progress) {
-    if (scrubFill) {
-      scrubFill.style.width = (progress * 100).toFixed(2) + '%';
-    }
+  // Focus and Review a Product
+  function setReviewedProduct(index) {
+    if (index < 0 || index >= CAPSULE_ITEMS.length) index = 0;
+    currentIndex = index;
+    var item = CAPSULE_ITEMS[index];
+    activeItem = item;
+    activeVariantId = item.variants[0].id;
 
-    if (isForcedReveal) return;
-
-    var numItems = CAPSULE_ITEMS.length;
-    // Each item has a phase slot across 0.85 of timeline, remaining 0.15 is full showcase
-    var stepSize = 0.85 / numItems;
-
+    // Update Capsules Reveal State
     capsules.forEach(function (cap, idx) {
-      var revealThreshold = idx * stepSize;
-      if (progress >= revealThreshold) {
+      if (idx === index) {
         cap.classList.add('is-revealed');
       } else {
         cap.classList.remove('is-revealed');
       }
     });
 
+    // Update Central Review Card
+    if (reviewTitle) reviewTitle.textContent = item.title;
+    if (reviewAngle) reviewAngle.textContent = item.subtitle;
+    if (reviewPrice) reviewPrice.textContent = item.price_ngn + ' / ' + item.price_usd;
+    if (reviewCta) reviewCta.textContent = 'PRE-ORDER NOW';
+
+    // Update Header Pill
     if (headerStatusText) {
-      if (progress >= 0.85) {
-        headerStatusText.textContent = '6/6 LOADED • READY FOR PRE-ORDER';
-      } else {
-        var loadedCount = Math.min(numItems, Math.floor(progress / stepSize) + 1);
-        headerStatusText.textContent = 'LOADING ' + loadedCount + '/' + numItems + ' • TEASER DROP';
+      headerStatusText.textContent = 'PRODUCT REVIEW ' + (index + 1) + '/6 • ' + item.title.toUpperCase();
+    }
+  }
+
+  // Automatic Rotation of Product Reviews (every 3.2 seconds)
+  function startAutoReviewCycle() {
+    stopAutoReviewCycle();
+    autoReviewTimer = setInterval(function () {
+      if (!isHoverPaused) {
+        var nextIndex = (currentIndex + 1) % CAPSULE_ITEMS.length;
+        setReviewedProduct(nextIndex);
       }
+    }, 3200);
+  }
+
+  function stopAutoReviewCycle() {
+    if (autoReviewTimer) {
+      clearInterval(autoReviewTimer);
+      autoReviewTimer = null;
     }
   }
 
-  // Animation Loop
-  function tick(timestamp) {
-    if (!isPlaying) {
-      lastTimestamp = null;
-      return;
-    }
+  // Capsule Hover and Click Handlers
+  capsules.forEach(function (cap, idx) {
+    cap.addEventListener('mouseenter', function () {
+      isHoverPaused = true;
+      setReviewedProduct(idx);
+    });
 
-    if (!lastTimestamp) lastTimestamp = timestamp;
-    var delta = timestamp - lastTimestamp;
-    lastTimestamp = timestamp;
+    cap.addEventListener('mouseleave', function () {
+      isHoverPaused = false;
+    });
 
-    currentTime = (currentTime + delta) % TOTAL_DURATION;
-    var progress = currentTime / TOTAL_DURATION;
-
-    renderTimeline(progress);
-    animFrameId = requestAnimationFrame(tick);
-  }
-
-  function startPlayback() {
-    if (isPlaying) return;
-    isPlaying = true;
-    isForcedReveal = false;
-    if (playBtn) playBtn.classList.add('is-playing');
-    if (revealAllBtn) revealAllBtn.classList.remove('is-active');
-    if (teaserModeBtn) teaserModeBtn.classList.remove('is-active');
-    lastTimestamp = null;
-    animFrameId = requestAnimationFrame(tick);
-  }
-
-  function pausePlayback() {
-    isPlaying = false;
-    if (playBtn) playBtn.classList.remove('is-playing');
-    if (animFrameId) cancelAnimationFrame(animFrameId);
-    lastTimestamp = null;
-  }
-
-  function togglePlayback() {
-    if (isPlaying) {
-      pausePlayback();
-    } else {
-      startPlayback();
-    }
-  }
-
-  if (playBtn) {
-    playBtn.addEventListener('click', function (e) {
+    cap.addEventListener('click', function (e) {
       e.stopPropagation();
-      togglePlayback();
+      setReviewedProduct(idx);
+      openPreOrderDrawer(CAPSULE_ITEMS[idx]);
+    });
+  });
+
+  // Central Review Card Click Handlers
+  if (reviewCard) {
+    reviewCard.addEventListener('click', function (e) {
+      e.stopPropagation();
+      openPreOrderDrawer(activeItem);
+    });
+
+    reviewCard.addEventListener('mouseenter', function () {
+      isHoverPaused = true;
+    });
+
+    reviewCard.addEventListener('mouseleave', function () {
+      isHoverPaused = false;
     });
   }
 
-  // Scrubber Track Click / Seek
-  if (scrubTrack) {
-    scrubTrack.addEventListener('click', function (e) {
-      var rect = scrubTrack.getBoundingClientRect();
-      var clickX = e.clientX - rect.left;
-      var ratio = Math.max(0, Math.min(1, clickX / rect.width));
-      currentTime = ratio * TOTAL_DURATION;
-      renderTimeline(ratio);
-    });
-  }
-
-  // Reveal All / Teaser Toggle Actions
-  if (revealAllBtn) {
-    revealAllBtn.addEventListener('click', function () {
-      pausePlayback();
-      isForcedReveal = true;
-      capsules.forEach(function (c) { c.classList.add('is-revealed'); });
-      if (scrubFill) scrubFill.style.width = '100%';
-      revealAllBtn.classList.add('is-active');
-      if (teaserModeBtn) teaserModeBtn.classList.remove('is-active');
-      if (headerStatusText) headerStatusText.textContent = 'ALL REVEALED • SELECT TO PRE-ORDER';
-    });
-  }
-
-  if (teaserModeBtn) {
-    teaserModeBtn.addEventListener('click', function () {
-      pausePlayback();
-      isForcedReveal = false;
-      currentTime = 0;
-      capsules.forEach(function (c) { c.classList.remove('is-revealed'); });
-      if (scrubFill) scrubFill.style.width = '0%';
-      teaserModeBtn.classList.add('is-active');
-      if (revealAllBtn) revealAllBtn.classList.remove('is-active');
-      if (headerStatusText) headerStatusText.textContent = 'TEASER MODE • 12-TICK SPINNER ACTIVE';
+  if (reviewCta) {
+    reviewCta.addEventListener('click', function (e) {
+      e.stopPropagation();
+      openPreOrderDrawer(activeItem);
     });
   }
 
   // Open Pre-Order Drawer for an Item
   function openPreOrderDrawer(item) {
+    isHoverPaused = true;
     activeItem = item;
     activeVariantId = item.variants[0].id;
 
@@ -333,6 +300,7 @@
   function closePreOrderDrawer() {
     if (drawer) drawer.classList.remove('is-open');
     document.body.style.overflow = '';
+    isHoverPaused = false;
   }
 
   if (drawerScrim) drawerScrim.addEventListener('click', closePreOrderDrawer);
@@ -343,19 +311,6 @@
     if (e.key === 'Escape' && drawer && drawer.classList.contains('is-open')) {
       closePreOrderDrawer();
     }
-  });
-
-  // Capsule Click Handlers
-  capsules.forEach(function (cap) {
-    cap.addEventListener('click', function (e) {
-      e.stopPropagation();
-      var pos = parseInt(cap.getAttribute('data-pos'), 10);
-      var item = CAPSULE_ITEMS.find(function (it) { return it.pos === pos; });
-      if (item) {
-        cap.classList.add('is-revealed');
-        openPreOrderDrawer(item);
-      }
-    });
   });
 
   // Pre-Order CTA Add to Cart Action
@@ -402,7 +357,7 @@
               countEl.removeAttribute('hidden');
             }
 
-            // Dispatch global event for sply-cart.js if listening
+            // Dispatch global events for sply-cart.js
             document.dispatchEvent(new CustomEvent('sply:cart:updated', { detail: cartData }));
             document.dispatchEvent(new CustomEvent('cart:refresh', { detail: cartData }));
           }, 350);
@@ -418,7 +373,8 @@
     });
   }
 
-  // Start Animation Loop on Page Load
-  startPlayback();
+  // Initialize with First Item & Start Auto Cycle
+  setReviewedProduct(0);
+  startAutoReviewCycle();
 
 })();
