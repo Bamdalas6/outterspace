@@ -16,12 +16,8 @@
     itemCount: 0
   };
 
-  // Audio helper
-  function playSound(type) {
-    if (window.AudioFX && window.AudioFX.play) {
-      window.AudioFX.play(type);
-    }
-  }
+  // Audio helper (Sound disabled)
+  function playSound(type) {}
 
   // Load cart from LocalStorage
   function loadCart() {

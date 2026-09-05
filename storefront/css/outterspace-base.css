@@ -306,15 +306,6 @@ img {
   background-color: var(--border-color);
 }
 
-/* Audio Toggle Button */
-.sply-audio-btn {
-  font-size: 0.7rem;
-  color: var(--text-muted);
-}
-.sply-audio-btn.is-muted {
-  opacity: 0.45;
-}
-
 /* ==========================================================================
    CATEGORY & VIEW BAR
    ========================================================================== */

@@ -190,7 +190,6 @@
     var playBtn = root.querySelector('[data-b-play]');
     var phasePill = root.querySelector('[data-b-phase]');
     var remixBtn = root.querySelector('[data-b-remix]');
-    var soundBtn = root.querySelector('[data-b-sound]');
 
     // HUD Elements
     var topTitle = root.querySelector('[data-b-top-title]');
@@ -436,19 +435,6 @@
       scrubberTrack.addEventListener('touchstart', function (e) {
         seek(e);
       }, { passive: true });
-    }
-
-    // Sound Toggle Button
-    if (soundBtn) {
-      soundBtn.addEventListener('click', function () {
-        var musicToggle = document.querySelector('[data-music-toggle]');
-        if (musicToggle) {
-          musicToggle.click();
-        } else if (window.__splyMusicAudio) {
-          if (window.__splyMusicAudio.paused) window.__splyMusicAudio.play();
-          else window.__splyMusicAudio.pause();
-        }
-      });
     }
 
     // Keyboard navigation

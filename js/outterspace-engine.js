@@ -7,95 +7,12 @@
   'use strict';
 
   // =========================================================================
-  // 1. SOUND SYNTHESIZER (Web Audio API)
+  // 1. SOUND SYNTHESIZER (Sound Disabled)
   // =========================================================================
-  var isAudioMuted = false;
-  try {
-    isAudioMuted = localStorage.getItem('outterspace_audio_muted') === 'true';
-  } catch(e) {}
-
-  var audioCtx = null;
-  function getAudioCtx() {
-    if (!audioCtx && (window.AudioContext || window.webkitAudioContext)) {
-      var AudioCtor = window.AudioContext || window.webkitAudioContext;
-      audioCtx = new AudioCtor();
-    }
-    if (audioCtx && audioCtx.state === 'suspended') {
-      audioCtx.resume();
-    }
-    return audioCtx;
-  }
-
   var AudioFX = {
-    play: function(type) {
-      if (isAudioMuted) return;
-      try {
-        var ctx = getAudioCtx();
-        if (!ctx) return;
-        var osc = ctx.createOscillator();
-        var gain = ctx.createGain();
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-
-        var now = ctx.currentTime;
-        if (type === 'click') {
-          osc.type = 'sine';
-          osc.frequency.setValueAtTime(800, now);
-          osc.frequency.exponentialRampToValueAtTime(300, now + 0.04);
-          gain.gain.setValueAtTime(0.05, now);
-          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
-          osc.start(now);
-          osc.stop(now + 0.04);
-        } else if (type === 'add') {
-          osc.type = 'triangle';
-          osc.frequency.setValueAtTime(440, now);
-          osc.frequency.exponentialRampToValueAtTime(880, now + 0.12);
-          gain.gain.setValueAtTime(0.08, now);
-          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
-          osc.start(now);
-          osc.stop(now + 0.12);
-        } else if (type === 'zoom') {
-          osc.type = 'sine';
-          osc.frequency.setValueAtTime(600, now);
-          osc.frequency.exponentialRampToValueAtTime(1000, now + 0.08);
-          gain.gain.setValueAtTime(0.04, now);
-          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
-          osc.start(now);
-          osc.stop(now + 0.08);
-        } else if (type === 'open') {
-          osc.type = 'sine';
-          osc.frequency.setValueAtTime(350, now);
-          osc.frequency.exponentialRampToValueAtTime(650, now + 0.09);
-          gain.gain.setValueAtTime(0.05, now);
-          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.09);
-          osc.start(now);
-          osc.stop(now + 0.09);
-        } else if (type === 'close') {
-          osc.type = 'sine';
-          osc.frequency.setValueAtTime(650, now);
-          osc.frequency.exponentialRampToValueAtTime(350, now + 0.08);
-          gain.gain.setValueAtTime(0.05, now);
-          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
-          osc.start(now);
-          osc.stop(now + 0.08);
-        }
-      } catch(e) {}
-    },
-    toggleMute: function() {
-      isAudioMuted = !isAudioMuted;
-      try {
-        localStorage.setItem('outterspace_audio_muted', isAudioMuted);
-      } catch(e) {}
-      var btn = document.getElementById('splyAudioToggle');
-      if (btn) {
-        btn.classList.toggle('is-muted', isAudioMuted);
-        btn.setAttribute('title', isAudioMuted ? 'Unmute Sound FX' : 'Mute Sound FX');
-      }
-      return isAudioMuted;
-    },
-    isMuted: function() {
-      return isAudioMuted;
-    }
+    play: function() {},
+    toggleMute: function() { return true; },
+    isMuted: function() { return true; }
   };
   window.AudioFX = AudioFX;
 
@@ -533,17 +450,6 @@
     if (burger) burger.addEventListener('click', toggleMenu);
     if (scrim) scrim.addEventListener('click', toggleMenu);
     if (closeBtn) closeBtn.addEventListener('click', toggleMenu);
-
-    // Audio Toggle Button in Menu and Header
-    var audioBtn = document.getElementById('splyAudioToggle');
-    if (audioBtn) {
-      audioBtn.addEventListener('click', function() {
-        AudioFX.toggleMute();
-      });
-      if (AudioFX.isMuted()) {
-        audioBtn.classList.add('is-muted');
-      }
-    }
   }
 
   // =========================================================================
