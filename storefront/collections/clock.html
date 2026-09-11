@@ -1,0 +1,336 @@
+﻿<!doctype html>
+<html lang="en" class="sply sply--light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#FFFFFF">
+  <title>OUTTERSPACE — PRE-ORDER CLOCK ANIMATION</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/css/sply-base.css">
+  <link rel="stylesheet" href="/css/sply-cart.css">
+  
+  <style>
+    :root {
+      --sply-bg: #FAFAFA;
+      --sply-fg: #0B0B0B;
+      --sply-font-mono: 'Red Hat Mono', ui-monospace, monospace;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      background: var(--sply-bg);
+      color: var(--sply-fg);
+      font-family: var(--sply-font-mono);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      overflow-x: hidden;
+    }
+    
+    .sply-clock-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 1200px;
+      padding: 80px 20px 40px;
+      margin: 0 auto;
+    }
+    
+    .sply-clock-header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    
+    .sply-clock-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: #0B0B0B;
+      color: #FFFFFF;
+      margin-bottom: 12px;
+    }
+    
+    .sply-clock-title {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    
+    .sply-clock-subtitle {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: #777;
+    }
+    
+    /* Toggle Version Pills */
+    .sply-version-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 18px 0;
+      background: #EEEEEE;
+      padding: 4px;
+      border-radius: 999px;
+    }
+    
+    .sply-version-btn {
+      border: none;
+      background: transparent;
+      font-family: var(--sply-font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      padding: 6px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      color: #666;
+    }
+    
+    .sply-version-btn.is-active {
+      background: #FFFFFF;
+      color: #0B0B0B;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    
+    /* Video Frame */
+    .sply-video-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 420px;
+      aspect-ratio: 9 / 16;
+      border-radius: 20px;
+      overflow: hidden;
+      background: #000;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+    
+    .sply-video-player {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    
+    /* Floating Control Pills inside Video */
+    .sply-video-overlay-ctrls {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      right: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 10;
+      pointer-events: none;
+    }
+    
+    .sply-ctrl-pill {
+      pointer-events: auto;
+      background: rgba(10, 10, 10, 0.85);
+      color: #FFF;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(8px);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+    
+    .sply-ctrl-pill:hover {
+      transform: scale(1.04);
+      background: #000;
+    }
+    
+    /* Pre-Order Action Row below video */
+    .sply-preorder-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+      justify-content: center;
+      width: 100%;
+      max-width: 480px;
+    }
+    
+    .sply-btn-preorder {
+      flex: 1;
+      min-width: 180px;
+      padding: 12px 18px;
+      background: #0B0B0B;
+      color: #FFFFFF;
+      text-decoration: none;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-align: center;
+      border-radius: 999px;
+      transition: all 0.2s ease;
+    }
+    
+    .sply-btn-preorder:hover {
+      background: #333333;
+      transform: translateY(-2px);
+    }
+    
+    .sply-btn-preorder--sec {
+      background: #FFFFFF;
+      color: #0B0B0B;
+      border: 1px solid #0B0B0B;
+    }
+    
+    .sply-btn-preorder--sec:hover {
+      background: #F0F0F0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="sply-topbar" style="position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(250,250,250,0.92); backdrop-filter: blur(8px);">
+    <span class="sply-topbar__left">
+      <a href="/collections/c" class="sply-icon" aria-label="Back to C View" style="text-decoration: none; color: inherit; font-size: 11px; font-weight: 700;">
+        &larr; C VIEW
+      </a>
+    </span>
+    <a href="/" class="sply-logo" aria-label="OUTTERSPACE STORE">
+      <span class="sply-logo__text" style="font-family: inherit; font-size: 15px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;">OUTTERSPACE</span>
+    </a>
+    <span class="sply-topbar__right">
+      <a href="/cart" class="sply-icon sply-cart-link" data-sply-cart-open aria-label="Cart">
+        <span class="sply-cart-count" data-cart-count hidden>0</span>
+        <span class="sply-icon-swap" aria-hidden="true">
+          <svg viewBox="4 3 16 16" width="20" height="20" fill="none">
+            <rect x="6" y="8" width="12" height="10" rx="2" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+            <path d="M9 7C9 5.34315 10.3431 4 12 4C13.6569 4 15 5.34315 15 7" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+          </svg>
+        </span>
+      </a>
+    </span>
+  </header>
+
+  <div class="sply-clock-container">
+    <div class="sply-clock-header">
+      <div class="sply-clock-badge">PRE-ORDER ANIMATION</div>
+      <h1 class="sply-clock-title">CABALLO &amp; ALTORO BLACK PANT</h1>
+      <p class="sply-clock-subtitle">COWBOY SERIES 2026 • CLOCKWORK REVEAL</p>
+    </div>
+
+    <!-- Version Switcher -->
+    <div class="sply-version-toggle">
+      <button type="button" class="sply-version-btn is-active" id="btnVersionA">OPTION A (POETIC)</button>
+      <button type="button" class="sply-version-btn" id="btnVersionB">OPTION B (CAMPAIGN)</button>
+    </div>
+
+    <!-- Video Stage -->
+    <div class="sply-video-wrapper">
+      <video id="clockVideo" class="sply-video-player" playsinline autoplay loop muted>
+        <source id="videoSource" src="/assets/videos/outterspace_clock_animation_v1.mp4" type="video/mp4">
+      </video>
+
+      <!-- Video Controls Overlay -->
+      <div class="sply-video-overlay-ctrls">
+        <button type="button" class="sply-ctrl-pill" id="btnPlayPause">
+          <span id="playIcon">PAUSE</span>
+        </button>
+        <button type="button" class="sply-ctrl-pill" id="btnAudio">
+          <span id="audioIcon">UNMUTE SOUND</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Pre-Order CTA Buttons -->
+    <div class="sply-preorder-actions">
+      <a href="/collections/c" class="sply-btn-preorder">PRE-ORDER CABALLO</a>
+      <a href="/collections/c" class="sply-btn-preorder sply-btn-preorder--sec">PRE-ORDER ALTORO</a>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var video = document.getElementById('clockVideo');
+      var source = document.getElementById('videoSource');
+      var btnPlay = document.getElementById('btnPlayPause');
+      var playIcon = document.getElementById('playIcon');
+      var btnAudio = document.getElementById('btnAudio');
+      var audioIcon = document.getElementById('audioIcon');
+      var btnVA = document.getElementById('btnVersionA');
+      var btnVB = document.getElementById('btnVersionB');
+
+      var srcA = '/assets/videos/outterspace_clock_animation_v1.mp4';
+      var srcB = '/assets/videos/outterspace_clock_animation_v2.mp4';
+
+      // Play / Pause
+      btnPlay.addEventListener('click', function () {
+        if (video.paused) {
+          video.play();
+          playIcon.textContent = 'PAUSE';
+        } else {
+          video.pause();
+          playIcon.textContent = 'PLAY';
+        }
+      });
+
+      // Mute / Unmute
+      btnAudio.addEventListener('click', function () {
+        video.muted = !video.muted;
+        if (video.muted) {
+          audioIcon.textContent = 'UNMUTE SOUND';
+        } else {
+          audioIcon.textContent = 'MUTE SOUND';
+        }
+      });
+
+      // Switch Version
+      btnVA.addEventListener('click', function () {
+        if (source.getAttribute('src') !== srcA) {
+          btnVA.classList.add('is-active');
+          btnVB.classList.remove('is-active');
+          source.setAttribute('src', srcA);
+          video.load();
+          video.play();
+          playIcon.textContent = 'PAUSE';
+        }
+      });
+
+      btnVB.addEventListener('click', function () {
+        if (source.getAttribute('src') !== srcB) {
+          btnVB.classList.add('is-active');
+          btnVA.classList.remove('is-active');
+          source.setAttribute('src', srcB);
+          video.load();
+          video.play();
+          playIcon.textContent = 'PAUSE';
+        }
+      });
+    })();
+  </script>
+
+  <script src="/js/sply-cart.js" defer></script>
+</body>
+</html>
