@@ -170,7 +170,7 @@
    * Each capsule spins and loads, then reveals and REMAINS revealed.
    * Once all 6 are revealed, they never load again.
    */
-  var STEP_DELAY = 1200; // 1.2s per capsule reveal
+  var STEP_DELAY = 1000; // 1.0s per tick (matches audio tick rhythm)
   var revealedCount = 0;
 
   function revealCapsule(index) {

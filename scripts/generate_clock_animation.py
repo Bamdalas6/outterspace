@@ -209,12 +209,15 @@ def render_animation(words_list, output_mp4, title_subtitle="CABALLO & ALTORO BL
     cab_pos4 = extract_alpha(user_cab_path) if os.path.exists(user_cab_path) else cab_front
     alt_pos5 = extract_alpha(user_alt_path) if os.path.exists(user_alt_path) else alt_back
 
-    g_cab_front = resize_max(cab_front, 290, 330)
-    g_alt_front = resize_max(alt_front, 260, 360)
-    g_cab_back = resize_max(cab_back, 290, 330)
-    g_alt_back = resize_max(alt_back, 260, 360)
-    g_cab_pos4 = resize_max(cab_pos4, 290, 330)
-    g_alt_pos5 = resize_max(alt_pos5, 260, 360)
+    # Make images smaller so the composition breathes cleanly around the dial
+    # Caballo: 230 x 265 (down from 290 x 330)
+    # Altoro: 205 x 295 (down from 260 x 360)
+    g_cab_front = resize_max(cab_front, 230, 265)
+    g_alt_front = resize_max(alt_front, 205, 295)
+    g_cab_back = resize_max(cab_back, 230, 265)
+    g_alt_back = resize_max(alt_back, 205, 295)
+    g_cab_pos4 = resize_max(cab_pos4, 230, 265)
+    g_alt_pos5 = resize_max(alt_pos5, 205, 295)
 
     hand_square, pivot = build_vector_hand(target_length=235)
     hs_w, hs_h = hand_square.size
@@ -223,12 +226,12 @@ def render_animation(words_list, output_mp4, title_subtitle="CABALLO & ALTORO BL
     PIVOT_Y = HEIGHT // 2
 
     POSITIONS = [
-        {"name": "12:00", "cx": 540, "cy": 470, "angle": 0},
-        {"name": "2:00",  "cx": 920, "cy": 720, "angle": 60},
-        {"name": "4:00",  "cx": 920, "cy": 1200, "angle": 120},
-        {"name": "6:00",  "cx": 540, "cy": 1450, "angle": 180},
-        {"name": "8:00",  "cx": 160, "cy": 1200, "angle": 240},
-        {"name": "10:00", "cx": 160, "cy": 720, "angle": 300},
+        {"name": "12:00", "cx": 540, "cy": 480, "angle": 0},
+        {"name": "2:00",  "cx": 910, "cy": 730, "angle": 60},
+        {"name": "4:00",  "cx": 910, "cy": 1190, "angle": 120},
+        {"name": "6:00",  "cx": 540, "cy": 1440, "angle": 180},
+        {"name": "8:00",  "cx": 170, "cy": 1190, "angle": 240},
+        {"name": "10:00", "cx": 170, "cy": 730, "angle": 300},
     ]
 
     GARMENTS = [
@@ -236,11 +239,11 @@ def render_animation(words_list, output_mp4, title_subtitle="CABALLO & ALTORO BL
         g_alt_front,  # 2:00
         g_cab_back,   # 4:00
         g_alt_back,   # 6:00
-        g_cab_pos4,   # 8:00 (replaced crossed-out Caballo detail with attached Caballo)
-        g_alt_pos5    # 10:00 (replaced crossed-out Altoro detail with attached Altoro)
+        g_cab_pos4,   # 8:00 (attached Caballo front)
+        g_alt_pos5    # 10:00 (attached Altoro back)
     ]
 
-    font_word = ImageFont.truetype(BODONI_FONT_PATH, 62)
+    font_word = ImageFont.truetype(BODONI_FONT_PATH, 58)
     font_title = ImageFont.truetype(BODONI_FONT_PATH, 72)
     font_sub = ImageFont.truetype(BODONI_FONT_PATH, 40)
     font_cta = ImageFont.truetype(BODONI_FONT_PATH, 50)
@@ -270,39 +273,47 @@ def render_animation(words_list, output_mp4, title_subtitle="CABALLO & ALTORO BL
         frame = Image.new('RGB', (WIDTH, HEIGHT), BG_COLOR)
         draw = ImageDraw.Draw(frame)
 
-        if frame_idx < 315:
-            if frame_idx < 101:
+        if frame_idx < 319:
+            # Exact audio-synchronized tick timestamps (measured directly from audio transient onsets):
+            # Frame 73  (1.78s): Tick 1 -> Jump to 2:00
+            # Frame 115 (2.81s): Tick 2 -> Jump to 4:00
+            # Frame 155 (3.78s): Tick 3 -> Jump to 6:00
+            # Frame 197 (4.81s): Tick 4 -> Jump to 8:00
+            # Frame 239 (5.81s): Tick 5 -> Jump to 10:00
+            # Frame 280 (6.81s): Tick 6 -> Jump to 12:00 (Full 360 circle reveal)
+            if frame_idx < 73:
                 step = 0
-                prev_angle = 0
-                target_angle = 0
-                tick_prog = 1.0
-            elif frame_idx < 154:
+                current_angle = 0.0
+            elif frame_idx < 115:
                 step = 1
-                prev_angle = POSITIONS[0]["angle"]
-                target_angle = POSITIONS[1]["angle"]
-                tick_prog = min(1.0, (frame_idx - 101) / 3.0)
-            elif frame_idx < 205:
+                df = frame_idx - 73
+                prog = 0.75 if df == 0 else (1.03 if df == 1 else 1.0)
+                current_angle = 0.0 + 60.0 * prog
+            elif frame_idx < 155:
                 step = 2
-                prev_angle = POSITIONS[1]["angle"]
-                target_angle = POSITIONS[2]["angle"]
-                tick_prog = min(1.0, (frame_idx - 154) / 3.0)
-            elif frame_idx < 255:
+                df = frame_idx - 115
+                prog = 0.75 if df == 0 else (1.03 if df == 1 else 1.0)
+                current_angle = 60.0 + 60.0 * prog
+            elif frame_idx < 197:
                 step = 3
-                prev_angle = POSITIONS[2]["angle"]
-                target_angle = POSITIONS[3]["angle"]
-                tick_prog = min(1.0, (frame_idx - 205) / 3.0)
-            elif frame_idx < 287:
+                df = frame_idx - 155
+                prog = 0.75 if df == 0 else (1.03 if df == 1 else 1.0)
+                current_angle = 120.0 + 60.0 * prog
+            elif frame_idx < 239:
                 step = 4
-                prev_angle = POSITIONS[3]["angle"]
-                target_angle = POSITIONS[4]["angle"]
-                tick_prog = min(1.0, (frame_idx - 255) / 3.0)
-            else:
+                df = frame_idx - 197
+                prog = 0.75 if df == 0 else (1.03 if df == 1 else 1.0)
+                current_angle = 180.0 + 60.0 * prog
+            elif frame_idx < 280:
                 step = 5
-                prev_angle = POSITIONS[4]["angle"]
-                target_angle = POSITIONS[5]["angle"]
-                tick_prog = min(1.0, (frame_idx - 287) / 3.0)
-
-            current_angle = prev_angle + (target_angle - prev_angle) * (1.0 if tick_prog >= 1.0 else (tick_prog ** 2))
+                df = frame_idx - 239
+                prog = 0.75 if df == 0 else (1.03 if df == 1 else 1.0)
+                current_angle = 240.0 + 60.0 * prog
+            else:
+                step = 6 # All 6 revealed!
+                df = frame_idx - 280
+                prog = 0.75 if df == 0 else (1.03 if df == 1 else 1.0)
+                current_angle = 300.0 + 60.0 * prog
 
             # 1. Draw luxury clock face with double rim, 60 minute ticks, and 12 Roman numerals
             draw_clock_face(draw, PIVOT_X, PIVOT_Y, dial_r=300)

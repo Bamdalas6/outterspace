@@ -109,8 +109,8 @@
 /* Individual Teaser Capsule */
 .sply-c-capsule {
   position: absolute;
-  width: 140px;
-  height: 160px;
+  width: 116px;
+  height: 136px;
   transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
@@ -124,15 +124,15 @@
 
 @media (max-width: 768px) {
   .sply-c-capsule {
-    width: 105px;
-    height: 125px;
+    width: 90px;
+    height: 108px;
   }
 }
 
 @media (max-width: 420px) {
   .sply-c-capsule {
-    width: 90px;
-    height: 110px;
+    width: 78px;
+    height: 95px;
   }
 }
 
