@@ -16,11 +16,88 @@ BG_COLOR = (250, 250, 250)
 PROJECT_DIR = r"c:\Users\ASUS\Desktop\Project\Shopify"
 DARKER_DIR = r"C:\Users\ASUS\Pictures\Darker_Grotesque"
 SCRATCH_DIR = r"C:\Users\ASUS\.gemini\antigravity\brain\09c70ccb-25e6-44e1-ba39-a9bfed22eb84\scratch"
-AUDIO_PATH = os.path.join(SCRATCH_DIR, "extracted_audio.aac")
+AUDIO_PATH = os.path.join(SCRATCH_DIR, "clean_luxury_clock.aac")
 
 BODONI_FONT_PATH = r"C:\Windows\Fonts\Bodoni Bk BT Book.ttf"
 if not os.path.exists(BODONI_FONT_PATH):
     BODONI_FONT_PATH = r"C:\Windows\Fonts\georgia.ttf"
+
+def generate_luxury_clock_audio(audio_path):
+    import wave
+    ffmpeg_exe = imageio_ffmpeg.get_ffmpeg_exe()
+    
+    # Tactile physical click from Windows system audio
+    nav_path = r"C:\Windows\Media\Windows Navigation Start.wav"
+    nav = None
+    if os.path.exists(nav_path):
+        with wave.open(nav_path, 'rb') as wf:
+            raw = wf.readframes(wf.getnframes())
+            nav = np.frombuffer(raw, dtype=np.int16).astype(np.float32) / 32768.0
+            nav = nav.reshape(-1, 2)
+
+    sr = 44100
+    duration = TOTAL_FRAMES / FPS
+    total_samples = int(duration * sr)
+    audio_out = np.zeros((total_samples, 2), dtype=np.float32)
+
+    def make_clock_click(is_tock=False):
+        n_tail = int(0.14 * sr)
+        t = np.arange(n_tail) / sr
+        f_res1 = 380 if not is_tock else 310
+        f_res2 = 190 if not is_tock else 155
+        # Deep warm wooden clock resonance & brass housing
+        tail = (np.sin(2 * np.pi * f_res1 * t) * 0.45 +
+                np.sin(2 * np.pi * f_res2 * t) * 0.35 +
+                np.sin(2 * np.pi * 95 * t) * 0.25) * np.exp(-t / 0.038)
+        
+        if nav is not None:
+            speed = 0.92 if is_tock else 1.0
+            indices = np.arange(0, len(nav), speed)
+            indices = indices[indices < len(nav)].astype(int)
+            click = nav[indices].copy()
+            out_len = max(len(click), n_tail)
+            out = np.zeros((out_len, 2), dtype=np.float32)
+            out[:len(click)] += click * 0.82
+            out[:n_tail, 0] += tail * 0.38
+            out[:n_tail, 1] += tail * 0.38
+        else:
+            out = np.zeros((n_tail, 2), dtype=np.float32)
+            out[:, 0] = tail
+            out[:, 1] = tail
+        return out
+
+    tick_frames = [73, 115, 155, 197, 239, 280, 319]
+    for idx, f in enumerate(tick_frames):
+        t_start = f / FPS
+        s_start = int(t_start * sr)
+        is_tock = (idx % 2 == 1)
+        clk = make_clock_click(is_tock=is_tock)
+        if idx == len(tick_frames) - 1:
+            clk = clk * 1.15
+        s_end = min(total_samples, s_start + len(clk))
+        audio_out[s_start:s_end] += clk[:s_end - s_start]
+
+    # STOP ALL CLOCK SOUND COMPLETELY AFTER FINAL CLICK (frame 324 -> 7.9s)
+    cutoff = int((324 / FPS) * sr)
+    audio_out[cutoff:] = 0.0
+
+    max_val = np.max(np.abs(audio_out))
+    if max_val > 0:
+        audio_out = (audio_out / max_val) * 0.90
+
+    pcm = (audio_out * 32767).clip(-32768, 32767).astype(np.int16)
+    temp_wav = os.path.join(SCRATCH_DIR, "temp_luxury_clock.wav")
+    with wave.open(temp_wav, 'wb') as wf:
+        wf.setnchannels(2)
+        wf.setsampwidth(2)
+        wf.setframerate(sr)
+        wf.writeframes(pcm.tobytes())
+
+    cmd_enc = [ffmpeg_exe, "-y", "-i", temp_wav, "-c:a", "aac", "-b:a", "192k", audio_path]
+    subprocess.run(cmd_enc, check=True)
+    if os.path.exists(temp_wav):
+        os.remove(temp_wav)
+    print(f"Generated luxury clock audio: {audio_path}")
 
 def extract_alpha(img_path, threshold=22):
     im = Image.open(img_path).convert('RGB')
@@ -192,6 +269,9 @@ def render_animation(words_list, output_mp4, title_subtitle="CABALLO & ALTORO BL
     print(f"Rendering: {os.path.basename(output_mp4)}")
     print(f"Words: {words_list}")
     print(f"==========================================")
+
+    # Ensure authentic luxury clock audio is generated
+    generate_luxury_clock_audio(AUDIO_PATH)
 
     # 1. Prepare assets
     print("Preparing high-resolution product cutouts...")
