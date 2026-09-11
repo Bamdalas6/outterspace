@@ -154,6 +154,15 @@
   }
   preloadImages();
 
+  var needleGroup = document.getElementById('splyCNeedleGroup');
+  var CLOCK_ANGLES = [0, 60, 120, 180, 240, 300];
+
+  function setNeedleAngle(angle) {
+    if (needleGroup) {
+      needleGroup.style.transform = 'rotate(' + angle + 'deg)';
+    }
+  }
+
   /**
    * Clockwise Reveal Sequence:
    * Positions are ordered 1 (12 o'clock) -> 2 (2 o'clock) -> 3 (4 o'clock)
@@ -170,6 +179,7 @@
     if (cap && !cap.classList.contains('is-revealed')) {
       cap.classList.add('is-revealed');
       revealedCount++;
+      setNeedleAngle(CLOCK_ANGLES[index]);
       if (headerStatusText) {
         if (revealedCount >= capsules.length) {
           headerStatusText.textContent = 'ALL REVEALED • SELECT TO PRE-ORDER';
@@ -196,13 +206,89 @@
     }
   }
 
-  // Capsule Click Handler: opens Pre-Order Drawer
+  // Capsule Click & Hover Handlers: opens Pre-Order Drawer & moves clock needle
   capsules.forEach(function (cap, idx) {
+    cap.addEventListener('mouseenter', function () {
+      setNeedleAngle(CLOCK_ANGLES[idx]);
+    });
+
     cap.addEventListener('click', function (e) {
       e.stopPropagation();
+      setNeedleAngle(CLOCK_ANGLES[idx]);
       // Ensure it is revealed if clicked early
       revealCapsule(idx);
       openPreOrderDrawer(CAPSULE_ITEMS[idx]);
+    });
+  });
+
+  // View Switcher: Clock Video vs Interactive Lookbook
+  var viewBtns = document.querySelectorAll('[data-c-view-btn]');
+  var videoStage = document.querySelector('[data-c-video-stage]');
+  var interactiveStage = document.querySelector('[data-c-interactive-stage]');
+
+  viewBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var targetView = btn.getAttribute('data-c-view-btn');
+      viewBtns.forEach(function (b) { b.classList.remove('is-active'); });
+      btn.classList.add('is-active');
+
+      if (targetView === 'clock-video') {
+        if (videoStage) videoStage.classList.add('is-visible');
+        if (interactiveStage) interactiveStage.classList.add('is-hidden');
+      } else {
+        if (videoStage) videoStage.classList.remove('is-visible');
+        if (interactiveStage) interactiveStage.classList.remove('is-hidden');
+      }
+    });
+  });
+
+  // Video Controls
+  var videoEl = document.querySelector('[data-c-video]');
+  var audioBtn = document.querySelector('[data-c-audio-btn]');
+  var audioLabel = document.querySelector('[data-c-audio-label]');
+  var switchVersionBtn = document.querySelector('[data-c-switch-version]');
+  var versionLabel = document.querySelector('[data-c-version-label]');
+  var currentVersion = 1;
+
+  if (audioBtn && videoEl) {
+    audioBtn.addEventListener('click', function () {
+      if (videoEl.muted) {
+        videoEl.muted = false;
+        videoEl.play();
+        if (audioLabel) audioLabel.textContent = 'MUTE SOUND';
+      } else {
+        videoEl.muted = true;
+        if (audioLabel) audioLabel.textContent = 'UNMUTE SOUND';
+      }
+    });
+  }
+
+  if (switchVersionBtn && videoEl) {
+    switchVersionBtn.addEventListener('click', function () {
+      var wasMuted = videoEl.muted;
+      if (currentVersion === 1) {
+        currentVersion = 2;
+        videoEl.src = '/assets/videos/outterspace_clock_animation_v2.mp4';
+        if (versionLabel) versionLabel.textContent = 'V2 (OUTTERSPACE)';
+      } else {
+        currentVersion = 1;
+        videoEl.src = '/assets/videos/outterspace_clock_animation_v1.mp4';
+        if (versionLabel) versionLabel.textContent = 'V1 (REAL FRIENDS)';
+      }
+      videoEl.muted = wasMuted;
+      videoEl.play();
+    });
+  }
+
+  // Quick Pre-Order Buttons beneath Video
+  var quickPreorderBtns = document.querySelectorAll('[data-c-quick-preorder]');
+  quickPreorderBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var handle = btn.getAttribute('data-c-quick-preorder');
+      var matched = CAPSULE_ITEMS.find(function (it) { return it.handle === handle; });
+      if (matched) {
+        openPreOrderDrawer(matched);
+      }
     });
   });
 

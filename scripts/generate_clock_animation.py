@@ -1,4 +1,4 @@
-﻿import os
+import os
 import sys
 import subprocess
 import shutil
@@ -124,6 +124,69 @@ def build_vector_hand(target_length=235):
     
     return img, (cx, cy)
 
+def draw_clock_face(draw, cx, cy, dial_r=300, font_path=BODONI_FONT_PATH):
+    import math
+    rim_color = (210, 210, 210)
+    rim_outer_color = (225, 225, 225)
+    tick_minute_color = (200, 200, 200)
+    tick_hour_color = (40, 40, 40)
+    numeral_color = (30, 30, 30)
+
+    # 1. Subtle dial background circle (pure white to pop against the off-white stage)
+    draw.ellipse([cx - dial_r, cy - dial_r, cx + dial_r, cy + dial_r], fill=(255, 255, 255), outline=rim_color, width=1)
+    
+    # Outer track circle slightly offset
+    track_r = dial_r - 8
+    draw.ellipse([cx - track_r, cy - track_r, cx + track_r, cy + track_r], outline=rim_outer_color, width=1)
+
+    # 2. 60 minute ticks & 12 hour ticks
+    for m in range(60):
+        angle_rad = math.radians(m * 6 - 90)
+        cos_a = math.cos(angle_rad)
+        sin_a = math.sin(angle_rad)
+
+        if m % 5 == 0:
+            # Hour tick
+            t_outer = dial_r - 2
+            t_inner = dial_r - 18
+            x1 = cx + t_outer * cos_a
+            y1 = cy + t_outer * sin_a
+            x2 = cx + t_inner * cos_a
+            y2 = cy + t_inner * sin_a
+            draw.line([(x1, y1), (x2, y2)], fill=tick_hour_color, width=2)
+        else:
+            # Minute tick
+            t_outer = dial_r - 4
+            t_inner = dial_r - 12
+            x1 = cx + t_outer * cos_a
+            y1 = cy + t_outer * sin_a
+            x2 = cx + t_inner * cos_a
+            y2 = cy + t_inner * sin_a
+            draw.line([(x1, y1), (x2, y2)], fill=tick_minute_color, width=1)
+
+    # 3. 12 Roman numerals (XII, I, II, ... XI)
+    roman_numerals = ["XII", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI"]
+    try:
+        font_roman = ImageFont.truetype(font_path, 28)
+    except Exception:
+        font_roman = ImageFont.load_default()
+    num_r = dial_r - 64
+
+    for h in range(12):
+        angle_rad = math.radians(h * 30 - 90)
+        cos_a = math.cos(angle_rad)
+        sin_a = math.sin(angle_rad)
+
+        nx = cx + num_r * cos_a
+        ny = cy + num_r * sin_a
+
+        rom = roman_numerals[h]
+        bbox = draw.textbbox((0, 0), rom, font=font_roman)
+        rw = bbox[2] - bbox[0]
+        rh = bbox[3] - bbox[1]
+
+        draw.text((nx - rw / 2, ny - rh / 2), rom, font=font_roman, fill=numeral_color)
+
 def render_animation(words_list, output_mp4, title_subtitle="CABALLO & ALTORO BLACK PANT"):
     print(f"\n==========================================")
     print(f"Rendering: {os.path.basename(output_mp4)}")
@@ -157,12 +220,12 @@ def render_animation(words_list, output_mp4, title_subtitle="CABALLO & ALTORO BL
     PIVOT_Y = HEIGHT // 2
 
     POSITIONS = [
-        {"name": "12:00", "cx": 540, "cy": 530, "angle": 0},
-        {"name": "2:00",  "cx": 910, "cy": 740, "angle": 60},
-        {"name": "4:00",  "cx": 910, "cy": 1180, "angle": 120},
-        {"name": "6:00",  "cx": 540, "cy": 1400, "angle": 180},
-        {"name": "8:00",  "cx": 170, "cy": 1180, "angle": 240},
-        {"name": "10:00", "cx": 170, "cy": 740, "angle": 300},
+        {"name": "12:00", "cx": 540, "cy": 470, "angle": 0},
+        {"name": "2:00",  "cx": 920, "cy": 720, "angle": 60},
+        {"name": "4:00",  "cx": 920, "cy": 1200, "angle": 120},
+        {"name": "6:00",  "cx": 540, "cy": 1450, "angle": 180},
+        {"name": "8:00",  "cx": 160, "cy": 1200, "angle": 240},
+        {"name": "10:00", "cx": 160, "cy": 720, "angle": 300},
     ]
 
     GARMENTS = [
@@ -238,6 +301,9 @@ def render_animation(words_list, output_mp4, title_subtitle="CABALLO & ALTORO BL
 
             current_angle = prev_angle + (target_angle - prev_angle) * (1.0 if tick_prog >= 1.0 else (tick_prog ** 2))
 
+            # 1. Draw luxury clock face with double rim, 60 minute ticks, and 12 Roman numerals
+            draw_clock_face(draw, PIVOT_X, PIVOT_Y, dial_r=300)
+
             for p_idx in range(6):
                 pos = POSITIONS[p_idx]
                 word = words_list[p_idx]
@@ -261,6 +327,9 @@ def render_animation(words_list, output_mp4, title_subtitle="CABALLO & ALTORO BL
             hx = PIVOT_X - hs_w // 2
             hy = PIVOT_Y - hs_h // 2
             frame.paste(rot_hand, (hx, hy), rot_hand)
+
+            # Center pivot pin
+            draw.ellipse([PIVOT_X - 5, PIVOT_Y - 5, PIVOT_X + 5, PIVOT_Y + 5], fill=(15, 15, 15))
 
         elif frame_idx < 356:
             pass

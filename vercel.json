@@ -16,6 +16,18 @@
       "destination": "/collections/a-view.html"
     },
     {
+      "source": "/collections/b",
+      "destination": "/collections/b.html"
+    },
+    {
+      "source": "/collections/c",
+      "destination": "/collections/c.html"
+    },
+    {
+      "source": "/collections/clock",
+      "destination": "/collections/clock.html"
+    },
+    {
       "source": "/collections/home-page-copy",
       "destination": "/collections/rnnr.html"
     },
