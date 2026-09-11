@@ -88,31 +88,31 @@
     {
       id: 5,
       pos: 5,
-      handle: 'altoro-black-pant',
-      title: 'Altoro Black Pant',
-      subtitle: 'Mustang Horses & Lasso Detail',
-      price_ngn: '₦448,500',
-      price_usd: '$345',
-      image: '/cowboy seriess/altoro-detail.jpg',
+      handle: 'caballo',
+      title: 'Caballo',
+      subtitle: 'Cargo Jort Front Look',
+      price_ngn: '₦383,500',
+      price_usd: '$295',
+      image: '/cowboy seriess/caballo-front-hires.jpg',
       variants: [
-        { id: 58051664642379, size: 'S' },
-        { id: 58051664675147, size: 'M' },
-        { id: 58051664707915, size: 'L' },
-        { id: 58051664740683, size: 'XL' },
-        { id: 58051664773451, size: '2XL' },
-        { id: 58051664806219, size: '3XL' }
+        { id: 58037098938699, size: 'S' },
+        { id: 58037098971467, size: 'M' },
+        { id: 58037099004235, size: 'L' },
+        { id: 58037099037003, size: 'XL' },
+        { id: 58037099069771, size: '2XL' },
+        { id: 58037099102539, size: '3XL' }
       ],
-      desc: 'Detailed view of the multi-horse stampede embroidery and golden lasso swirling around the flare hem with Cowboy Series 2026 lettering.'
+      desc: 'Crafted from light indigo vintage wash heavyweight denim. Accented with handcrafted pearl flower studs across dual cargo pocket flaps, grazing stallion embroidery, Outterspace Cowboy Series script, and dual-grommet utility belt with polished hardware buckle.'
     },
     {
       id: 6,
       pos: 6,
       handle: 'altoro-black-pant',
       title: 'Altoro Black Pant',
-      subtitle: 'Stallion Cap Back Pocket Patch',
+      subtitle: 'Back Silhouette & Stallion Patch',
       price_ngn: '₦448,500',
       price_usd: '$345',
-      image: '/cowboy seriess/altoro-back-detail.jpg',
+      image: '/cowboy seriess/altoro-back-hires.png',
       variants: [
         { id: 58051664642379, size: 'S' },
         { id: 58051664675147, size: 'M' },
@@ -121,7 +121,7 @@
         { id: 58051664773451, size: '2XL' },
         { id: 58051664806219, size: '3XL' }
       ],
-      desc: 'Close-up of the signature yellow cap horse character back patch, tonal stitching, and bespoke leather label.'
+      desc: 'Rear perspective of the Altoro flared silhouette, featuring Outterspace genuine leather waistband patch, welt pocket construction, and signature cap-wearing horse character back patch.'
     }
   ];
 

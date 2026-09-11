@@ -200,18 +200,21 @@ def render_animation(words_list, output_mp4, title_subtitle="CABALLO & ALTORO BL
     alt_front = extract_alpha(os.path.join(DARKER_DIR, "IMG_7305.PNG"))
     alt_back = extract_alpha(os.path.join(DARKER_DIR, "IMG_7303.PNG"))
 
-    cw, ch = cab_front.size
-    detail_cab = cab_front.crop((int(cw * 0.04), int(ch * 0.38), int(cw * 0.52), int(ch * 0.95)))
+    # User-specified replacements for the crossed-out detail positions:
+    # 8:00 position -> user-attached Caballo front
+    # 10:00 position -> user-attached Altoro back
+    user_cab_path = os.path.join(PROJECT_DIR, "cowboy seriess", "caballo-front-hires.jpg")
+    user_alt_path = os.path.join(PROJECT_DIR, "cowboy seriess", "altoro-back-hires.png")
 
-    aw, ah = alt_front.size
-    detail_alt = alt_front.crop((int(aw * 0.05), int(ah * 0.44), int(aw * 0.95), int(ah * 0.98)))
+    cab_pos4 = extract_alpha(user_cab_path) if os.path.exists(user_cab_path) else cab_front
+    alt_pos5 = extract_alpha(user_alt_path) if os.path.exists(user_alt_path) else alt_back
 
     g_cab_front = resize_max(cab_front, 290, 330)
     g_alt_front = resize_max(alt_front, 260, 360)
     g_cab_back = resize_max(cab_back, 290, 330)
     g_alt_back = resize_max(alt_back, 260, 360)
-    g_cab_detail = resize_max(detail_cab, 250, 290)
-    g_alt_detail = resize_max(detail_alt, 270, 270)
+    g_cab_pos4 = resize_max(cab_pos4, 290, 330)
+    g_alt_pos5 = resize_max(alt_pos5, 260, 360)
 
     hand_square, pivot = build_vector_hand(target_length=235)
     hs_w, hs_h = hand_square.size
@@ -229,12 +232,12 @@ def render_animation(words_list, output_mp4, title_subtitle="CABALLO & ALTORO BL
     ]
 
     GARMENTS = [
-        g_cab_front,
-        g_alt_front,
-        g_cab_back,
-        g_alt_back,
-        g_cab_detail,
-        g_alt_detail
+        g_cab_front,  # 12:00
+        g_alt_front,  # 2:00
+        g_cab_back,   # 4:00
+        g_alt_back,   # 6:00
+        g_cab_pos4,   # 8:00 (replaced crossed-out Caballo detail with attached Caballo)
+        g_alt_pos5    # 10:00 (replaced crossed-out Altoro detail with attached Altoro)
     ]
 
     font_word = ImageFont.truetype(BODONI_FONT_PATH, 62)
