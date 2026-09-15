@@ -182,7 +182,7 @@
       setNeedleAngle(CLOCK_ANGLES[index]);
       if (headerStatusText) {
         if (revealedCount >= capsules.length) {
-          headerStatusText.textContent = 'ALL REVEALED • SELECT TO PRE-ORDER';
+          headerStatusText.textContent = 'ALL REVEALED • AVAILABLE NOW FOR ORDER';
         } else {
           headerStatusText.textContent = 'REVEALED ' + revealedCount + '/6 • CLOCKWISE LOADING';
         }
@@ -329,7 +329,7 @@
 
     if (drawerCta) {
       drawerCta.disabled = false;
-      drawerCta.textContent = 'PRE-ORDER NOW — ' + item.price_ngn;
+      drawerCta.textContent = 'ORDER NOW — ' + item.price_ngn;
     }
 
     if (drawer) drawer.classList.add('is-open');
@@ -405,7 +405,7 @@
           drawerCta.textContent = 'ERROR — TRY AGAIN';
           setTimeout(function () {
             drawerCta.disabled = false;
-            drawerCta.textContent = 'PRE-ORDER NOW — ' + activeItem.price_ngn;
+            drawerCta.textContent = 'ORDER NOW — ' + activeItem.price_ngn;
           }, 1500);
         });
     });

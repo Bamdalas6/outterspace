@@ -433,7 +433,7 @@ def render_animation(words_list, output_mp4, title_subtitle="CABALLO & ALTORO BL
             line2 = "COWBOY SERIES 2026"
             line3 = "—"
             line4 = title_subtitle
-            line5 = "PRE-ORDER AVAILABLE NOW"
+            line5 = "AVAILABLE NOW FOR ORDER"
 
             b1 = draw.textbbox((0, 0), line1, font=font_title)
             b2 = draw.textbbox((0, 0), line2, font=font_sub)
@@ -491,7 +491,7 @@ if __name__ == "__main__":
     shutil.copy2(out_v1_user, out_v1_project)
     shutil.copy2(out_v1_user, out_v1_storefront)
 
-    words_option_b = ["OUTTERSPACE", "COWBOY", "SERIES", "PRE-ORDER", "AVAILABLE", "NOW"]
+    words_option_b = ["OUTTERSPACE", "COWBOY", "SERIES", "AVAILABLE", "FOR", "ORDER"]
     out_v2_user = os.path.join(DARKER_DIR, "outterspace_clock_animation_v2.mp4")
     out_v2_project = os.path.join(PROJECT_DIR, "assets", "videos", "outterspace_clock_animation_v2.mp4")
     out_v2_storefront = os.path.join(PROJECT_DIR, "storefront", "assets", "videos", "outterspace_clock_animation_v2.mp4")
